@@ -1,0 +1,25 @@
+from healthsynth.commercial.simulation import CommercialSimulation, write_csv_outputs
+
+
+def generate(
+    module: str = "commercial_analytics",
+    hcps: int = 1000,
+    years: int = 3,
+    scenario: str = "new_product_launch",
+    output_dir: str = "output",
+    seed: int = 42,
+):
+    if module != "commercial_analytics":
+        raise ValueError("Only commercial_analytics is supported in v0.1")
+
+    simulation = CommercialSimulation(
+        hcps=hcps,
+        years=years,
+        scenario=scenario,
+        seed=seed,
+    )
+
+    result = simulation.run()
+    write_csv_outputs(result=result, output_dir=output_dir)
+
+    return result.as_dict()

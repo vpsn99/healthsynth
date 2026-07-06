@@ -1,0 +1,2 @@
+[console_scripts]
+healthsynth = healthsynth.cli:app

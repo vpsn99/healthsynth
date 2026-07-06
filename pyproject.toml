@@ -1,0 +1,19 @@
+[project]
+name = "healthsynth"
+version = "0.1.0"
+description = "Synthetic pharma commercial analytics data generator"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "numpy",
+    "duckdb",
+    "typer",
+    "rich",
+    "faker",
+]
+
+[project.scripts]
+healthsynth = "healthsynth.cli:app"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
