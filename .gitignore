@@ -1,25 +1,48 @@
+# --------------------------------------------------
 # Python
+# --------------------------------------------------
 __pycache__/
 *.py[cod]
-*.pyo
+*$py.class
 
-# Virtual environment
+# Virtual Environments
 .venv/
+venv/
+env/
 
-# IDE
-.vscode/
-
-# Test cache
-.pytest_cache/
-
-# Build
+# Distribution / packaging
 build/
 dist/
 *.egg-info/
+.eggs/
 
-# Generated data
-output/
+# Unit Testing
+.pytest_cache/
+.coverage
+htmlcov/
 
-# OS
+# IDE
+.vscode/
+.idea/
+
+# OS Files
 .DS_Store
 Thumbs.db
+
+# Generated datasets
+output/
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Misc
+*.tmp
+
+# Build artifacts
+dist/
+
+*.whl
+*.tar.gz

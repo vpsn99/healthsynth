@@ -1,30 +1,21 @@
 # HealthSynth
 
-HealthSynth is an open-source synthetic commercial healthcare analytics simulator.
+> An open-source healthcare commercial analytics simulation engine.
 
-It generates realistic healthcare analytics datasets for learning and experimentation with:
+HealthSynth generates realistic synthetic healthcare commercial analytics datasets for learning, experimentation, data engineering, BI, and AI applications.
 
-- SQL
-- Python
-- dbt
-- DuckDB
-- Snowflake
-- Microsoft Fabric
-- Databricks
-- Power BI
-- AI and RAG
+## Current Status
 
-Current MVP:
+🚧 Early Development
 
-- Commercial Analytics
+Current capabilities:
+
+- Commercial Analytics simulation
 - HCP Master
 - Product
 - Call Activity
 - Prescriptions
 - New Product Launch scenario
+- CSV export
 
-Project Status
-
-Early development (v0.1)
-
-More documentation coming soon.
+More features are under active development.

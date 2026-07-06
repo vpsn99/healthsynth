@@ -17,3 +17,7 @@ healthsynth = "healthsynth.cli:app"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = ["healthsynth*"]
+exclude = ["output*", "tests*", "examples*"]
