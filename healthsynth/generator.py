@@ -1,4 +1,8 @@
-from healthsynth.commercial.simulation import CommercialSimulation, write_csv_outputs
+from healthsynth.commercial.simulation import (
+    CommercialSimulation,
+    write_csv_outputs,
+    write_duckdb_output,
+)
 
 
 def generate(
@@ -21,5 +25,6 @@ def generate(
 
     result = simulation.run()
     write_csv_outputs(result=result, output_dir=output_dir)
+    write_duckdb_output(result=result, output_dir=output_dir)
 
     return result.as_dict()

@@ -5,6 +5,7 @@ import pandas as pd
 
 from healthsynth.commercial.entities import generate_hcps, generate_products
 from healthsynth.commercial.facts import generate_call_activity, generate_prescriptions
+from healthsynth.exporters.duckdb_exporter import write_duckdb
 
 
 @dataclass
@@ -79,3 +80,13 @@ def write_csv_outputs(
 
     for table_name, dataframe in result.as_dict().items():
         dataframe.to_csv(output_path / f"{table_name}.csv", index=False)
+
+
+def write_duckdb_output(
+    result: CommercialSimulationResult,
+    output_dir: str = "output",
+) -> Path:
+    return write_duckdb(
+        datasets=result.as_dict(),
+        output_dir=output_dir,
+    )

@@ -47,6 +47,7 @@ def generate(
     console.print(f"Created {len(datasets['product'])} product records")
     console.print(f"Created {len(datasets['call_activity'])} call activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
+    console.print(f"Created DuckDB database: {output_dir}/healthsynth.duckdb")
     console.print(f"Output written to: {output_dir}")
 
 if __name__ == "__main__":
