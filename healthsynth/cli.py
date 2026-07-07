@@ -1,6 +1,6 @@
 import typer
 from rich.console import Console
-
+from healthsynth import __version__
 from healthsynth.generator import generate as run_generation
 
 app = typer.Typer(
@@ -10,7 +10,10 @@ app = typer.Typer(
 
 console = Console()
 
-
+@app.command()
+def version():
+    console.print(f"HealthSynth version {__version__}")
+    
 @app.callback()
 def main():
     """
