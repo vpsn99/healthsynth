@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 from faker import Faker
+from healthsynth.core import BaseGenerator
 
 
 DEFAULT_CONFIG = {
@@ -38,16 +39,16 @@ class Territory:
     rep_name: str
 
 
-class HCPGenerator:
+class HCPGenerator(BaseGenerator):
     def __init__(self, seed: int = 42, config: dict | None = None):
-        self.seed = seed
-        self.config = DEFAULT_CONFIG.copy()
+        merged_config = DEFAULT_CONFIG.copy()
         if config:
-            self.config.update(config)
+            merged_config.update(config)
 
-        self.rng = np.random.default_rng(seed)
-        self.fake = Faker("en_CA")
-        Faker.seed(seed)
+        super().__init__(
+            seed=seed,
+            config=merged_config,
+        )
 
         self.territories = self._generate_territories()
 
@@ -106,9 +107,12 @@ class HCPGenerator:
             return "Medium"
         return "High"
 
-class ProductGenerator:
-    def __init__(self, seed: int = 42):
-        self.seed = seed
+class ProductGenerator(BaseGenerator):
+    def __init__(self, seed: int = 42, config: dict | None = None):
+        super().__init__(
+            seed=seed,
+            config=config,
+        )
 
     def generate(self) -> pd.DataFrame:
         rows = [

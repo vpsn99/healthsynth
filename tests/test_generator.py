@@ -95,7 +95,7 @@ def test_generation_is_deterministic(tmp_path):
     pd.testing.assert_frame_equal(first["prescriptions"], second["prescriptions"])
 
 
-def test_launch_curve_increases_over_time(tmp_path):
+def test_new_product_launch_drives_adoption(tmp_path):
     datasets = generate(
         hcps=100,
         years=3,
