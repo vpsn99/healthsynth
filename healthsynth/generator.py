@@ -3,7 +3,7 @@ from healthsynth.commercial.simulation import (
     write_csv_outputs,
     write_duckdb_output,
 )
-
+from healthsynth.validation.checks import validate_datasets
 
 def generate(
     module: str = "commercial_analytics",
@@ -26,5 +26,10 @@ def generate(
     result = simulation.run()
     write_csv_outputs(result=result, output_dir=output_dir)
     write_duckdb_output(result=result, output_dir=output_dir)
+    validate_datasets(
+        datasets=result.as_dict(),
+        years=years,
+        output_dir=output_dir,
+    )
 
     return result.as_dict()
