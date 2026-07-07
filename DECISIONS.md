@@ -337,3 +337,131 @@ Seasonality makes generated data more useful for analytics, dashboards, and time
 The current implementation is intentionally simple.
 
 Future versions should move seasonality into configuration so users can simulate different markets and business calendars.
+
+## HS-011
+
+### Title
+
+Support Multiple Products in Commercial Analytics Simulation
+
+### Status
+
+Accepted
+
+### Date
+
+2026-07-08
+
+### Decision
+
+HealthSynth will support multiple products within the Commercial Analytics module.
+
+The initial implementation includes:
+
+- P001 - CardioOne
+- P002 - NeuroMax
+- P003 - EndoCare
+
+Products include metadata such as:
+
+- product_id
+- product_name
+- therapeutic_area
+- launch_date
+- market
+- status
+
+### Reasoning
+
+Real commercial analytics environments almost always involve multiple products.
+
+Supporting multiple products enables:
+
+- market share analysis
+- brand performance reporting
+- product-level dashboards
+- future competitor simulations
+- loss of exclusivity scenarios
+- campaign analytics
+- next best action use cases
+
+### Consequences
+
+Prescription generation is now performed at:
+
+HCP × Month × Product
+
+rather than:
+
+HCP × Month
+
+This increases dataset size but substantially improves realism and analytical usefulness.
+
+Future versions may support:
+
+- competitor products
+- generic products
+- product hierarchies
+- multi-market product catalogs
+- YAML-based product configuration
+
+## HS-012
+
+### Title
+
+Model Specialty-Product Affinity
+
+### Status
+
+Accepted
+
+### Date
+
+2026-07-08
+
+### Decision
+
+HealthSynth will model product prescribing behavior using specialty-product affinity.
+
+Each specialty has a configurable affinity toward products.
+
+Examples:
+
+- Cardiology → CardioOne
+- Neurology → NeuroMax
+- Endocrinology → EndoCare
+
+Primary Care maintains affinity across multiple products.
+
+### Reasoning
+
+In real pharmaceutical markets, products are not prescribed equally across specialties.
+
+Modeling affinity creates:
+
+- more believable prescription patterns
+- meaningful product segmentation
+- realistic dashboard behavior
+- foundations for market share and campaign analytics
+
+### Consequences
+
+Affinity values are currently stored in application configuration.
+
+Future versions may support:
+
+- YAML-based affinity configuration
+- market-specific affinity models
+- competitor affinity
+- physician preference modeling
+- switching behavior between products
+
+## Emerging Design Principle
+
+HealthSynth should expose a simple data generation interface while internally using simulation principles to create believable business behavior.
+
+Public identity:
+Data Generator
+
+Internal architecture:
+Simulation Engine
