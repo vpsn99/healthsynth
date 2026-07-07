@@ -106,11 +106,7 @@ def test_new_product_launch_drives_adoption(tmp_path):
     rx = datasets["prescriptions"].copy()
     rx["rx_date"] = pd.to_datetime(rx["rx_date"])
 
-    monthly = (
-        rx.groupby(rx["rx_date"].dt.to_period("M"))["nrx"]
-        .sum()
-        .sort_index()
-    )
+    monthly = rx.groupby(rx["rx_date"].dt.to_period("M"))["nrx"].sum().sort_index()
 
     early_avg = monthly.iloc[:6].mean()
     late_avg = monthly.iloc[-6:].mean()

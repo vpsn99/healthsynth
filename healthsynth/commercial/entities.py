@@ -1,10 +1,9 @@
 from dataclasses import dataclass
 
-import numpy as np
 import pandas as pd
-from faker import Faker
-from healthsynth.core import BaseGenerator
+
 from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
+from healthsynth.core import BaseGenerator
 
 
 @dataclass
@@ -83,6 +82,7 @@ class HCPGenerator(BaseGenerator):
             return "Medium"
         return "High"
 
+
 class ProductGenerator(BaseGenerator):
     def __init__(self, seed: int = 42, config: dict | None = None):
         super().__init__(
@@ -102,9 +102,11 @@ class ProductGenerator(BaseGenerator):
         ]
 
         return pd.DataFrame(rows)
-    
+
+
 def generate_hcps(num_hcps: int = 1000, seed: int = 42, config: dict | None = None) -> pd.DataFrame:
     return HCPGenerator(seed=seed, config=config).generate(num_hcps=num_hcps)
+
 
 def generate_products(seed: int = 42) -> pd.DataFrame:
     return ProductGenerator(seed=seed).generate()

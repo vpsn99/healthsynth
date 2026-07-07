@@ -102,11 +102,7 @@ def _check_launch_curve(prescriptions: pd.DataFrame) -> bool:
     rx = prescriptions.copy()
     rx["rx_date"] = pd.to_datetime(rx["rx_date"])
 
-    monthly = (
-        rx.groupby(rx["rx_date"].dt.to_period("M"))["nrx"]
-        .sum()
-        .sort_index()
-    )
+    monthly = rx.groupby(rx["rx_date"].dt.to_period("M"))["nrx"].sum().sort_index()
 
     if len(monthly) < 12:
         return False

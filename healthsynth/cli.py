@@ -1,5 +1,6 @@
 import typer
 from rich.console import Console
+
 from healthsynth.generator import generate as run_generation
 
 app = typer.Typer(
@@ -50,6 +51,7 @@ def generate(
     console.print(f"Created DuckDB database: {output_dir}/healthsynth.duckdb")
     console.print(f"Created validation report: {output_dir}/validation_report.md")
     console.print(f"Output written to: {output_dir}")
+
 
 if __name__ == "__main__":
     app()

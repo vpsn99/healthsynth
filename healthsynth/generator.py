@@ -5,6 +5,7 @@ from healthsynth.commercial.simulation import (
 )
 from healthsynth.validation.checks import validate_datasets
 
+
 def generate(
     module: str = "commercial_analytics",
     hcps: int = 1000,

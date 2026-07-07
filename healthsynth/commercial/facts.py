@@ -55,6 +55,7 @@ class CallActivityGenerator:
 
         return pd.DataFrame(call_rows)
 
+
 class PrescriptionGenerator:
     def __init__(self, seed: int = 42):
         self.seed = seed
@@ -128,11 +129,7 @@ class PrescriptionGenerator:
         calls = call_activity.copy()
         calls["call_month"] = pd.to_datetime(calls["call_date"]).dt.strftime("%Y-%m")
 
-        grouped = (
-            calls.groupby(["hcp_id", "call_month"])
-            .size()
-            .reset_index(name="call_count")
-        )
+        grouped = calls.groupby(["hcp_id", "call_month"]).size().reset_index(name="call_count")
 
         return {
             (row["hcp_id"], row["call_month"]): int(row["call_count"])
@@ -160,7 +157,8 @@ class PrescriptionGenerator:
         later months plateau.
         """
         return 1 / (1 + np.exp(-0.25 * (month_index - 12)))
-    
+
+
 def generate_prescriptions(
     hcp_master: pd.DataFrame,
     product: pd.DataFrame,
@@ -174,6 +172,7 @@ def generate_prescriptions(
         call_activity=call_activity,
         years=years,
     )
+
 
 def generate_call_activity(
     hcp_master: pd.DataFrame,
