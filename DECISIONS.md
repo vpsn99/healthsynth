@@ -267,3 +267,73 @@ The MVP contains:
 - New Product Launch
 - CSV
 - DuckDB
+
+
+## HS-009
+
+### Title
+
+Use Diminishing Returns for Call Response
+
+### Status
+
+Accepted
+
+### Date
+
+2026-07-07
+
+### Decision
+
+HealthSynth will model the impact of rep calls on prescriptions using a diminishing returns function.
+
+The initial implementation uses `log1p(lagged_calls)`.
+
+### Reasoning
+
+A linear relationship between calls and prescriptions is unrealistic.
+
+In commercial analytics, additional promotional activity usually has a saturation effect: the first few calls may matter, but each additional call contributes less incremental lift.
+
+### Consequences
+
+The initial model is simple and explainable.
+
+Future versions may support configurable response functions such as:
+
+- linear
+- square root
+- logarithmic
+- Hill curve
+
+## HS-010
+
+### Title
+
+Seasonality Should Be Configurable Over Time
+
+### Status
+
+Accepted
+
+### Date
+
+2026-07-07
+
+### Decision
+
+HealthSynth will include simple seasonality in the commercial analytics simulation.
+
+The initial implementation treats July, August, and December as lower-activity months.
+
+### Reasoning
+
+Commercial healthcare activity is affected by holidays, vacations, and business calendars.
+
+Seasonality makes generated data more useful for analytics, dashboards, and time-series exploration.
+
+### Consequences
+
+The current implementation is intentionally simple.
+
+Future versions should move seasonality into configuration so users can simulate different markets and business calendars.
