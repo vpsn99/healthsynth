@@ -94,6 +94,30 @@ def test_generation_is_deterministic(tmp_path):
     pd.testing.assert_frame_equal(first["call_activity"], second["call_activity"])
     pd.testing.assert_frame_equal(first["prescriptions"], second["prescriptions"])
 
+def test_high_segment_hcps_receive_more_calls(tmp_path):
+    datasets = generate(
+        hcps=500,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+    )
+
+    hcp_master = datasets["hcp_master"]
+    call_activity = datasets["call_activity"]
+
+    calls_with_segment = call_activity.merge(
+        hcp_master[["hcp_id", "segment"]],
+        on="hcp_id",
+        how="left",
+    )
+
+    calls_per_hcp = (
+        calls_with_segment.groupby("segment").size()
+        / hcp_master.groupby("segment").size()
+    )
+
+    assert calls_per_hcp["High"] > calls_per_hcp["Medium"]
+    assert calls_per_hcp["Medium"] > calls_per_hcp["Low"]
 
 def test_new_product_launch_drives_adoption(tmp_path):
     datasets = generate(

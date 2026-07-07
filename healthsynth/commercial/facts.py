@@ -7,6 +7,36 @@ class CallActivityGenerator:
         self.seed = seed
         self.rng = np.random.default_rng(seed)
 
+    def _monthly_call_rate(
+        self,
+        decile: int,
+        segment: str,
+        month_index: int,
+    ) -> float:
+        """
+        Estimate monthly rep call intensity.
+
+        Business logic:
+        - Higher decile HCPs receive more calls.
+        - High segment HCPs are prioritized.
+        - Summer and December have slightly lower activity.
+        """
+
+        if segment == "High":
+            base_rate = 3.0
+        elif segment == "Medium":
+            base_rate = 1.5
+        else:
+            base_rate = 0.5
+
+        decile_lift = decile / 10
+
+        seasonal_factor = 1.0
+        if month_index in [7, 8, 12]:
+            seasonal_factor = 0.75
+
+        return base_rate * (0.75 + decile_lift) * seasonal_factor
+
     def generate(
         self,
         hcp_master: pd.DataFrame,
@@ -23,16 +53,15 @@ class CallActivityGenerator:
         for _, hcp in hcp_master.iterrows():
             segment = hcp["segment"]
 
-            if segment == "High":
-                monthly_call_rate = 2.0
-            elif segment == "Medium":
-                monthly_call_rate = 1.0
-            else:
-                monthly_call_rate = 0.35
-
             months = pd.date_range(start=start_date, end=end_date, freq="MS", inclusive="left")
 
             for month_start in months:
+                monthly_call_rate = self._monthly_call_rate(
+                    decile=int(hcp["decile"]),
+                    segment=segment,
+                    month_index=month_start.month,
+                )
+
                 num_calls = int(self.rng.poisson(monthly_call_rate))
 
                 for _ in range(num_calls):
