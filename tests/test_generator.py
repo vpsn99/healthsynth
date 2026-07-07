@@ -94,6 +94,7 @@ def test_generation_is_deterministic(tmp_path):
     pd.testing.assert_frame_equal(first["call_activity"], second["call_activity"])
     pd.testing.assert_frame_equal(first["prescriptions"], second["prescriptions"])
 
+
 def test_high_segment_hcps_receive_more_calls(tmp_path):
     datasets = generate(
         hcps=500,
@@ -112,12 +113,36 @@ def test_high_segment_hcps_receive_more_calls(tmp_path):
     )
 
     calls_per_hcp = (
-        calls_with_segment.groupby("segment").size()
-        / hcp_master.groupby("segment").size()
+        calls_with_segment.groupby("segment").size() / hcp_master.groupby("segment").size()
     )
 
     assert calls_per_hcp["High"] > calls_per_hcp["Medium"]
     assert calls_per_hcp["Medium"] > calls_per_hcp["Low"]
+
+
+def test_high_deciles_generate_more_prescriptions(tmp_path):
+    datasets = generate(
+        hcps=500,
+        years=3,
+        output_dir=str(tmp_path),
+        seed=42,
+    )
+
+    hcp_master = datasets["hcp_master"]
+    prescriptions = datasets["prescriptions"]
+
+    rx_with_decile = prescriptions.merge(
+        hcp_master[["hcp_id", "decile"]],
+        on="hcp_id",
+        how="left",
+    )
+
+    rx_per_hcp_by_decile = (
+        rx_with_decile.groupby("decile")["nrx"].sum() / hcp_master.groupby("decile").size()
+    )
+
+    assert rx_per_hcp_by_decile.loc[10] > rx_per_hcp_by_decile.loc[1]
+
 
 def test_new_product_launch_drives_adoption(tmp_path):
     datasets = generate(

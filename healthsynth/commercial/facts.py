@@ -126,11 +126,16 @@ class PrescriptionGenerator:
                 previous_month_key = previous_month.strftime("%Y-%m")
                 lagged_calls = calls_by_hcp_month.get((hcp_id, previous_month_key), 0)
 
-                call_effect = lagged_calls * response_multiplier * 0.8
+                call_effect = self._call_response_effect(
+                    lagged_calls=lagged_calls,
+                    response_multiplier=response_multiplier,
+                )
 
                 noise = self.rng.normal(loc=0, scale=1.5)
 
-                nrx = base_nrx * launch_effect + call_effect + noise
+                seasonality = self._seasonality_factor(rx_date.month)
+
+                nrx = (base_nrx * launch_effect + call_effect + noise) * seasonality
                 nrx = max(0, int(round(nrx)))
 
                 trx_multiplier = self.rng.uniform(2.0, 3.5)
@@ -164,6 +169,33 @@ class PrescriptionGenerator:
             (row["hcp_id"], row["call_month"]): int(row["call_count"])
             for _, row in grouped.iterrows()
         }
+
+    @staticmethod
+    def _call_response_effect(
+        lagged_calls: int,
+        response_multiplier: float,
+    ) -> float:
+        """
+        Estimate lagged call impact using diminishing returns.
+
+        This uses log1p as a simple first version of a saturation curve.
+        Future versions may support configurable response functions such as
+        linear, square-root, or Hill curves.
+        """
+        return np.log1p(lagged_calls) * response_multiplier * 2.0
+
+    @staticmethod
+    def _seasonality_factor(month: int) -> float:
+        """
+        Simple seasonality adjustment.
+
+        July, August, and December are modeled as lower-activity months.
+        Future versions should move this into configuration.
+        """
+        if month in [7, 8, 12]:
+            return 0.85
+
+        return 1.0
 
     @staticmethod
     def _base_nrx_from_decile(decile: int) -> float:
