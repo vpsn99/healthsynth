@@ -21,3 +21,61 @@ DEFAULT_COMMERCIAL_CONFIG = {
     },
     "num_territories": 20,
 }
+
+DEFAULT_COMMERCIAL_CONFIG = {
+    "specialty_distribution": {
+        "Primary Care": 0.35,
+        "Cardiology": 0.20,
+        "Endocrinology": 0.15,
+        "Oncology": 0.10,
+        "Neurology": 0.10,
+        "Pulmonology": 0.10,
+    },
+    "decile_distribution": {
+        1: 0.05,
+        2: 0.08,
+        3: 0.10,
+        4: 0.12,
+        5: 0.15,
+        6: 0.15,
+        7: 0.12,
+        8: 0.10,
+        9: 0.08,
+        10: 0.05,
+    },
+    "num_territories": 20,
+    "products": [
+        {
+            "product_id": "P001",
+            "product_name": "CardioOne",
+            "therapeutic_area": "Cardiology",
+            "launch_date": "2023-01-01",
+            "market": "Canada",
+            "status": "Active",
+        },
+        {
+            "product_id": "P002",
+            "product_name": "NeuroMax",
+            "therapeutic_area": "Neurology",
+            "launch_date": "2022-07-01",
+            "market": "Canada",
+            "status": "Active",
+        },
+        {
+            "product_id": "P003",
+            "product_name": "EndoCare",
+            "therapeutic_area": "Endocrinology",
+            "launch_date": "2021-01-01",
+            "market": "Canada",
+            "status": "Active",
+        },
+    ],
+    "specialty_product_affinity": {
+        "Cardiology": {"P001": 1.00, "P002": 0.10, "P003": 0.15},
+        "Neurology": {"P001": 0.10, "P002": 1.00, "P003": 0.10},
+        "Endocrinology": {"P001": 0.20, "P002": 0.10, "P003": 1.00},
+        "Primary Care": {"P001": 0.60, "P002": 0.40, "P003": 0.50},
+        "Oncology": {"P001": 0.20, "P002": 0.20, "P003": 0.15},
+        "Pulmonology": {"P001": 0.30, "P002": 0.15, "P003": 0.20},
+    },
+}

@@ -30,7 +30,36 @@ def test_hcp_count_is_correct(tmp_path):
     assert len(datasets["hcp_master"]) == 25
 
 
-def test_prescription_count_matches_hcps_and_months(tmp_path):
+def test_specialty_product_affinity_affects_prescriptions(tmp_path):
+    datasets = generate(
+        hcps=500,
+        years=2,
+        output_dir=str(tmp_path),
+        seed=42,
+    )
+
+    hcp_master = datasets["hcp_master"]
+    prescriptions = datasets["prescriptions"]
+
+    rx = prescriptions.merge(
+        hcp_master[["hcp_id", "specialty"]],
+        on="hcp_id",
+        how="left",
+    )
+
+    specialty_product_nrx = rx.groupby(["specialty", "product_id"])["nrx"].sum().reset_index()
+
+    cardiology = specialty_product_nrx[specialty_product_nrx["specialty"] == "Cardiology"]
+
+    top_cardiology_product = cardiology.sort_values(
+        "nrx",
+        ascending=False,
+    ).iloc[0]["product_id"]
+
+    assert top_cardiology_product == "P001"
+
+
+def test_prescription_count_matches_hcps_months_and_products(tmp_path):
     datasets = generate(
         hcps=25,
         years=2,
@@ -38,7 +67,9 @@ def test_prescription_count_matches_hcps_and_months(tmp_path):
         seed=42,
     )
 
-    assert len(datasets["prescriptions"]) == 25 * 24
+    product_count = len(datasets["product"])
+
+    assert len(datasets["prescriptions"]) == 25 * 24 * product_count
 
 
 def test_outputs_are_created(tmp_path):

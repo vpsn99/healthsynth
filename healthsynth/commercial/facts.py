@@ -98,7 +98,7 @@ class PrescriptionGenerator:
         years: int = 3,
     ) -> pd.DataFrame:
         start_date = pd.Timestamp("2023-01-01")
-        product_id = product.iloc[0]["product_id"]
+        products = product.to_dict("records")
 
         months = pd.date_range(
             start=start_date,
@@ -120,39 +120,49 @@ class PrescriptionGenerator:
             response_multiplier = self._response_multiplier(segment)
 
             for month_index, rx_date in enumerate(months):
-                launch_effect = self._launch_adoption_effect(month_index)
+                for product_row in products:
+                    product_id = product_row["product_id"]
 
-                previous_month = rx_date - pd.DateOffset(months=1)
-                previous_month_key = previous_month.strftime("%Y-%m")
-                lagged_calls = calls_by_hcp_month.get((hcp_id, previous_month_key), 0)
+                    launch_effect = self._launch_adoption_effect(month_index)
 
-                call_effect = self._call_response_effect(
-                    lagged_calls=lagged_calls,
-                    response_multiplier=response_multiplier,
-                )
+                    previous_month = rx_date - pd.DateOffset(months=1)
+                    previous_month_key = previous_month.strftime("%Y-%m")
+                    lagged_calls = calls_by_hcp_month.get((hcp_id, previous_month_key), 0)
 
-                noise = self.rng.normal(loc=0, scale=1.5)
+                    affinity = self._product_affinity(
+                        specialty=hcp["specialty"],
+                        product_id=product_id,
+                    )
 
-                seasonality = self._seasonality_factor(rx_date.month)
+                    call_effect = self._call_response_effect(
+                        lagged_calls=lagged_calls,
+                        response_multiplier=response_multiplier,
+                    )
 
-                nrx = (base_nrx * launch_effect + call_effect + noise) * seasonality
-                nrx = max(0, int(round(nrx)))
+                    noise = self.rng.normal(loc=0, scale=1.5)
+                    seasonality = self._seasonality_factor(rx_date.month)
 
-                trx_multiplier = self.rng.uniform(2.0, 3.5)
-                trx = max(nrx, int(round(nrx * trx_multiplier)))
+                    nrx = (
+                        base_nrx * launch_effect * affinity + call_effect * affinity + noise
+                    ) * seasonality
 
-                rows.append(
-                    {
-                        "rx_id": f"RX{rx_id:09d}",
-                        "rx_date": rx_date.date().isoformat(),
-                        "hcp_id": hcp_id,
-                        "product_id": product_id,
-                        "nrx": nrx,
-                        "trx": trx,
-                    }
-                )
+                    nrx = max(0, int(round(nrx)))
 
-                rx_id += 1
+                    trx_multiplier = self.rng.uniform(2.0, 3.5)
+                    trx = max(nrx, int(round(nrx * trx_multiplier)))
+
+                    rows.append(
+                        {
+                            "rx_id": f"RX{rx_id:09d}",
+                            "rx_date": rx_date.date().isoformat(),
+                            "hcp_id": hcp_id,
+                            "product_id": product_id,
+                            "nrx": nrx,
+                            "trx": trx,
+                        }
+                    )
+
+                    rx_id += 1
 
         return pd.DataFrame(rows)
 
@@ -183,6 +193,20 @@ class PrescriptionGenerator:
         linear, square-root, or Hill curves.
         """
         return np.log1p(lagged_calls) * response_multiplier * 2.0
+
+    @staticmethod
+    def _product_affinity(
+        specialty: str,
+        product_id: str,
+    ) -> float:
+        from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
+
+        affinity_map = DEFAULT_COMMERCIAL_CONFIG["specialty_product_affinity"]
+
+        if specialty not in affinity_map:
+            return 0.25
+
+        return affinity_map[specialty].get(product_id, 0.10)
 
     @staticmethod
     def _seasonality_factor(month: int) -> float:

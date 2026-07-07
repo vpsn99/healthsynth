@@ -5,6 +5,7 @@ import pandas as pd
 
 from healthsynth.commercial.entities import generate_hcps, generate_products
 from healthsynth.commercial.facts import generate_call_activity, generate_prescriptions
+from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
 from healthsynth.exporters.duckdb_exporter import write_duckdb
 
 
@@ -46,7 +47,10 @@ class CommercialSimulation:
             seed=self.seed,
         )
 
-        product = generate_products(seed=self.seed)
+        product = generate_products(
+            seed=self.seed,
+            config=DEFAULT_COMMERCIAL_CONFIG,
+        )
 
         call_activity = generate_call_activity(
             hcp_master=hcp_master,

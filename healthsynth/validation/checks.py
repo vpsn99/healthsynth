@@ -58,10 +58,10 @@ def validate_datasets(
         )
     )
 
-    expected_rx_rows = len(hcp_master) * years * 12
+    expected_rx_rows = len(hcp_master) * years * 12 * len(product)
     checks.append(
         (
-            f"Prescription row count matches HCPs x {years * 12} months",
+            f"Prescription row count matches HCPs x products x {years * 12} months",
             len(prescriptions) == expected_rx_rows,
         )
     )

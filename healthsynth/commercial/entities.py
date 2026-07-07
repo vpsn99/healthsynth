@@ -91,22 +91,12 @@ class ProductGenerator(BaseGenerator):
         )
 
     def generate(self) -> pd.DataFrame:
-        rows = [
-            {
-                "product_id": "P001",
-                "product_name": "Cardiomax",
-                "therapeutic_area": "Cardiology",
-                "launch_date": "2023-01-01",
-                "product_type": "Brand",
-            }
-        ]
-
-        return pd.DataFrame(rows)
+        return pd.DataFrame(self.config["products"])
 
 
 def generate_hcps(num_hcps: int = 1000, seed: int = 42, config: dict | None = None) -> pd.DataFrame:
     return HCPGenerator(seed=seed, config=config).generate(num_hcps=num_hcps)
 
 
-def generate_products(seed: int = 42) -> pd.DataFrame:
-    return ProductGenerator(seed=seed).generate()
+def generate_products(seed: int = 42, config: dict | None = None) -> pd.DataFrame:
+    return ProductGenerator(seed=seed, config=config).generate()
