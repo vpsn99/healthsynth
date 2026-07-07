@@ -1,0 +1,1001 @@
+hcp_id,hcp_name,specialty,decile,segment,territory_id,territory_name,rep_id,rep_name,city,province
+HCP000001,Margaret Hawkins DDS,Neurology,8,High,T014,Territory 014,REP014,Michele Williams,East Lydiamouth,Nova Scotia
+HCP000002,Daniel Hahn,Primary Care,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,Jasonfort,Nova Scotia
+HCP000003,Maria Thomas,Oncology,10,High,T015,Territory 015,REP015,Dylan Miller,East Julie,Ontario
+HCP000004,Kevin Hurst,Cardiology,2,Low,T016,Territory 016,REP016,Brian Ramirez,Coxberg,Ontario
+HCP000005,Peter Callahan Jr.,Endocrinology,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Port Erin,Prince Edward Island
+HCP000006,James Ferrell,Cardiology,8,High,T019,Territory 019,REP019,Lisa Jackson,Tashatown,Quebec
+HCP000007,Melanie Herrera,Primary Care,3,Low,T002,Territory 002,REP002,Noah Rhodes,Kaylamouth,British Columbia
+HCP000008,Christopher Smith,Endocrinology,8,High,T012,Territory 012,REP012,Jamie Arnold,Teresaburgh,Ontario
+HCP000009,Sheila Evans,Pulmonology,7,Medium,T015,Territory 015,REP015,Dylan Miller,East Nathaniel,Manitoba
+HCP000010,Paula Moreno,Oncology,9,High,T008,Territory 008,REP008,Gina Moore,New Mariotown,British Columbia
+HCP000011,Sherry Decker,Primary Care,3,Low,T008,Territory 008,REP008,Gina Moore,Johnbury,Prince Edward Island
+HCP000012,Angelica Tucker,Endocrinology,3,Low,T010,Territory 010,REP010,Ryan Munoz,Port Amandaberg,Manitoba
+HCP000013,Theresa Martin,Primary Care,7,Medium,T008,Territory 008,REP008,Gina Moore,Brandtside,Yukon Territory
+HCP000014,Christina Collins,Cardiology,5,Medium,T020,Territory 020,REP020,Carla Gray,Samuelhaven,Nunavut
+HCP000015,Danny Morgan,Cardiology,3,Low,T010,Territory 010,REP010,Ryan Munoz,New Jeffrey,British Columbia
+HCP000016,Amy Jones,Endocrinology,3,Low,T003,Territory 003,REP003,Angie Henderson,Port Markhaven,New Brunswick
+HCP000017,John Ryan,Oncology,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Sanchezfort,Yukon Territory
+HCP000018,Brandon Hopkins,Neurology,4,Medium,T017,Territory 017,REP017,Holly Wood,Rodneymouth,Saskatchewan
+HCP000019,Matthew Lucas,Primary Care,8,High,T017,Territory 017,REP017,Holly Wood,South Jessicaville,New Brunswick
+HCP000020,Joshua Taylor,Primary Care,7,Medium,T008,Territory 008,REP008,Gina Moore,West Steven,British Columbia
+HCP000021,Scott Pierce,Oncology,3,Low,T017,Territory 017,REP017,Holly Wood,Lake Yvettetown,British Columbia
+HCP000022,Sarah Martin,Oncology,7,Medium,T001,Territory 001,REP001,Allison Hill,Olsonfurt,Alberta
+HCP000023,Aaron Myers,Endocrinology,8,High,T012,Territory 012,REP012,Jamie Arnold,Mitchellside,Quebec
+HCP000024,Brittney Phillips,Primary Care,3,Low,T010,Territory 010,REP010,Ryan Munoz,New Jillton,Saskatchewan
+HCP000025,Anthony Woods,Endocrinology,7,Medium,T014,Territory 014,REP014,Michele Williams,North Susan,British Columbia
+HCP000026,Andrea Jones,Endocrinology,7,Medium,T010,Territory 010,REP010,Ryan Munoz,South David,Prince Edward Island
+HCP000027,Kristopher Harvey,Primary Care,6,Medium,T002,Territory 002,REP002,Noah Rhodes,Sandovalshire,Ontario
+HCP000028,Dean Santiago,Cardiology,1,Low,T012,Territory 012,REP012,Jamie Arnold,Johnfurt,Manitoba
+HCP000029,Elizabeth Stewart,Neurology,3,Low,T006,Territory 006,REP006,Connie Lawrence,North Stephenshire,British Columbia
+HCP000030,Daniel Baker,Primary Care,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,Nicolebury,Northwest Territories
+HCP000031,Jeffrey Daniels,Endocrinology,4,Medium,T019,Territory 019,REP019,Lisa Jackson,Cherylhaven,Alberta
+HCP000032,Kristen Huynh,Oncology,6,Medium,T006,Territory 006,REP006,Connie Lawrence,East Josephville,Saskatchewan
+HCP000033,Denise Jacobs,Neurology,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,Jamesview,Ontario
+HCP000034,Taylor Mathis Jr.,Primary Care,3,Low,T009,Territory 009,REP009,Gabrielle Davis,Calderonton,Alberta
+HCP000035,Carlos Whitney,Cardiology,2,Low,T016,Territory 016,REP016,Brian Ramirez,Lake Scott,Saskatchewan
+HCP000036,Adam Jones,Cardiology,3,Low,T015,Territory 015,REP015,Dylan Miller,New Barry,Northwest Territories
+HCP000037,Brittany Anderson,Cardiology,3,Low,T010,Territory 010,REP010,Ryan Munoz,Michaelton,Northwest Territories
+HCP000038,David Garcia,Primary Care,5,Medium,T014,Territory 014,REP014,Michele Williams,Dicksonberg,New Brunswick
+HCP000039,Vanessa Cochran,Primary Care,6,Medium,T013,Territory 013,REP013,Lisa Hensley,Johnsonmouth,Yukon Territory
+HCP000040,Rebekah Shields,Pulmonology,2,Low,T008,Territory 008,REP008,Gina Moore,West Erik,Saskatchewan
+HCP000041,Shane Garrison,Primary Care,9,High,T010,Territory 010,REP010,Ryan Munoz,East Lisa,Nunavut
+HCP000042,Robert Savage,Oncology,10,High,T014,Territory 014,REP014,Michele Williams,North Donna,Nova Scotia
+HCP000043,Sean Rasmussen,Primary Care,7,Medium,T016,Territory 016,REP016,Brian Ramirez,Michaelhaven,Nova Scotia
+HCP000044,Sarah Rivera,Pulmonology,2,Low,T009,Territory 009,REP009,Gabrielle Davis,North Natalieview,Manitoba
+HCP000045,Victoria Johnson,Primary Care,5,Medium,T015,Territory 015,REP015,Dylan Miller,Reedmouth,Nova Scotia
+HCP000046,Kayla Cruz,Primary Care,6,Medium,T005,Territory 005,REP005,Cristian Santos,West Bradley,Nova Scotia
+HCP000047,Timothy Ryan,Oncology,8,High,T001,Territory 001,REP001,Allison Hill,West Ryan,Quebec
+HCP000048,Lisa Alvarado,Endocrinology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Lake Rachelhaven,Newfoundland and Labrador
+HCP000049,Erika Terry,Primary Care,6,Medium,T002,Territory 002,REP002,Noah Rhodes,East Robert,Nova Scotia
+HCP000050,Stephanie Gilbert,Primary Care,5,Medium,T013,Territory 013,REP013,Lisa Hensley,Richardtown,Newfoundland and Labrador
+HCP000051,Jeffrey Carpenter,Primary Care,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Stevenmouth,Quebec
+HCP000052,John Santana,Endocrinology,2,Low,T007,Territory 007,REP007,Abigail Shaffer,Lake Christopher,Ontario
+HCP000053,Lisa Davis,Endocrinology,3,Low,T006,Territory 006,REP006,Connie Lawrence,Lake Lance,Yukon Territory
+HCP000054,Alexander Sanchez,Endocrinology,4,Medium,T019,Territory 019,REP019,Lisa Jackson,Carrland,Nunavut
+HCP000055,Mark Lee,Cardiology,1,Low,T004,Territory 004,REP004,Daniel Wagner,Snyderbury,Manitoba
+HCP000056,Abigail Potter,Primary Care,8,High,T020,Territory 020,REP020,Carla Gray,Port Ronaldburgh,Yukon Territory
+HCP000057,Kelly Williams,Pulmonology,5,Medium,T014,Territory 014,REP014,Michele Williams,Port David,Manitoba
+HCP000058,Mary Travis,Cardiology,6,Medium,T010,Territory 010,REP010,Ryan Munoz,Stephaniemouth,Prince Edward Island
+HCP000059,Stephanie Simmons,Cardiology,4,Medium,T020,Territory 020,REP020,Carla Gray,Merrittfort,Nunavut
+HCP000060,David Walsh,Primary Care,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,Simsview,Nunavut
+HCP000061,Dustin Nelson,Primary Care,8,High,T001,Territory 001,REP001,Allison Hill,Patricialand,Manitoba
+HCP000062,James Hernandez,Primary Care,6,Medium,T018,Territory 018,REP018,Derek Zuniga,North Robert,Northwest Territories
+HCP000063,Jennifer Clark,Endocrinology,7,Medium,T003,Territory 003,REP003,Angie Henderson,Priceshire,Saskatchewan
+HCP000064,Spencer Johnston,Oncology,7,Medium,T006,Territory 006,REP006,Connie Lawrence,Smithstad,Newfoundland and Labrador
+HCP000065,Sarah Ashley,Primary Care,2,Low,T013,Territory 013,REP013,Lisa Hensley,Medinaside,Yukon Territory
+HCP000066,Connie Robinson,Endocrinology,1,Low,T019,Territory 019,REP019,Lisa Jackson,Tuckerfurt,Northwest Territories
+HCP000067,Rebecca Ramsey,Neurology,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,Calhounside,Alberta
+HCP000068,Leslie Alvarado,Pulmonology,4,Medium,T017,Territory 017,REP017,Holly Wood,Lake Roymouth,Manitoba
+HCP000069,James Lewis,Primary Care,4,Medium,T013,Territory 013,REP013,Lisa Hensley,Matthewfurt,Newfoundland and Labrador
+HCP000070,Sandra King,Primary Care,9,High,T011,Territory 011,REP011,Monica Herrera,South Andrewside,Alberta
+HCP000071,Mrs. Marie Harrington DDS,Pulmonology,1,Low,T006,Territory 006,REP006,Connie Lawrence,East Jamestown,Prince Edward Island
+HCP000072,Cameron Caldwell,Oncology,9,High,T009,Territory 009,REP009,Gabrielle Davis,South Holly,Yukon Territory
+HCP000073,Larry Stuart,Cardiology,9,High,T005,Territory 005,REP005,Cristian Santos,Port Loriport,British Columbia
+HCP000074,Tanya Johnston,Oncology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Sandersborough,British Columbia
+HCP000075,Sandra Sanchez,Primary Care,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,Melissaville,Yukon Territory
+HCP000076,Dr. Hannah Patterson,Primary Care,7,Medium,T008,Territory 008,REP008,Gina Moore,Caseymouth,Alberta
+HCP000077,Samantha Garcia,Primary Care,9,High,T019,Territory 019,REP019,Lisa Jackson,Cynthiamouth,Saskatchewan
+HCP000078,Christopher Boyd,Primary Care,8,High,T005,Territory 005,REP005,Cristian Santos,Christinaside,Yukon Territory
+HCP000079,Mr. Nicholas Adams,Neurology,3,Low,T008,Territory 008,REP008,Gina Moore,Port Sarah,Newfoundland and Labrador
+HCP000080,Dana Marshall,Primary Care,3,Low,T012,Territory 012,REP012,Jamie Arnold,Rogersfort,Northwest Territories
+HCP000081,Daniel Salinas,Cardiology,8,High,T007,Territory 007,REP007,Abigail Shaffer,Joshuaview,Ontario
+HCP000082,Travis Miller,Primary Care,3,Low,T020,Territory 020,REP020,Carla Gray,Freemanbury,Saskatchewan
+HCP000083,Michael West,Endocrinology,3,Low,T006,Territory 006,REP006,Connie Lawrence,North Kellyfurt,Saskatchewan
+HCP000084,Matthew Wood,Cardiology,2,Low,T003,Territory 003,REP003,Angie Henderson,Ronaldside,Northwest Territories
+HCP000085,Jesse Parker,Primary Care,7,Medium,T016,Territory 016,REP016,Brian Ramirez,North Jennifer,Northwest Territories
+HCP000086,Joshua Gill,Oncology,8,High,T012,Territory 012,REP012,Jamie Arnold,East Javier,Nunavut
+HCP000087,Kevin Wolf,Primary Care,7,Medium,T017,Territory 017,REP017,Holly Wood,Tinaborough,Newfoundland and Labrador
+HCP000088,Christopher Smith,Cardiology,9,High,T003,Territory 003,REP003,Angie Henderson,West Brandon,Alberta
+HCP000089,Melissa Martinez,Endocrinology,4,Medium,T003,Territory 003,REP003,Angie Henderson,Garciatown,Prince Edward Island
+HCP000090,John Peterson,Primary Care,10,High,T010,Territory 010,REP010,Ryan Munoz,West Shelleyfort,British Columbia
+HCP000091,Jennifer Jones,Endocrinology,9,High,T010,Territory 010,REP010,Ryan Munoz,East Edwardshire,Newfoundland and Labrador
+HCP000092,David Grant,Primary Care,6,Medium,T001,Territory 001,REP001,Allison Hill,Obrienbury,Yukon Territory
+HCP000093,Joanna Ramos,Pulmonology,3,Low,T015,Territory 015,REP015,Dylan Miller,Torreston,Prince Edward Island
+HCP000094,Annette Farmer,Pulmonology,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,West Donna,Manitoba
+HCP000095,Juan Moore,Oncology,8,High,T009,Territory 009,REP009,Gabrielle Davis,Hayesfort,Newfoundland and Labrador
+HCP000096,Dwayne Campbell,Primary Care,1,Low,T010,Territory 010,REP010,Ryan Munoz,Jonesbury,Newfoundland and Labrador
+HCP000097,Lori Guerrero,Primary Care,8,High,T006,Territory 006,REP006,Connie Lawrence,South Danny,New Brunswick
+HCP000098,Susan Serrano,Endocrinology,6,Medium,T016,Territory 016,REP016,Brian Ramirez,North Gabrielport,Prince Edward Island
+HCP000099,Laura Roberts,Cardiology,8,High,T016,Territory 016,REP016,Brian Ramirez,South Haleyfurt,Newfoundland and Labrador
+HCP000100,Katherine Miller,Cardiology,5,Medium,T013,Territory 013,REP013,Lisa Hensley,South Jessicaview,Alberta
+HCP000101,Vernon Huff,Cardiology,7,Medium,T020,Territory 020,REP020,Carla Gray,Port Emilyview,Prince Edward Island
+HCP000102,Peter Ruiz,Primary Care,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Moonburgh,Prince Edward Island
+HCP000103,Robert Costa,Primary Care,7,Medium,T017,Territory 017,REP017,Holly Wood,Baileymouth,Northwest Territories
+HCP000104,Shannon Rivera,Endocrinology,2,Low,T017,Territory 017,REP017,Holly Wood,Robertsfurt,Yukon Territory
+HCP000105,Jordan Edwards,Primary Care,3,Low,T004,Territory 004,REP004,Daniel Wagner,Darrellfurt,Ontario
+HCP000106,April Booth,Pulmonology,3,Low,T017,Territory 017,REP017,Holly Wood,Gutierrezborough,Ontario
+HCP000107,Peter Garrett,Primary Care,3,Low,T004,Territory 004,REP004,Daniel Wagner,East Josephberg,Newfoundland and Labrador
+HCP000108,Michael Martinez,Primary Care,2,Low,T006,Territory 006,REP006,Connie Lawrence,Lake Eric,Ontario
+HCP000109,Jason Walker,Primary Care,2,Low,T004,Territory 004,REP004,Daniel Wagner,South Staceyberg,Nunavut
+HCP000110,Dorothy Thornton,Endocrinology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Davenportfort,New Brunswick
+HCP000111,Charles Lee,Cardiology,5,Medium,T017,Territory 017,REP017,Holly Wood,Port Chad,Yukon Territory
+HCP000112,Jennifer Villa,Neurology,9,High,T007,Territory 007,REP007,Abigail Shaffer,Loriport,Saskatchewan
+HCP000113,Kevin Duarte,Primary Care,1,Low,T010,Territory 010,REP010,Ryan Munoz,Grimesmouth,Ontario
+HCP000114,Mr. Phillip Bennett,Endocrinology,4,Medium,T004,Territory 004,REP004,Daniel Wagner,Mollybury,Prince Edward Island
+HCP000115,Scott Jenkins,Cardiology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,Juliefurt,Nova Scotia
+HCP000116,Rebecca Pearson MD,Primary Care,6,Medium,T001,Territory 001,REP001,Allison Hill,East Wayneshire,Northwest Territories
+HCP000117,Shelly Alexander,Pulmonology,8,High,T003,Territory 003,REP003,Angie Henderson,Smithberg,Nova Scotia
+HCP000118,Tracy Jones,Neurology,2,Low,T002,Territory 002,REP002,Noah Rhodes,Matthewfurt,Quebec
+HCP000119,Gary Craig,Neurology,9,High,T005,Territory 005,REP005,Cristian Santos,Finleyfort,Ontario
+HCP000120,Barry Welch,Endocrinology,8,High,T020,Territory 020,REP020,Carla Gray,Wendyland,Nova Scotia
+HCP000121,Paige Padilla,Cardiology,8,High,T015,Territory 015,REP015,Dylan Miller,South Garrettport,Alberta
+HCP000122,Robert Carter,Neurology,6,Medium,T003,Territory 003,REP003,Angie Henderson,Ryanbury,Ontario
+HCP000123,Michael White,Endocrinology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,North Chelsea,Nova Scotia
+HCP000124,Cynthia Durham,Primary Care,4,Medium,T008,Territory 008,REP008,Gina Moore,East Steven,Newfoundland and Labrador
+HCP000125,Michael Nolan,Primary Care,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Santanaside,Manitoba
+HCP000126,Tony Huerta,Cardiology,5,Medium,T009,Territory 009,REP009,Gabrielle Davis,Daniellechester,Saskatchewan
+HCP000127,Ryan Gonzalez,Endocrinology,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,Castanedaville,New Brunswick
+HCP000128,Ian Phillips,Pulmonology,4,Medium,T008,Territory 008,REP008,Gina Moore,Andrewfurt,Newfoundland and Labrador
+HCP000129,Sean Osborne,Primary Care,9,High,T018,Territory 018,REP018,Derek Zuniga,New Julieport,Yukon Territory
+HCP000130,Lisa Gomez,Neurology,6,Medium,T010,Territory 010,REP010,Ryan Munoz,New John,Yukon Territory
+HCP000131,Mary Massey,Cardiology,7,Medium,T005,Territory 005,REP005,Cristian Santos,Lake Debbieport,Yukon Territory
+HCP000132,Kevin Oconnor,Primary Care,6,Medium,T017,Territory 017,REP017,Holly Wood,West Markchester,Manitoba
+HCP000133,Richard Walter,Endocrinology,7,Medium,T001,Territory 001,REP001,Allison Hill,Alyssaview,Manitoba
+HCP000134,Roger Olson,Primary Care,8,High,T005,Territory 005,REP005,Cristian Santos,Juliemouth,Yukon Territory
+HCP000135,Victor Taylor,Oncology,6,Medium,T013,Territory 013,REP013,Lisa Hensley,Port Erica,Quebec
+HCP000136,Tracy Ballard,Pulmonology,2,Low,T002,Territory 002,REP002,Noah Rhodes,Christopherfurt,Alberta
+HCP000137,Caleb Richardson,Neurology,3,Low,T020,Territory 020,REP020,Carla Gray,Brendastad,British Columbia
+HCP000138,Kaitlyn Harvey,Oncology,6,Medium,T020,Territory 020,REP020,Carla Gray,Rosebury,Quebec
+HCP000139,Rodney Blankenship,Primary Care,8,High,T019,Territory 019,REP019,Lisa Jackson,Debraville,Manitoba
+HCP000140,Andrew Ferrell,Primary Care,6,Medium,T019,Territory 019,REP019,Lisa Jackson,North Jimmyside,Manitoba
+HCP000141,Jacob Avery,Endocrinology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Matthewsberg,Nova Scotia
+HCP000142,Sandra Gilbert,Cardiology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Antoniostad,New Brunswick
+HCP000143,Trevor Foley,Oncology,6,Medium,T015,Territory 015,REP015,Dylan Miller,Lake Michaelstad,Alberta
+HCP000144,Colton Martinez,Endocrinology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Davisborough,Quebec
+HCP000145,Tricia Williams,Primary Care,9,High,T017,Territory 017,REP017,Holly Wood,Johnberg,Yukon Territory
+HCP000146,Andrea Hubbard,Endocrinology,2,Low,T003,Territory 003,REP003,Angie Henderson,New Jason,New Brunswick
+HCP000147,Charles Lester,Endocrinology,5,Medium,T019,Territory 019,REP019,Lisa Jackson,West Micheleberg,Manitoba
+HCP000148,Rebecca Rodriguez,Neurology,4,Medium,T016,Territory 016,REP016,Brian Ramirez,East Alexisbury,Prince Edward Island
+HCP000149,Christopher Williams,Cardiology,7,Medium,T013,Territory 013,REP013,Lisa Hensley,Foxland,Nunavut
+HCP000150,Ivan Wheeler,Primary Care,4,Medium,T006,Territory 006,REP006,Connie Lawrence,Gordonton,Saskatchewan
+HCP000151,Sharon Boyd,Cardiology,3,Low,T002,Territory 002,REP002,Noah Rhodes,Schneidertown,Alberta
+HCP000152,Dr. Jessica Rodriguez DDS,Oncology,5,Medium,T019,Territory 019,REP019,Lisa Jackson,Jonesland,Northwest Territories
+HCP000153,Ana Hill,Oncology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Oscarhaven,Newfoundland and Labrador
+HCP000154,Larry Garcia,Cardiology,5,Medium,T019,Territory 019,REP019,Lisa Jackson,Port Dianaside,Saskatchewan
+HCP000155,Jessica Beasley,Pulmonology,10,High,T001,Territory 001,REP001,Allison Hill,Morganmouth,Nova Scotia
+HCP000156,Brandon Simmons,Neurology,2,Low,T015,Territory 015,REP015,Dylan Miller,Nicholasberg,Quebec
+HCP000157,Andrea Decker,Endocrinology,6,Medium,T003,Territory 003,REP003,Angie Henderson,South Colinstad,Yukon Territory
+HCP000158,Anthony Frye,Primary Care,7,Medium,T003,Territory 003,REP003,Angie Henderson,Elizabethchester,Northwest Territories
+HCP000159,Teresa Henderson,Primary Care,5,Medium,T015,Territory 015,REP015,Dylan Miller,West Carolinestad,British Columbia
+HCP000160,Christy Douglas,Cardiology,5,Medium,T017,Territory 017,REP017,Holly Wood,Port Daniel,Ontario
+HCP000161,Phillip Andrews,Oncology,4,Medium,T011,Territory 011,REP011,Monica Herrera,Bruceside,Alberta
+HCP000162,Mary Steele,Pulmonology,2,Low,T019,Territory 019,REP019,Lisa Jackson,East Joshuaport,Northwest Territories
+HCP000163,Christopher Thomas,Neurology,9,High,T014,Territory 014,REP014,Michele Williams,Jonestown,British Columbia
+HCP000164,Cindy Barnes,Pulmonology,2,Low,T006,Territory 006,REP006,Connie Lawrence,Ericport,Saskatchewan
+HCP000165,Todd Carlson,Primary Care,7,Medium,T003,Territory 003,REP003,Angie Henderson,East Ericton,Quebec
+HCP000166,Jeremy Coleman,Primary Care,9,High,T014,Territory 014,REP014,Michele Williams,Perryborough,Yukon Territory
+HCP000167,Haley Rodriguez,Oncology,4,Medium,T010,Territory 010,REP010,Ryan Munoz,Roseport,Alberta
+HCP000168,William Brown,Pulmonology,3,Low,T003,Territory 003,REP003,Angie Henderson,West Sierra,Yukon Territory
+HCP000169,David Murphy,Primary Care,7,Medium,T019,Territory 019,REP019,Lisa Jackson,South Julieburgh,Manitoba
+HCP000170,Michael Mason,Endocrinology,2,Low,T001,Territory 001,REP001,Allison Hill,Charleston,Nova Scotia
+HCP000171,Thomas Atkins,Neurology,8,High,T020,Territory 020,REP020,Carla Gray,Berrychester,Newfoundland and Labrador
+HCP000172,Alex Nguyen,Neurology,2,Low,T005,Territory 005,REP005,Cristian Santos,Collierstad,British Columbia
+HCP000173,Brian Graham,Endocrinology,9,High,T003,Territory 003,REP003,Angie Henderson,Warrenfurt,Newfoundland and Labrador
+HCP000174,Connie Maxwell,Primary Care,8,High,T016,Territory 016,REP016,Brian Ramirez,New Cynthiahaven,Ontario
+HCP000175,Ricardo Bell,Cardiology,3,Low,T003,Territory 003,REP003,Angie Henderson,East Curtis,Newfoundland and Labrador
+HCP000176,Lance Wolf,Endocrinology,7,Medium,T003,Territory 003,REP003,Angie Henderson,East Stephaniefort,Nunavut
+HCP000177,Olivia Cole,Oncology,8,High,T009,Territory 009,REP009,Gabrielle Davis,Michellemouth,Manitoba
+HCP000178,John Welch,Primary Care,3,Low,T004,Territory 004,REP004,Daniel Wagner,Brittanystad,Ontario
+HCP000179,Joel Johnson,Endocrinology,7,Medium,T011,Territory 011,REP011,Monica Herrera,Marieland,Quebec
+HCP000180,Savannah Gilbert,Endocrinology,2,Low,T020,Territory 020,REP020,Carla Gray,Fordside,Yukon Territory
+HCP000181,Amanda Stout,Oncology,1,Low,T005,Territory 005,REP005,Cristian Santos,West Cassidy,Ontario
+HCP000182,Antonio Garcia,Primary Care,3,Low,T018,Territory 018,REP018,Derek Zuniga,Toniland,Ontario
+HCP000183,Amanda Zimmerman,Cardiology,3,Low,T008,Territory 008,REP008,Gina Moore,Warrenburgh,Northwest Territories
+HCP000184,Douglas Ortiz,Endocrinology,8,High,T020,Territory 020,REP020,Carla Gray,Erikaton,Yukon Territory
+HCP000185,Felicia Rivera,Pulmonology,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,Mitchellberg,Northwest Territories
+HCP000186,Matthew Rangel,Endocrinology,4,Medium,T003,Territory 003,REP003,Angie Henderson,Tammyfurt,Manitoba
+HCP000187,Teresa Collins,Pulmonology,7,Medium,T006,Territory 006,REP006,Connie Lawrence,Schneidermouth,Manitoba
+HCP000188,Sandra Rodgers,Cardiology,3,Low,T013,Territory 013,REP013,Lisa Hensley,Lake Ellenhaven,Northwest Territories
+HCP000189,Eric Bean,Primary Care,5,Medium,T019,Territory 019,REP019,Lisa Jackson,Staceyfort,New Brunswick
+HCP000190,Chad Jones,Primary Care,3,Low,T010,Territory 010,REP010,Ryan Munoz,New Kellihaven,Alberta
+HCP000191,Sherri Williamson,Endocrinology,4,Medium,T013,Territory 013,REP013,Lisa Hensley,Mooreburgh,Saskatchewan
+HCP000192,Rhonda Martin,Cardiology,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,Williamsstad,Quebec
+HCP000193,Tracy Bishop,Endocrinology,5,Medium,T017,Territory 017,REP017,Holly Wood,Youngbury,Newfoundland and Labrador
+HCP000194,Rachel Mckee,Primary Care,4,Medium,T005,Territory 005,REP005,Cristian Santos,West Erika,Prince Edward Island
+HCP000195,Mrs. Diane Reyes,Primary Care,5,Medium,T010,Territory 010,REP010,Ryan Munoz,Burchborough,Yukon Territory
+HCP000196,Shelley Williams,Endocrinology,6,Medium,T010,Territory 010,REP010,Ryan Munoz,Sawyerside,British Columbia
+HCP000197,Kelli Martinez,Endocrinology,7,Medium,T011,Territory 011,REP011,Monica Herrera,Port Ethanmouth,Ontario
+HCP000198,Jeffrey Potts,Oncology,4,Medium,T013,Territory 013,REP013,Lisa Hensley,Port Shannon,Northwest Territories
+HCP000199,Jennifer Sanders,Endocrinology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Joeland,Northwest Territories
+HCP000200,Fernando Garcia,Cardiology,5,Medium,T009,Territory 009,REP009,Gabrielle Davis,Laceyberg,Alberta
+HCP000201,Ronald Horton,Pulmonology,7,Medium,T012,Territory 012,REP012,Jamie Arnold,Port Janice,Nunavut
+HCP000202,Susan Smith,Cardiology,6,Medium,T018,Territory 018,REP018,Derek Zuniga,Port Edward,Saskatchewan
+HCP000203,Jenny Parsons,Neurology,8,High,T005,Territory 005,REP005,Cristian Santos,West David,New Brunswick
+HCP000204,Riley Bryant,Primary Care,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,Port Rebeccaside,Alberta
+HCP000205,Laura Higgins,Primary Care,2,Low,T018,Territory 018,REP018,Derek Zuniga,Rubenstad,New Brunswick
+HCP000206,Chelsea Barnett,Primary Care,4,Medium,T017,Territory 017,REP017,Holly Wood,Carloshaven,Ontario
+HCP000207,Virginia Spencer,Oncology,3,Low,T015,Territory 015,REP015,Dylan Miller,Markston,Quebec
+HCP000208,James Burgess,Neurology,1,Low,T007,Territory 007,REP007,Abigail Shaffer,Kristinastad,New Brunswick
+HCP000209,Lori Ingram,Primary Care,8,High,T009,Territory 009,REP009,Gabrielle Davis,Dennisstad,Ontario
+HCP000210,Marvin Greer,Primary Care,6,Medium,T008,Territory 008,REP008,Gina Moore,Pollardfort,Quebec
+HCP000211,Chad Baldwin,Pulmonology,5,Medium,T011,Territory 011,REP011,Monica Herrera,Johnsonborough,Alberta
+HCP000212,Stacey Stewart,Primary Care,8,High,T020,Territory 020,REP020,Carla Gray,Zacharyside,Nunavut
+HCP000213,Paul Lee,Cardiology,7,Medium,T003,Territory 003,REP003,Angie Henderson,Michelleton,Quebec
+HCP000214,Caleb Richardson,Primary Care,6,Medium,T015,Territory 015,REP015,Dylan Miller,Paulfurt,Northwest Territories
+HCP000215,Kathleen Jimenez,Primary Care,3,Low,T016,Territory 016,REP016,Brian Ramirez,Lauriechester,British Columbia
+HCP000216,Zachary White,Neurology,3,Low,T011,Territory 011,REP011,Monica Herrera,Manuelland,Northwest Territories
+HCP000217,Elizabeth Morrison,Neurology,10,High,T020,Territory 020,REP020,Carla Gray,Jacksonmouth,Northwest Territories
+HCP000218,Nicholas Buck,Primary Care,10,High,T012,Territory 012,REP012,Jamie Arnold,Hillton,British Columbia
+HCP000219,Jennifer Palmer,Primary Care,5,Medium,T017,Territory 017,REP017,Holly Wood,North Douglas,Prince Edward Island
+HCP000220,Jessica Martinez,Cardiology,7,Medium,T008,Territory 008,REP008,Gina Moore,Port Deanna,Northwest Territories
+HCP000221,Keith Jacobs,Primary Care,5,Medium,T019,Territory 019,REP019,Lisa Jackson,Rushstad,Nunavut
+HCP000222,Laura Moreno,Primary Care,9,High,T004,Territory 004,REP004,Daniel Wagner,Edwardsview,New Brunswick
+HCP000223,Allison Lopez,Cardiology,4,Medium,T004,Territory 004,REP004,Daniel Wagner,Mcintyreville,Newfoundland and Labrador
+HCP000224,Michele Lewis,Cardiology,6,Medium,T006,Territory 006,REP006,Connie Lawrence,Heatherfort,New Brunswick
+HCP000225,Samuel Hayes,Neurology,2,Low,T006,Territory 006,REP006,Connie Lawrence,Osbornmouth,Quebec
+HCP000226,Austin Daniels,Endocrinology,6,Medium,T005,Territory 005,REP005,Cristian Santos,Melissaburgh,Yukon Territory
+HCP000227,Danny Galloway,Primary Care,7,Medium,T016,Territory 016,REP016,Brian Ramirez,East Kristy,Alberta
+HCP000228,Kenneth Mcdonald,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,New Nicole,British Columbia
+HCP000229,Zachary Higgins,Cardiology,4,Medium,T019,Territory 019,REP019,Lisa Jackson,Hammondshire,British Columbia
+HCP000230,Evan Jones,Neurology,7,Medium,T017,Territory 017,REP017,Holly Wood,Frazierstad,Manitoba
+HCP000231,Penny Bowman,Endocrinology,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,Port Tammy,Nova Scotia
+HCP000232,Sheena Guerra,Primary Care,8,High,T019,Territory 019,REP019,Lisa Jackson,West Fred,Northwest Territories
+HCP000233,Courtney Meza,Primary Care,5,Medium,T017,Territory 017,REP017,Holly Wood,Meghanview,New Brunswick
+HCP000234,Krista Martinez,Pulmonology,5,Medium,T011,Territory 011,REP011,Monica Herrera,Christinaland,Ontario
+HCP000235,Leslie Carpenter,Primary Care,6,Medium,T008,Territory 008,REP008,Gina Moore,Lake Claudia,Prince Edward Island
+HCP000236,Thomas Williams,Primary Care,3,Low,T004,Territory 004,REP004,Daniel Wagner,North Brandonshire,Newfoundland and Labrador
+HCP000237,Pamela Butler,Primary Care,9,High,T014,Territory 014,REP014,Michele Williams,South Pamelaside,Newfoundland and Labrador
+HCP000238,Elizabeth Sanchez,Primary Care,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,Evansland,Saskatchewan
+HCP000239,Jeffrey Washington,Endocrinology,4,Medium,T004,Territory 004,REP004,Daniel Wagner,West Catherine,Northwest Territories
+HCP000240,Emma Travis,Endocrinology,10,High,T015,Territory 015,REP015,Dylan Miller,Theresaberg,Yukon Territory
+HCP000241,Justin Flores,Pulmonology,5,Medium,T020,Territory 020,REP020,Carla Gray,Martinezmouth,New Brunswick
+HCP000242,Anthony Dougherty,Pulmonology,7,Medium,T016,Territory 016,REP016,Brian Ramirez,Wrightburgh,Northwest Territories
+HCP000243,Michelle Lee,Primary Care,8,High,T010,Territory 010,REP010,Ryan Munoz,South Wendy,Nunavut
+HCP000244,Mr. Alexander Landry MD,Cardiology,7,Medium,T018,Territory 018,REP018,Derek Zuniga,East Brandy,Alberta
+HCP000245,Johnny Khan,Pulmonology,6,Medium,T020,Territory 020,REP020,Carla Gray,Mitchelltown,British Columbia
+HCP000246,Stephen Luna,Primary Care,10,High,T014,Territory 014,REP014,Michele Williams,Diazfurt,Alberta
+HCP000247,Chloe Tran,Primary Care,7,Medium,T020,Territory 020,REP020,Carla Gray,South Williamside,Newfoundland and Labrador
+HCP000248,Lisa Carr,Primary Care,2,Low,T015,Territory 015,REP015,Dylan Miller,North Phillip,Yukon Territory
+HCP000249,Ms. Holly Thomas,Pulmonology,8,High,T020,Territory 020,REP020,Carla Gray,Porterton,Alberta
+HCP000250,Gary Wells,Pulmonology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,Hernandezhaven,Manitoba
+HCP000251,Louis Martin,Primary Care,5,Medium,T002,Territory 002,REP002,Noah Rhodes,Brittneyhaven,Ontario
+HCP000252,Michelle Evans,Neurology,6,Medium,T016,Territory 016,REP016,Brian Ramirez,West Markville,Nova Scotia
+HCP000253,Rebecca Swanson,Primary Care,9,High,T009,Territory 009,REP009,Gabrielle Davis,New Thomasshire,Prince Edward Island
+HCP000254,Anthony Castillo,Primary Care,5,Medium,T017,Territory 017,REP017,Holly Wood,Hernandezbury,Alberta
+HCP000255,Melody Lee,Oncology,2,Low,T019,Territory 019,REP019,Lisa Jackson,Edwardsberg,Nova Scotia
+HCP000256,Jennifer Hampton,Neurology,8,High,T014,Territory 014,REP014,Michele Williams,Salaston,Saskatchewan
+HCP000257,Daniel Nguyen,Primary Care,7,Medium,T008,Territory 008,REP008,Gina Moore,Foxmouth,Manitoba
+HCP000258,Joseph Payne,Endocrinology,4,Medium,T017,Territory 017,REP017,Holly Wood,Chelseaborough,New Brunswick
+HCP000259,Edwin David,Cardiology,8,High,T009,Territory 009,REP009,Gabrielle Davis,Kellieborough,Saskatchewan
+HCP000260,Emily Bailey,Primary Care,7,Medium,T001,Territory 001,REP001,Allison Hill,Keithshire,Quebec
+HCP000261,Stephanie Foster,Endocrinology,5,Medium,T014,Territory 014,REP014,Michele Williams,Stephanieberg,Newfoundland and Labrador
+HCP000262,Tyler Miller,Neurology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Douglasfort,New Brunswick
+HCP000263,Joshua Fitzpatrick,Primary Care,4,Medium,T016,Territory 016,REP016,Brian Ramirez,Derrickshire,New Brunswick
+HCP000264,Michael Schmidt,Cardiology,6,Medium,T018,Territory 018,REP018,Derek Zuniga,North Craig,Northwest Territories
+HCP000265,Ashlee Townsend,Primary Care,4,Medium,T011,Territory 011,REP011,Monica Herrera,New Tiffanyburgh,Nova Scotia
+HCP000266,Shirley Alvarez,Primary Care,2,Low,T018,Territory 018,REP018,Derek Zuniga,Port Tamara,Northwest Territories
+HCP000267,Anthony Mack,Pulmonology,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,New Joanne,Alberta
+HCP000268,Carrie Khan,Cardiology,4,Medium,T017,Territory 017,REP017,Holly Wood,North Wendy,Nova Scotia
+HCP000269,Charlotte Curry,Pulmonology,3,Low,T003,Territory 003,REP003,Angie Henderson,Nancytown,Newfoundland and Labrador
+HCP000270,Ashley Bird,Endocrinology,7,Medium,T012,Territory 012,REP012,Jamie Arnold,Shawnside,Ontario
+HCP000271,Todd Rosales MD,Cardiology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,Port Daniel,Manitoba
+HCP000272,Mariah Higgins,Cardiology,3,Low,T019,Territory 019,REP019,Lisa Jackson,Lake Matthewport,Prince Edward Island
+HCP000273,Cheryl Carr,Primary Care,2,Low,T008,Territory 008,REP008,Gina Moore,Wilcoxhaven,Northwest Territories
+HCP000274,Michael Lopez,Endocrinology,5,Medium,T005,Territory 005,REP005,Cristian Santos,South Marcus,New Brunswick
+HCP000275,James Griffin,Pulmonology,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,Stephanieport,Prince Edward Island
+HCP000276,Alexandra Valdez,Cardiology,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,North Elizabeth,Nunavut
+HCP000277,Jared Shaw,Primary Care,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,Hannahport,Northwest Territories
+HCP000278,Colleen Anderson,Pulmonology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,South Julie,Prince Edward Island
+HCP000279,Michael Durham,Endocrinology,6,Medium,T020,Territory 020,REP020,Carla Gray,Port John,Yukon Territory
+HCP000280,Rachel Fox,Primary Care,7,Medium,T015,Territory 015,REP015,Dylan Miller,Christianshire,British Columbia
+HCP000281,Joshua Wagner,Primary Care,4,Medium,T006,Territory 006,REP006,Connie Lawrence,East Mark,Ontario
+HCP000282,Michael Love,Primary Care,9,High,T007,Territory 007,REP007,Abigail Shaffer,Davishaven,Nunavut
+HCP000283,Jody Palmer,Oncology,6,Medium,T006,Territory 006,REP006,Connie Lawrence,Elliottside,Nunavut
+HCP000284,Elizabeth Johnson,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Lisaborough,Prince Edward Island
+HCP000285,Jeff Graves,Neurology,10,High,T012,Territory 012,REP012,Jamie Arnold,North Valeriefort,Alberta
+HCP000286,Christopher Taylor,Oncology,9,High,T014,Territory 014,REP014,Michele Williams,Brooksfurt,Nunavut
+HCP000287,Susan Bennett,Primary Care,3,Low,T004,Territory 004,REP004,Daniel Wagner,Lake Michelle,British Columbia
+HCP000288,Joshua Rice,Pulmonology,7,Medium,T012,Territory 012,REP012,Jamie Arnold,Port Adam,Alberta
+HCP000289,Julie Ball,Primary Care,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Patelbury,New Brunswick
+HCP000290,Christopher Lopez,Primary Care,10,High,T009,Territory 009,REP009,Gabrielle Davis,North Lisachester,Prince Edward Island
+HCP000291,Stacey Smith,Primary Care,1,Low,T002,Territory 002,REP002,Noah Rhodes,North Craig,Alberta
+HCP000292,Michael Brennan,Cardiology,5,Medium,T005,Territory 005,REP005,Cristian Santos,Lake Bradley,Nunavut
+HCP000293,Daniel Shields,Primary Care,4,Medium,T001,Territory 001,REP001,Allison Hill,East Williamport,New Brunswick
+HCP000294,Monique Flores,Primary Care,5,Medium,T002,Territory 002,REP002,Noah Rhodes,Joelberg,Quebec
+HCP000295,Jennifer Hill,Primary Care,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,Lake Erika,Ontario
+HCP000296,William David DDS,Cardiology,5,Medium,T005,Territory 005,REP005,Cristian Santos,Heatherchester,Manitoba
+HCP000297,Clinton Medina,Neurology,1,Low,T006,Territory 006,REP006,Connie Lawrence,Port Jeremiah,Saskatchewan
+HCP000298,Joel Brown,Cardiology,1,Low,T003,Territory 003,REP003,Angie Henderson,Faulknerside,Ontario
+HCP000299,David Harris,Cardiology,5,Medium,T001,Territory 001,REP001,Allison Hill,South Melanieland,Ontario
+HCP000300,Cheryl Adams,Neurology,8,High,T007,Territory 007,REP007,Abigail Shaffer,Port Charlesshire,Saskatchewan
+HCP000301,Claire Clark,Primary Care,4,Medium,T005,Territory 005,REP005,Cristian Santos,Kevintown,New Brunswick
+HCP000302,Tonya Wilson,Endocrinology,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,Rochaborough,Nova Scotia
+HCP000303,Kristen Rowe,Pulmonology,3,Low,T015,Territory 015,REP015,Dylan Miller,Owensstad,Newfoundland and Labrador
+HCP000304,Jose Crawford,Cardiology,1,Low,T007,Territory 007,REP007,Abigail Shaffer,Port Tinafort,Yukon Territory
+HCP000305,Suzanne Wood,Primary Care,7,Medium,T004,Territory 004,REP004,Daniel Wagner,Williamsbury,Saskatchewan
+HCP000306,Dean Donovan,Pulmonology,3,Low,T004,Territory 004,REP004,Daniel Wagner,Phillipsborough,Northwest Territories
+HCP000307,Kelly Sanchez,Primary Care,1,Low,T019,Territory 019,REP019,Lisa Jackson,Jonathanfort,Saskatchewan
+HCP000308,Katherine Jackson,Endocrinology,2,Low,T004,Territory 004,REP004,Daniel Wagner,Garyside,Nunavut
+HCP000309,Steve Mooney,Endocrinology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,New Arthurland,Quebec
+HCP000310,Aaron Taylor,Primary Care,8,High,T012,Territory 012,REP012,Jamie Arnold,North Jasmine,Alberta
+HCP000311,Jesus Brown,Primary Care,8,High,T011,Territory 011,REP011,Monica Herrera,Hopkinstown,Alberta
+HCP000312,Jennifer Smith,Neurology,8,High,T013,Territory 013,REP013,Lisa Hensley,Amandaport,Alberta
+HCP000313,Melissa Jordan,Cardiology,4,Medium,T005,Territory 005,REP005,Cristian Santos,North Samantha,Ontario
+HCP000314,Corey Fox,Pulmonology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Josephfurt,British Columbia
+HCP000315,Jared Cunningham,Primary Care,5,Medium,T015,Territory 015,REP015,Dylan Miller,West Gabriella,British Columbia
+HCP000316,Shannon Malone,Endocrinology,8,High,T017,Territory 017,REP017,Holly Wood,South Nicholasside,Nunavut
+HCP000317,Adam Jackson,Primary Care,3,Low,T011,Territory 011,REP011,Monica Herrera,Brucemouth,Prince Edward Island
+HCP000318,Valerie Jacobson,Primary Care,2,Low,T009,Territory 009,REP009,Gabrielle Davis,East Jasonshire,Nunavut
+HCP000319,Thomas Cohen,Primary Care,4,Medium,T008,Territory 008,REP008,Gina Moore,Rachelshire,Quebec
+HCP000320,Timothy Edwards,Oncology,7,Medium,T001,Territory 001,REP001,Allison Hill,New Douglas,Saskatchewan
+HCP000321,Tanya Evans,Neurology,7,Medium,T017,Territory 017,REP017,Holly Wood,New Mary,Nova Scotia
+HCP000322,Kimberly Reyes,Primary Care,6,Medium,T007,Territory 007,REP007,Abigail Shaffer,Port Vanessa,Saskatchewan
+HCP000323,Patrick Reed,Primary Care,3,Low,T014,Territory 014,REP014,Michele Williams,South Jesseland,Northwest Territories
+HCP000324,Lisa Larson,Pulmonology,6,Medium,T014,Territory 014,REP014,Michele Williams,Anthonyview,Yukon Territory
+HCP000325,Katherine Kelly DVM,Pulmonology,1,Low,T019,Territory 019,REP019,Lisa Jackson,Lopezshire,Quebec
+HCP000326,Raymond Phillips,Primary Care,6,Medium,T001,Territory 001,REP001,Allison Hill,Lake Charles,Newfoundland and Labrador
+HCP000327,Michael Walters,Cardiology,9,High,T002,Territory 002,REP002,Noah Rhodes,Stewartville,British Columbia
+HCP000328,Eric Ward,Primary Care,6,Medium,T018,Territory 018,REP018,Derek Zuniga,Curtisland,Manitoba
+HCP000329,Justin Hunt,Primary Care,2,Low,T009,Territory 009,REP009,Gabrielle Davis,North Christopherside,British Columbia
+HCP000330,Rachel Shields,Neurology,7,Medium,T012,Territory 012,REP012,Jamie Arnold,West Robertland,Saskatchewan
+HCP000331,Susan Spence,Primary Care,1,Low,T002,Territory 002,REP002,Noah Rhodes,Lake Oscar,Manitoba
+HCP000332,Derrick Thomas,Primary Care,9,High,T012,Territory 012,REP012,Jamie Arnold,South Joshua,Newfoundland and Labrador
+HCP000333,Mr. David Wright,Cardiology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Wheelerborough,Nunavut
+HCP000334,Eric Rush,Oncology,7,Medium,T012,Territory 012,REP012,Jamie Arnold,Meaganfurt,Yukon Territory
+HCP000335,Jessica Jordan,Pulmonology,6,Medium,T006,Territory 006,REP006,Connie Lawrence,West Malik,Saskatchewan
+HCP000336,Ernest Oconnell,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Kellyfort,Prince Edward Island
+HCP000337,Erika Ramirez,Cardiology,1,Low,T001,Territory 001,REP001,Allison Hill,Diazshire,New Brunswick
+HCP000338,Kimberly Maldonado,Primary Care,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Lake Stevenborough,Nunavut
+HCP000339,Sandra Jones,Endocrinology,9,High,T014,Territory 014,REP014,Michele Williams,Chambersberg,Quebec
+HCP000340,David Moore,Pulmonology,3,Low,T008,Territory 008,REP008,Gina Moore,Mccormickland,Nunavut
+HCP000341,Karen Morales DDS,Neurology,3,Low,T014,Territory 014,REP014,Michele Williams,Stephensstad,Saskatchewan
+HCP000342,Kimberly Little,Primary Care,9,High,T004,Territory 004,REP004,Daniel Wagner,North Kaylastad,Manitoba
+HCP000343,Amanda Terrell,Neurology,5,Medium,T018,Territory 018,REP018,Derek Zuniga,Rasmussenmouth,Yukon Territory
+HCP000344,Adam Green,Cardiology,5,Medium,T015,Territory 015,REP015,Dylan Miller,South Neil,Nunavut
+HCP000345,Leah Mason,Oncology,7,Medium,T014,Territory 014,REP014,Michele Williams,Whitneyfort,British Columbia
+HCP000346,Thomas Miller,Primary Care,6,Medium,T015,Territory 015,REP015,Dylan Miller,West Larry,Nunavut
+HCP000347,Kelly Bailey,Oncology,9,High,T014,Territory 014,REP014,Michele Williams,South Jennifermouth,Northwest Territories
+HCP000348,Andrew Page,Primary Care,2,Low,T018,Territory 018,REP018,Derek Zuniga,Port Matthewville,Quebec
+HCP000349,Tara Yang,Pulmonology,7,Medium,T010,Territory 010,REP010,Ryan Munoz,New Ethan,Ontario
+HCP000350,Joel Salinas,Oncology,5,Medium,T001,Territory 001,REP001,Allison Hill,East Danielle,Nova Scotia
+HCP000351,Omar Ware,Primary Care,9,High,T013,Territory 013,REP013,Lisa Hensley,Vargasfurt,Alberta
+HCP000352,Christine Goodwin,Endocrinology,6,Medium,T008,Territory 008,REP008,Gina Moore,New Cristianside,Manitoba
+HCP000353,Craig Wilson,Pulmonology,5,Medium,T001,Territory 001,REP001,Allison Hill,Rosemouth,Prince Edward Island
+HCP000354,James Wilson,Primary Care,5,Medium,T013,Territory 013,REP013,Lisa Hensley,Meganburgh,Quebec
+HCP000355,Elizabeth Mendez,Primary Care,5,Medium,T008,Territory 008,REP008,Gina Moore,Lake Dennisville,New Brunswick
+HCP000356,Clayton Steele,Endocrinology,3,Low,T008,Territory 008,REP008,Gina Moore,Barnesberg,Prince Edward Island
+HCP000357,Cody Reid,Primary Care,4,Medium,T001,Territory 001,REP001,Allison Hill,New Garrett,Newfoundland and Labrador
+HCP000358,Ernest Hayes,Oncology,2,Low,T020,Territory 020,REP020,Carla Gray,Port Michaeltown,Nunavut
+HCP000359,Robert Maynard,Primary Care,9,High,T007,Territory 007,REP007,Abigail Shaffer,Ortizfort,Nova Scotia
+HCP000360,Jill Jackson,Cardiology,3,Low,T006,Territory 006,REP006,Connie Lawrence,Port Kathleenport,Alberta
+HCP000361,Joshua Jackson,Primary Care,5,Medium,T010,Territory 010,REP010,Ryan Munoz,Cunninghamfort,Ontario
+HCP000362,Laura Adams,Pulmonology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,Amberton,Yukon Territory
+HCP000363,Kimberly Fritz,Primary Care,7,Medium,T014,Territory 014,REP014,Michele Williams,Lake Mariabury,Newfoundland and Labrador
+HCP000364,Amanda Baker,Primary Care,4,Medium,T010,Territory 010,REP010,Ryan Munoz,South Michelleville,Yukon Territory
+HCP000365,Christine Rojas,Pulmonology,7,Medium,T007,Territory 007,REP007,Abigail Shaffer,Michellechester,Manitoba
+HCP000366,Rachel Li,Pulmonology,10,High,T018,Territory 018,REP018,Derek Zuniga,New Michaelview,Prince Edward Island
+HCP000367,Erica Padilla,Primary Care,10,High,T012,Territory 012,REP012,Jamie Arnold,Ashleyhaven,Quebec
+HCP000368,Brandy Brady,Endocrinology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,Sellersview,Quebec
+HCP000369,Sean Wright,Endocrinology,2,Low,T017,Territory 017,REP017,Holly Wood,Mariafurt,Nunavut
+HCP000370,Mark Burton,Primary Care,6,Medium,T017,Territory 017,REP017,Holly Wood,Hayesland,Nova Scotia
+HCP000371,Diana Mayer,Neurology,4,Medium,T010,Territory 010,REP010,Ryan Munoz,Shawnfort,Northwest Territories
+HCP000372,Sheila Boone,Oncology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Lake Teresastad,British Columbia
+HCP000373,Jennifer Donaldson,Cardiology,4,Medium,T017,Territory 017,REP017,Holly Wood,South Joseph,Newfoundland and Labrador
+HCP000374,Kenneth Knight,Oncology,7,Medium,T008,Territory 008,REP008,Gina Moore,Kramerton,Alberta
+HCP000375,Richard Stevens,Primary Care,3,Low,T013,Territory 013,REP013,Lisa Hensley,Port Ericmouth,Alberta
+HCP000376,Jessica Forbes DVM,Primary Care,9,High,T019,Territory 019,REP019,Lisa Jackson,Erikview,British Columbia
+HCP000377,Danielle Watson,Primary Care,4,Medium,T004,Territory 004,REP004,Daniel Wagner,North Randy,Newfoundland and Labrador
+HCP000378,Nicole Patterson,Cardiology,5,Medium,T017,Territory 017,REP017,Holly Wood,Lake Codyborough,Nunavut
+HCP000379,Kevin Stone,Neurology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Smithmouth,British Columbia
+HCP000380,Jennifer Anderson MD,Primary Care,9,High,T015,Territory 015,REP015,Dylan Miller,Davisville,British Columbia
+HCP000381,Stanley Taylor,Primary Care,6,Medium,T015,Territory 015,REP015,Dylan Miller,Lake Victoria,Manitoba
+HCP000382,Justin Bishop,Pulmonology,3,Low,T005,Territory 005,REP005,Cristian Santos,South Michael,New Brunswick
+HCP000383,Brittany Jenkins,Cardiology,9,High,T001,Territory 001,REP001,Allison Hill,Heathland,British Columbia
+HCP000384,Bryce Blair,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Sylviamouth,Yukon Territory
+HCP000385,Donald Miller,Primary Care,6,Medium,T017,Territory 017,REP017,Holly Wood,Kimberlytown,Quebec
+HCP000386,Christine Lawson,Pulmonology,2,Low,T009,Territory 009,REP009,Gabrielle Davis,Lake Peter,Quebec
+HCP000387,Steven Blevins,Primary Care,5,Medium,T017,Territory 017,REP017,Holly Wood,Cruzbury,Nunavut
+HCP000388,Andrea Oneal,Primary Care,6,Medium,T020,Territory 020,REP020,Carla Gray,West Sarahberg,Nova Scotia
+HCP000389,Laura Diaz,Primary Care,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Port Thomas,Yukon Territory
+HCP000390,Kevin Smith,Primary Care,9,High,T001,Territory 001,REP001,Allison Hill,North Sandra,Yukon Territory
+HCP000391,Dustin Marquez,Cardiology,6,Medium,T002,Territory 002,REP002,Noah Rhodes,Hendersonfurt,British Columbia
+HCP000392,Kimberly Hernandez,Primary Care,6,Medium,T010,Territory 010,REP010,Ryan Munoz,West Christianborough,Yukon Territory
+HCP000393,Gabriel Willis,Oncology,10,High,T003,Territory 003,REP003,Angie Henderson,West Hollybury,Alberta
+HCP000394,Tim Wilson,Primary Care,5,Medium,T017,Territory 017,REP017,Holly Wood,West Elizabethburgh,British Columbia
+HCP000395,Chad Smith,Primary Care,9,High,T014,Territory 014,REP014,Michele Williams,Bentonhaven,Ontario
+HCP000396,Michelle Jackson,Oncology,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,Lake Kimberly,Newfoundland and Labrador
+HCP000397,Bailey Yoder,Oncology,6,Medium,T002,Territory 002,REP002,Noah Rhodes,Lindsayview,Ontario
+HCP000398,Michael Ray,Pulmonology,3,Low,T016,Territory 016,REP016,Brian Ramirez,South Spencerstad,Alberta
+HCP000399,Mr. Jacob Scott Jr.,Primary Care,5,Medium,T006,Territory 006,REP006,Connie Lawrence,East Joycetown,Alberta
+HCP000400,Alexandria Williams,Primary Care,10,High,T013,Territory 013,REP013,Lisa Hensley,Patrickberg,Manitoba
+HCP000401,Shannon Tran,Primary Care,2,Low,T008,Territory 008,REP008,Gina Moore,Walkerbury,Nova Scotia
+HCP000402,Erica Mckenzie,Endocrinology,3,Low,T010,Territory 010,REP010,Ryan Munoz,Davidton,Manitoba
+HCP000403,Jose Williams,Primary Care,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Jonesmouth,Newfoundland and Labrador
+HCP000404,Emily Miller,Cardiology,7,Medium,T019,Territory 019,REP019,Lisa Jackson,Smithborough,Newfoundland and Labrador
+HCP000405,Elizabeth Dean,Cardiology,7,Medium,T014,Territory 014,REP014,Michele Williams,Richardsonfort,Yukon Territory
+HCP000406,Morgan Payne,Primary Care,10,High,T012,Territory 012,REP012,Jamie Arnold,East Adam,Nova Scotia
+HCP000407,Joshua Fields,Neurology,3,Low,T002,Territory 002,REP002,Noah Rhodes,West Aaronfurt,Saskatchewan
+HCP000408,Ashley Moreno,Cardiology,1,Low,T014,Territory 014,REP014,Michele Williams,South Travis,Alberta
+HCP000409,Brenda Ramirez,Pulmonology,9,High,T015,Territory 015,REP015,Dylan Miller,East Phyllishaven,Nova Scotia
+HCP000410,Jacqueline Villegas,Endocrinology,6,Medium,T015,Territory 015,REP015,Dylan Miller,New Codyberg,Quebec
+HCP000411,Angela Bradley,Cardiology,4,Medium,T008,Territory 008,REP008,Gina Moore,Batesberg,New Brunswick
+HCP000412,Samuel Howe,Cardiology,7,Medium,T019,Territory 019,REP019,Lisa Jackson,Haynesmouth,Northwest Territories
+HCP000413,David Harding,Cardiology,6,Medium,T003,Territory 003,REP003,Angie Henderson,Port Kayla,British Columbia
+HCP000414,Christopher Owens,Cardiology,9,High,T015,Territory 015,REP015,Dylan Miller,Martinezstad,Yukon Territory
+HCP000415,Eric Baker,Cardiology,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,North Ericport,Saskatchewan
+HCP000416,Amanda Huff,Primary Care,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,Eddiebury,Northwest Territories
+HCP000417,Anthony Evans,Endocrinology,2,Low,T007,Territory 007,REP007,Abigail Shaffer,North Stephanie,Nunavut
+HCP000418,Krista Davis,Primary Care,7,Medium,T014,Territory 014,REP014,Michele Williams,Port Lauraville,Alberta
+HCP000419,Richard Walker,Oncology,4,Medium,T017,Territory 017,REP017,Holly Wood,Port Richard,Quebec
+HCP000420,Maria Aguilar,Primary Care,8,High,T004,Territory 004,REP004,Daniel Wagner,Samanthaland,Alberta
+HCP000421,Christina Brewer PhD,Primary Care,7,Medium,T004,Territory 004,REP004,Daniel Wagner,Port Mariamouth,British Columbia
+HCP000422,Joel Jackson,Primary Care,3,Low,T003,Territory 003,REP003,Angie Henderson,Underwoodfurt,Nunavut
+HCP000423,Michael Thompson,Primary Care,7,Medium,T019,Territory 019,REP019,Lisa Jackson,East Joshua,Nunavut
+HCP000424,Amanda Harvey,Oncology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Lake Kenneth,Nova Scotia
+HCP000425,Karen Miller,Primary Care,10,High,T012,Territory 012,REP012,Jamie Arnold,Taylorborough,Quebec
+HCP000426,Kelly Mccoy,Primary Care,6,Medium,T013,Territory 013,REP013,Lisa Hensley,South Kimberlystad,Nunavut
+HCP000427,Kari Durham,Endocrinology,10,High,T011,Territory 011,REP011,Monica Herrera,Paulburgh,Alberta
+HCP000428,Daniel Huang,Cardiology,1,Low,T008,Territory 008,REP008,Gina Moore,Brianfort,Ontario
+HCP000429,Kevin Hall,Cardiology,9,High,T020,Territory 020,REP020,Carla Gray,North John,New Brunswick
+HCP000430,Robert Stark,Neurology,9,High,T013,Territory 013,REP013,Lisa Hensley,Port Wendybury,Prince Edward Island
+HCP000431,Rebecca Kelly,Cardiology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,East Joel,Northwest Territories
+HCP000432,Melissa Sloan,Primary Care,6,Medium,T011,Territory 011,REP011,Monica Herrera,Lake Jackieshire,Prince Edward Island
+HCP000433,Travis Copeland,Pulmonology,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,Weaverburgh,Nunavut
+HCP000434,Anthony Guzman,Pulmonology,8,High,T019,Territory 019,REP019,Lisa Jackson,New Timothymouth,Prince Edward Island
+HCP000435,Carlos Love,Oncology,7,Medium,T020,Territory 020,REP020,Carla Gray,Brianberg,Prince Edward Island
+HCP000436,Brenda Rodriguez,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Susanstad,Saskatchewan
+HCP000437,Jennifer Garcia,Primary Care,4,Medium,T013,Territory 013,REP013,Lisa Hensley,Marcusburgh,Saskatchewan
+HCP000438,Rebecca Yu,Endocrinology,4,Medium,T013,Territory 013,REP013,Lisa Hensley,Grantside,Saskatchewan
+HCP000439,Lisa Kelly,Neurology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,South Kurt,Saskatchewan
+HCP000440,Christopher Smith,Primary Care,8,High,T005,Territory 005,REP005,Cristian Santos,Rosalesshire,Alberta
+HCP000441,Evan Lamb,Oncology,1,Low,T001,Territory 001,REP001,Allison Hill,Lake Ariana,Nunavut
+HCP000442,Patrick Young,Primary Care,8,High,T007,Territory 007,REP007,Abigail Shaffer,Garyland,Saskatchewan
+HCP000443,Monica Rogers,Cardiology,8,High,T013,Territory 013,REP013,Lisa Hensley,West Jasonland,Northwest Territories
+HCP000444,Brian Smith,Primary Care,10,High,T003,Territory 003,REP003,Angie Henderson,Kimchester,Manitoba
+HCP000445,Katherine Gray,Endocrinology,3,Low,T001,Territory 001,REP001,Allison Hill,Garciafort,Yukon Territory
+HCP000446,Marilyn Mcdaniel,Pulmonology,9,High,T009,Territory 009,REP009,Gabrielle Davis,South Charles,Alberta
+HCP000447,Fernando Lynn,Oncology,2,Low,T019,Territory 019,REP019,Lisa Jackson,West Georgefurt,Manitoba
+HCP000448,Kimberly Villanueva,Neurology,4,Medium,T003,Territory 003,REP003,Angie Henderson,West Brookefort,Saskatchewan
+HCP000449,Tommy Martin,Neurology,7,Medium,T010,Territory 010,REP010,Ryan Munoz,Mooreville,Northwest Territories
+HCP000450,Colton Terry,Cardiology,3,Low,T003,Territory 003,REP003,Angie Henderson,Donnaport,New Brunswick
+HCP000451,James Dunn,Endocrinology,6,Medium,T005,Territory 005,REP005,Cristian Santos,Hernandezstad,Alberta
+HCP000452,Edward Stanley,Pulmonology,7,Medium,T011,Territory 011,REP011,Monica Herrera,Gonzaleztown,New Brunswick
+HCP000453,Edgar Miller,Primary Care,10,High,T001,Territory 001,REP001,Allison Hill,West Kristenfort,Nunavut
+HCP000454,Deborah May,Pulmonology,7,Medium,T011,Territory 011,REP011,Monica Herrera,Lopezfurt,Northwest Territories
+HCP000455,Andrew Gonzales,Cardiology,4,Medium,T006,Territory 006,REP006,Connie Lawrence,Jeremyview,Prince Edward Island
+HCP000456,Paul Contreras,Endocrinology,2,Low,T010,Territory 010,REP010,Ryan Munoz,Lake Mauriceside,Nova Scotia
+HCP000457,Leah Spencer,Neurology,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,Cardenaschester,Ontario
+HCP000458,Taylor Armstrong,Cardiology,8,High,T016,Territory 016,REP016,Brian Ramirez,South Kent,Nova Scotia
+HCP000459,Michelle Shaw,Neurology,4,Medium,T005,Territory 005,REP005,Cristian Santos,North Stacy,Nunavut
+HCP000460,William Stanton,Neurology,5,Medium,T015,Territory 015,REP015,Dylan Miller,East Brad,British Columbia
+HCP000461,Jessica Osborn DDS,Primary Care,3,Low,T012,Territory 012,REP012,Jamie Arnold,Luisland,British Columbia
+HCP000462,James Nguyen,Cardiology,3,Low,T018,Territory 018,REP018,Derek Zuniga,Apriltown,Yukon Territory
+HCP000463,Laurie Harrington,Primary Care,2,Low,T011,Territory 011,REP011,Monica Herrera,South Edwardshire,Prince Edward Island
+HCP000464,Traci Garcia,Oncology,5,Medium,T002,Territory 002,REP002,Noah Rhodes,New Kimberlyport,Ontario
+HCP000465,Sherry Baker,Neurology,1,Low,T007,Territory 007,REP007,Abigail Shaffer,Armstrongfort,Alberta
+HCP000466,Jamie Montgomery,Primary Care,3,Low,T014,Territory 014,REP014,Michele Williams,Williamsmouth,Saskatchewan
+HCP000467,Patrick Mccall,Cardiology,8,High,T006,Territory 006,REP006,Connie Lawrence,Andrewport,Newfoundland and Labrador
+HCP000468,John Horton,Primary Care,8,High,T017,Territory 017,REP017,Holly Wood,Port Jeremyport,Saskatchewan
+HCP000469,Roger Adams,Primary Care,5,Medium,T011,Territory 011,REP011,Monica Herrera,Jacobsland,New Brunswick
+HCP000470,Thomas Russell,Cardiology,7,Medium,T015,Territory 015,REP015,Dylan Miller,Malonestad,Alberta
+HCP000471,Caitlin Collins,Cardiology,7,Medium,T015,Territory 015,REP015,Dylan Miller,Taylorhaven,Prince Edward Island
+HCP000472,Corey Whitaker,Primary Care,3,Low,T010,Territory 010,REP010,Ryan Munoz,East Antonioton,Northwest Territories
+HCP000473,Denise Colon,Primary Care,7,Medium,T020,Territory 020,REP020,Carla Gray,Reidville,Quebec
+HCP000474,Jaime Wheeler,Primary Care,3,Low,T003,Territory 003,REP003,Angie Henderson,Port Thomas,Ontario
+HCP000475,Christopher Kline,Pulmonology,8,High,T002,Territory 002,REP002,Noah Rhodes,West Anthonyton,Manitoba
+HCP000476,Penny Lewis,Endocrinology,3,Low,T008,Territory 008,REP008,Gina Moore,Lake Jeffrey,New Brunswick
+HCP000477,Jason Smith,Neurology,5,Medium,T019,Territory 019,REP019,Lisa Jackson,South Rhondaburgh,Prince Edward Island
+HCP000478,Courtney Franklin,Neurology,10,High,T008,Territory 008,REP008,Gina Moore,Jenniferview,Nova Scotia
+HCP000479,Sarah Stevens,Endocrinology,3,Low,T013,Territory 013,REP013,Lisa Hensley,South Kevin,Ontario
+HCP000480,Jennifer Garcia,Oncology,4,Medium,T005,Territory 005,REP005,Cristian Santos,Annaport,Newfoundland and Labrador
+HCP000481,Karen Rogers,Neurology,6,Medium,T015,Territory 015,REP015,Dylan Miller,Danielleview,Newfoundland and Labrador
+HCP000482,Tiffany Curtis,Primary Care,7,Medium,T012,Territory 012,REP012,Jamie Arnold,East Zachary,New Brunswick
+HCP000483,Renee Lang,Cardiology,1,Low,T019,Territory 019,REP019,Lisa Jackson,Guerreroberg,Saskatchewan
+HCP000484,Jonathan Phillips,Cardiology,4,Medium,T013,Territory 013,REP013,Lisa Hensley,Sullivanton,Prince Edward Island
+HCP000485,Laura Lee,Endocrinology,7,Medium,T003,Territory 003,REP003,Angie Henderson,Lake Amanda,Yukon Territory
+HCP000486,Todd Howard,Primary Care,5,Medium,T017,Territory 017,REP017,Holly Wood,Meganside,Manitoba
+HCP000487,John Figueroa,Endocrinology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Lake Rachel,Quebec
+HCP000488,Henry Garner,Primary Care,7,Medium,T007,Territory 007,REP007,Abigail Shaffer,Robertmouth,Northwest Territories
+HCP000489,Edward York,Neurology,1,Low,T001,Territory 001,REP001,Allison Hill,Brownshire,Prince Edward Island
+HCP000490,Andrea Preston,Primary Care,6,Medium,T005,Territory 005,REP005,Cristian Santos,Port Erinhaven,Newfoundland and Labrador
+HCP000491,Seth Hernandez,Cardiology,9,High,T002,Territory 002,REP002,Noah Rhodes,West Robert,Prince Edward Island
+HCP000492,Victoria Thomas,Primary Care,9,High,T010,Territory 010,REP010,Ryan Munoz,Port Christopher,Northwest Territories
+HCP000493,Cassandra Walters,Primary Care,3,Low,T010,Territory 010,REP010,Ryan Munoz,South Joshuaburgh,Prince Edward Island
+HCP000494,Katherine Gallagher,Primary Care,7,Medium,T012,Territory 012,REP012,Jamie Arnold,East Christinachester,Nova Scotia
+HCP000495,John Smith,Cardiology,2,Low,T009,Territory 009,REP009,Gabrielle Davis,Lake Nathan,Alberta
+HCP000496,Nicole Schmidt,Primary Care,3,Low,T005,Territory 005,REP005,Cristian Santos,Lake Adambury,New Brunswick
+HCP000497,Haley Anderson,Cardiology,8,High,T004,Territory 004,REP004,Daniel Wagner,Gordonport,Manitoba
+HCP000498,Angel Fry,Cardiology,2,Low,T007,Territory 007,REP007,Abigail Shaffer,Lunahaven,Northwest Territories
+HCP000499,Michael Anderson,Primary Care,4,Medium,T019,Territory 019,REP019,Lisa Jackson,Howardborough,Manitoba
+HCP000500,Tamara Powell,Pulmonology,9,High,T013,Territory 013,REP013,Lisa Hensley,East Jessica,Manitoba
+HCP000501,Alex Wagner,Primary Care,2,Low,T016,Territory 016,REP016,Brian Ramirez,West Jenniferton,Nova Scotia
+HCP000502,Dawn Nichols,Primary Care,6,Medium,T003,Territory 003,REP003,Angie Henderson,New Virginiaville,Quebec
+HCP000503,Amber Wilson,Neurology,8,High,T020,Territory 020,REP020,Carla Gray,Jamesside,Newfoundland and Labrador
+HCP000504,Christian Neal,Pulmonology,6,Medium,T016,Territory 016,REP016,Brian Ramirez,West Robertville,Quebec
+HCP000505,Lisa Haynes,Primary Care,1,Low,T005,Territory 005,REP005,Cristian Santos,Rivasville,Ontario
+HCP000506,Autumn Wilson,Endocrinology,9,High,T009,Territory 009,REP009,Gabrielle Davis,South Jamesborough,Yukon Territory
+HCP000507,Joseph Harris,Pulmonology,8,High,T019,Territory 019,REP019,Lisa Jackson,Phillipston,Ontario
+HCP000508,Daniel Fitzpatrick MD,Cardiology,5,Medium,T004,Territory 004,REP004,Daniel Wagner,North Emilyville,Prince Edward Island
+HCP000509,Brittany Davis,Cardiology,10,High,T020,Territory 020,REP020,Carla Gray,Lake Jenniferview,Quebec
+HCP000510,William Phillips,Primary Care,6,Medium,T008,Territory 008,REP008,Gina Moore,Williamsburgh,Alberta
+HCP000511,Heather Rhodes,Primary Care,4,Medium,T005,Territory 005,REP005,Cristian Santos,Rodgersville,Yukon Territory
+HCP000512,Alexandra Taylor,Endocrinology,8,High,T004,Territory 004,REP004,Daniel Wagner,West Michael,Nunavut
+HCP000513,Debra Quinn,Cardiology,5,Medium,T014,Territory 014,REP014,Michele Williams,Lisaburgh,British Columbia
+HCP000514,Victor Nelson,Pulmonology,6,Medium,T009,Territory 009,REP009,Gabrielle Davis,Vaughnfort,Yukon Territory
+HCP000515,Stephen Jackson,Primary Care,9,High,T015,Territory 015,REP015,Dylan Miller,Lake Jessica,Manitoba
+HCP000516,Thomas Webb,Endocrinology,5,Medium,T008,Territory 008,REP008,Gina Moore,Whitefurt,Yukon Territory
+HCP000517,Allen Cohen,Endocrinology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,South Samantha,British Columbia
+HCP000518,Jessica Brown,Primary Care,4,Medium,T014,Territory 014,REP014,Michele Williams,Alexanderhaven,Yukon Territory
+HCP000519,Misty Walker,Primary Care,5,Medium,T011,Territory 011,REP011,Monica Herrera,Aprilville,Nova Scotia
+HCP000520,Danielle Reed,Cardiology,7,Medium,T002,Territory 002,REP002,Noah Rhodes,Hernandezside,Prince Edward Island
+HCP000521,Mason Moore,Oncology,3,Low,T016,Territory 016,REP016,Brian Ramirez,Christianburgh,British Columbia
+HCP000522,Erica Rivera,Neurology,4,Medium,T012,Territory 012,REP012,Jamie Arnold,Brentbury,Ontario
+HCP000523,Jennifer Young,Endocrinology,9,High,T004,Territory 004,REP004,Daniel Wagner,Wallaceshire,Nunavut
+HCP000524,Jonathan Stewart,Pulmonology,2,Low,T012,Territory 012,REP012,Jamie Arnold,Mcgeetown,British Columbia
+HCP000525,Andrew Dunn,Endocrinology,5,Medium,T003,Territory 003,REP003,Angie Henderson,Port Cassandraport,Ontario
+HCP000526,Mary Bryant,Primary Care,1,Low,T019,Territory 019,REP019,Lisa Jackson,Michaelton,New Brunswick
+HCP000527,Evelyn Saunders,Primary Care,7,Medium,T019,Territory 019,REP019,Lisa Jackson,Moranstad,Saskatchewan
+HCP000528,Brent Hopkins,Neurology,7,Medium,T012,Territory 012,REP012,Jamie Arnold,West Michaelport,Ontario
+HCP000529,Michaela Williams,Primary Care,5,Medium,T005,Territory 005,REP005,Cristian Santos,South Donald,Saskatchewan
+HCP000530,Jennifer King,Primary Care,8,High,T010,Territory 010,REP010,Ryan Munoz,East David,Nova Scotia
+HCP000531,Roger Lee,Endocrinology,9,High,T020,Territory 020,REP020,Carla Gray,Danielchester,Alberta
+HCP000532,Sara Chapman,Primary Care,4,Medium,T008,Territory 008,REP008,Gina Moore,Ellisshire,Ontario
+HCP000533,Jonathan Moreno,Cardiology,8,High,T003,Territory 003,REP003,Angie Henderson,New Savannahshire,Nunavut
+HCP000534,Priscilla Kent,Pulmonology,10,High,T010,Territory 010,REP010,Ryan Munoz,Lake Lisa,British Columbia
+HCP000535,Kyle Andrade,Endocrinology,8,High,T018,Territory 018,REP018,Derek Zuniga,Barnesbury,Newfoundland and Labrador
+HCP000536,Grant Phillips,Cardiology,9,High,T004,Territory 004,REP004,Daniel Wagner,East Robert,Saskatchewan
+HCP000537,Kayla Cameron,Cardiology,2,Low,T008,Territory 008,REP008,Gina Moore,Jenniferside,Quebec
+HCP000538,Daniel Klein,Pulmonology,6,Medium,T017,Territory 017,REP017,Holly Wood,Samanthaberg,Saskatchewan
+HCP000539,Tina Gordon,Cardiology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Jenniferstad,Ontario
+HCP000540,Mr. Michael Butler,Primary Care,5,Medium,T009,Territory 009,REP009,Gabrielle Davis,Nataliechester,Yukon Territory
+HCP000541,Brian James,Primary Care,8,High,T005,Territory 005,REP005,Cristian Santos,Lake Brianview,Yukon Territory
+HCP000542,Victoria Vega,Neurology,4,Medium,T017,Territory 017,REP017,Holly Wood,Port Bryan,Yukon Territory
+HCP000543,Paul Johnson,Cardiology,1,Low,T019,Territory 019,REP019,Lisa Jackson,Garciaside,New Brunswick
+HCP000544,Kristina Young,Primary Care,7,Medium,T011,Territory 011,REP011,Monica Herrera,Heatherton,Nova Scotia
+HCP000545,Tyler Daugherty,Endocrinology,7,Medium,T003,Territory 003,REP003,Angie Henderson,Tammyton,Alberta
+HCP000546,Christina Melton,Cardiology,1,Low,T008,Territory 008,REP008,Gina Moore,Greerstad,Yukon Territory
+HCP000547,Nancy Gonzalez,Primary Care,6,Medium,T019,Territory 019,REP019,Lisa Jackson,West Shane,Quebec
+HCP000548,Victor Moss,Primary Care,3,Low,T005,Territory 005,REP005,Cristian Santos,South Billyview,Ontario
+HCP000549,Christopher Singleton,Cardiology,2,Low,T011,Territory 011,REP011,Monica Herrera,West Stevenberg,Alberta
+HCP000550,Frank Williams,Pulmonology,8,High,T019,Territory 019,REP019,Lisa Jackson,Tracyshire,Ontario
+HCP000551,Richard Stewart,Neurology,2,Low,T012,Territory 012,REP012,Jamie Arnold,East Abigail,Yukon Territory
+HCP000552,Jennifer Herrera,Cardiology,6,Medium,T014,Territory 014,REP014,Michele Williams,West Jeffreyborough,Quebec
+HCP000553,Isaac Robinson,Cardiology,5,Medium,T008,Territory 008,REP008,Gina Moore,Barajastown,British Columbia
+HCP000554,Jill Conway,Pulmonology,10,High,T001,Territory 001,REP001,Allison Hill,North Felicia,Northwest Territories
+HCP000555,Robert Wilson,Primary Care,1,Low,T005,Territory 005,REP005,Cristian Santos,Amberport,Alberta
+HCP000556,Samantha Brooks,Primary Care,9,High,T015,Territory 015,REP015,Dylan Miller,Tuckerport,Quebec
+HCP000557,Jose Vaughan,Primary Care,9,High,T016,Territory 016,REP016,Brian Ramirez,Port Amanda,Alberta
+HCP000558,Christine Soto,Neurology,2,Low,T017,Territory 017,REP017,Holly Wood,Port Gina,British Columbia
+HCP000559,Ronald Johns,Pulmonology,3,Low,T015,Territory 015,REP015,Dylan Miller,Lucasland,Saskatchewan
+HCP000560,Allison Love,Cardiology,6,Medium,T011,Territory 011,REP011,Monica Herrera,North Charlesburgh,Yukon Territory
+HCP000561,Benjamin Underwood,Pulmonology,5,Medium,T020,Territory 020,REP020,Carla Gray,Rickeymouth,Quebec
+HCP000562,Eugene Price,Primary Care,4,Medium,T002,Territory 002,REP002,Noah Rhodes,New Adamland,Yukon Territory
+HCP000563,Amber Charles,Primary Care,4,Medium,T004,Territory 004,REP004,Daniel Wagner,Sarahville,Newfoundland and Labrador
+HCP000564,Elizabeth Miller,Oncology,8,High,T020,Territory 020,REP020,Carla Gray,Jamestown,Nunavut
+HCP000565,Daniel Francis,Neurology,8,High,T003,Territory 003,REP003,Angie Henderson,Susanberg,Newfoundland and Labrador
+HCP000566,Suzanne Norton,Primary Care,9,High,T020,Territory 020,REP020,Carla Gray,Susantown,Ontario
+HCP000567,Brenda Williams,Cardiology,8,High,T007,Territory 007,REP007,Abigail Shaffer,Medinaland,Newfoundland and Labrador
+HCP000568,Patrick Swanson,Pulmonology,9,High,T011,Territory 011,REP011,Monica Herrera,South Rebecca,Ontario
+HCP000569,Clinton Jensen,Cardiology,7,Medium,T016,Territory 016,REP016,Brian Ramirez,Jamesburgh,Quebec
+HCP000570,Sarah York,Cardiology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,Newmanland,Newfoundland and Labrador
+HCP000571,Danielle Gonzalez,Primary Care,5,Medium,T003,Territory 003,REP003,Angie Henderson,Lynnstad,Manitoba
+HCP000572,Cynthia Mitchell,Cardiology,8,High,T002,Territory 002,REP002,Noah Rhodes,East Louismouth,Northwest Territories
+HCP000573,Elizabeth Silva,Primary Care,9,High,T017,Territory 017,REP017,Holly Wood,Lindseychester,Manitoba
+HCP000574,David Walker,Primary Care,3,Low,T013,Territory 013,REP013,Lisa Hensley,Hillstad,Manitoba
+HCP000575,Erin Castillo,Cardiology,10,High,T017,Territory 017,REP017,Holly Wood,Howardport,Nunavut
+HCP000576,Casey Obrien,Pulmonology,9,High,T005,Territory 005,REP005,Cristian Santos,Micheleberg,Ontario
+HCP000577,Nicholas Sims,Primary Care,4,Medium,T012,Territory 012,REP012,Jamie Arnold,North Melissatown,Prince Edward Island
+HCP000578,Patricia Lewis,Primary Care,2,Low,T001,Territory 001,REP001,Allison Hill,New Jorgeside,Nunavut
+HCP000579,Brittany Long,Cardiology,6,Medium,T008,Territory 008,REP008,Gina Moore,Dennishaven,Ontario
+HCP000580,Jack Smith,Primary Care,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Port Tamara,Prince Edward Island
+HCP000581,Nicole Taylor,Neurology,8,High,T018,Territory 018,REP018,Derek Zuniga,East Ashley,Prince Edward Island
+HCP000582,Tracy Fitzgerald,Primary Care,9,High,T013,Territory 013,REP013,Lisa Hensley,Crosbyton,New Brunswick
+HCP000583,Crystal Baker,Cardiology,2,Low,T010,Territory 010,REP010,Ryan Munoz,North Elizabeth,Ontario
+HCP000584,Heather Harrison,Cardiology,9,High,T005,Territory 005,REP005,Cristian Santos,Keithton,Quebec
+HCP000585,Michael Boyd,Primary Care,8,High,T003,Territory 003,REP003,Angie Henderson,Maryview,Prince Edward Island
+HCP000586,Carrie Valdez,Endocrinology,4,Medium,T011,Territory 011,REP011,Monica Herrera,Brianaland,Ontario
+HCP000587,William Walker,Primary Care,7,Medium,T004,Territory 004,REP004,Daniel Wagner,Gomezstad,Nunavut
+HCP000588,Stacy Smith,Primary Care,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,South Gabriel,British Columbia
+HCP000589,Diana Hernandez,Primary Care,9,High,T016,Territory 016,REP016,Brian Ramirez,West Carolyn,British Columbia
+HCP000590,Jennifer Rivera,Cardiology,5,Medium,T004,Territory 004,REP004,Daniel Wagner,South Emmafort,New Brunswick
+HCP000591,Maria Jenkins,Pulmonology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,North David,Prince Edward Island
+HCP000592,Mark Williams,Cardiology,5,Medium,T009,Territory 009,REP009,Gabrielle Davis,North Gabriel,Manitoba
+HCP000593,Jennifer Costa,Endocrinology,5,Medium,T020,Territory 020,REP020,Carla Gray,Lake Jessicaport,British Columbia
+HCP000594,Lawrence Ruiz,Endocrinology,3,Low,T002,Territory 002,REP002,Noah Rhodes,Jacksonchester,Prince Edward Island
+HCP000595,Kevin Saunders,Cardiology,2,Low,T012,Territory 012,REP012,Jamie Arnold,Garymouth,Nunavut
+HCP000596,Andrea Gray,Cardiology,9,High,T020,Territory 020,REP020,Carla Gray,North Allen,Ontario
+HCP000597,Kathy Barnes,Endocrinology,2,Low,T017,Territory 017,REP017,Holly Wood,New Cole,Nunavut
+HCP000598,Linda Rich,Cardiology,8,High,T017,Territory 017,REP017,Holly Wood,North Timothyberg,Prince Edward Island
+HCP000599,April Pace,Endocrinology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Boydstad,Alberta
+HCP000600,Jessica Mays,Endocrinology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Clarkefurt,Northwest Territories
+HCP000601,Natalie Juarez,Cardiology,7,Medium,T019,Territory 019,REP019,Lisa Jackson,South Dennisfort,Yukon Territory
+HCP000602,Scott Campbell,Neurology,5,Medium,T020,Territory 020,REP020,Carla Gray,Scotttown,Saskatchewan
+HCP000603,Adrienne Mills,Cardiology,6,Medium,T001,Territory 001,REP001,Allison Hill,South Diamondmouth,Nova Scotia
+HCP000604,Christopher Pearson,Oncology,3,Low,T015,Territory 015,REP015,Dylan Miller,Joseside,Nova Scotia
+HCP000605,Lisa Braun,Endocrinology,3,Low,T008,Territory 008,REP008,Gina Moore,Fischerchester,Ontario
+HCP000606,Karen Wood,Neurology,7,Medium,T004,Territory 004,REP004,Daniel Wagner,Kingport,Prince Edward Island
+HCP000607,Michael Fitzgerald,Pulmonology,4,Medium,T012,Territory 012,REP012,Jamie Arnold,Lake Jerryburgh,British Columbia
+HCP000608,James Morgan,Primary Care,3,Low,T003,Territory 003,REP003,Angie Henderson,East Paultown,Yukon Territory
+HCP000609,Charles Frost,Neurology,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,Davisview,New Brunswick
+HCP000610,Lee Ramsey,Oncology,7,Medium,T011,Territory 011,REP011,Monica Herrera,Mendezhaven,Newfoundland and Labrador
+HCP000611,Linda Bautista,Cardiology,3,Low,T016,Territory 016,REP016,Brian Ramirez,Lake Troy,Alberta
+HCP000612,Matthew Lara,Primary Care,3,Low,T008,Territory 008,REP008,Gina Moore,Jameshaven,Ontario
+HCP000613,Lisa Craig,Endocrinology,4,Medium,T008,Territory 008,REP008,Gina Moore,Johntown,Manitoba
+HCP000614,Donald Ross,Primary Care,7,Medium,T003,Territory 003,REP003,Angie Henderson,Sullivanborough,Ontario
+HCP000615,Michael Calhoun,Oncology,5,Medium,T005,Territory 005,REP005,Cristian Santos,Jessicaside,Prince Edward Island
+HCP000616,Victor Hill,Cardiology,8,High,T016,Territory 016,REP016,Brian Ramirez,South Sarah,Prince Edward Island
+HCP000617,Christopher Hunter,Cardiology,8,High,T006,Territory 006,REP006,Connie Lawrence,New Kellyville,Yukon Territory
+HCP000618,Deanna Medina,Cardiology,3,Low,T005,Territory 005,REP005,Cristian Santos,Heatherfurt,Prince Edward Island
+HCP000619,Mr. Gerald Rowe,Oncology,5,Medium,T015,Territory 015,REP015,Dylan Miller,Mosleytown,Nunavut
+HCP000620,Austin Schultz,Primary Care,4,Medium,T005,Territory 005,REP005,Cristian Santos,Lake Jacqueline,Yukon Territory
+HCP000621,Tyler Black,Primary Care,3,Low,T001,Territory 001,REP001,Allison Hill,Lake Marilynbury,Newfoundland and Labrador
+HCP000622,Michael Nicholson,Primary Care,5,Medium,T009,Territory 009,REP009,Gabrielle Davis,New Sarahfort,Northwest Territories
+HCP000623,Steven Adams,Cardiology,7,Medium,T002,Territory 002,REP002,Noah Rhodes,South Jillian,New Brunswick
+HCP000624,Shelley Clark,Neurology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Port John,Prince Edward Island
+HCP000625,Richard Wilson,Neurology,10,High,T010,Territory 010,REP010,Ryan Munoz,Lake Stephaniefort,Prince Edward Island
+HCP000626,Scott Rubio,Oncology,9,High,T013,Territory 013,REP013,Lisa Hensley,Watsonmouth,Nunavut
+HCP000627,Sierra Andrews,Primary Care,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Travishaven,Newfoundland and Labrador
+HCP000628,Paul Anderson,Cardiology,5,Medium,T002,Territory 002,REP002,Noah Rhodes,Mendozaside,Alberta
+HCP000629,Jennifer Parks,Endocrinology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,South Tiffany,Saskatchewan
+HCP000630,Emily Smith,Primary Care,8,High,T012,Territory 012,REP012,Jamie Arnold,South Bianca,Northwest Territories
+HCP000631,Scott Lopez,Neurology,3,Low,T004,Territory 004,REP004,Daniel Wagner,Joelfort,Prince Edward Island
+HCP000632,Clinton Coleman,Neurology,10,High,T016,Territory 016,REP016,Brian Ramirez,Haynesstad,Northwest Territories
+HCP000633,Diana White,Cardiology,9,High,T004,Territory 004,REP004,Daniel Wagner,New Gina,British Columbia
+HCP000634,Regina Peters,Endocrinology,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,Gonzalezberg,Nunavut
+HCP000635,Cassandra Porter,Endocrinology,9,High,T009,Territory 009,REP009,Gabrielle Davis,Kristenport,Newfoundland and Labrador
+HCP000636,Laura Ross,Primary Care,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,North Jason,Newfoundland and Labrador
+HCP000637,Mark Cole,Pulmonology,3,Low,T015,Territory 015,REP015,Dylan Miller,Jordanstad,Ontario
+HCP000638,Rhonda Cooper,Neurology,5,Medium,T002,Territory 002,REP002,Noah Rhodes,Martinezborough,Prince Edward Island
+HCP000639,Mariah Thompson,Primary Care,7,Medium,T014,Territory 014,REP014,Michele Williams,Michaelhaven,Nunavut
+HCP000640,Jillian Miller,Primary Care,8,High,T004,Territory 004,REP004,Daniel Wagner,Stevenberg,Manitoba
+HCP000641,Tanya Fisher,Endocrinology,9,High,T016,Territory 016,REP016,Brian Ramirez,Sweeneyland,British Columbia
+HCP000642,Darren Stewart,Primary Care,8,High,T003,Territory 003,REP003,Angie Henderson,Jenniferfurt,Newfoundland and Labrador
+HCP000643,Priscilla Mcmillan,Primary Care,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,Gutierrezburgh,Alberta
+HCP000644,David King,Cardiology,5,Medium,T020,Territory 020,REP020,Carla Gray,East Garrettville,British Columbia
+HCP000645,Shawn Kelley,Oncology,4,Medium,T016,Territory 016,REP016,Brian Ramirez,Port Randyland,British Columbia
+HCP000646,Christopher Pena,Neurology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Parkerbury,Saskatchewan
+HCP000647,Mark Anderson,Endocrinology,3,Low,T014,Territory 014,REP014,Michele Williams,North Austin,Northwest Territories
+HCP000648,Erika Alvarez,Primary Care,10,High,T001,Territory 001,REP001,Allison Hill,Amyberg,Saskatchewan
+HCP000649,Leslie Bryant,Neurology,3,Low,T018,Territory 018,REP018,Derek Zuniga,Millsside,Newfoundland and Labrador
+HCP000650,Karen Perez,Cardiology,2,Low,T011,Territory 011,REP011,Monica Herrera,South Kylechester,Newfoundland and Labrador
+HCP000651,Adam Mills,Primary Care,7,Medium,T004,Territory 004,REP004,Daniel Wagner,West Justin,Ontario
+HCP000652,Thomas Arroyo,Cardiology,3,Low,T008,Territory 008,REP008,Gina Moore,Evanschester,Yukon Territory
+HCP000653,David Smith,Endocrinology,5,Medium,T015,Territory 015,REP015,Dylan Miller,Jacobside,Nova Scotia
+HCP000654,Christopher Mclaughlin,Pulmonology,7,Medium,T018,Territory 018,REP018,Derek Zuniga,Claytonbury,Newfoundland and Labrador
+HCP000655,Mario Black,Pulmonology,5,Medium,T014,Territory 014,REP014,Michele Williams,Justinside,Yukon Territory
+HCP000656,Cole Jones,Oncology,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,West Daniel,Nunavut
+HCP000657,Denise Dean,Cardiology,7,Medium,T020,Territory 020,REP020,Carla Gray,West Andrew,Alberta
+HCP000658,Alison Compton,Primary Care,3,Low,T002,Territory 002,REP002,Noah Rhodes,Josephmouth,Saskatchewan
+HCP000659,Brandon Smith,Oncology,5,Medium,T005,Territory 005,REP005,Cristian Santos,West Robert,Yukon Territory
+HCP000660,Yolanda Ford,Neurology,9,High,T006,Territory 006,REP006,Connie Lawrence,West Christopherberg,Alberta
+HCP000661,James Daniels,Primary Care,4,Medium,T013,Territory 013,REP013,Lisa Hensley,East Paula,Newfoundland and Labrador
+HCP000662,Sandra Martinez,Pulmonology,3,Low,T006,Territory 006,REP006,Connie Lawrence,South Kelsey,Nunavut
+HCP000663,Zachary Gonzalez,Neurology,5,Medium,T019,Territory 019,REP019,Lisa Jackson,New Elizabethborough,Nunavut
+HCP000664,Tyrone Mayer,Primary Care,5,Medium,T005,Territory 005,REP005,Cristian Santos,Lake Jessica,Saskatchewan
+HCP000665,Kelly King,Oncology,3,Low,T016,Territory 016,REP016,Brian Ramirez,Jameston,Quebec
+HCP000666,Brian Chen,Pulmonology,3,Low,T013,Territory 013,REP013,Lisa Hensley,Alexisview,Prince Edward Island
+HCP000667,Richard Smith,Primary Care,8,High,T005,Territory 005,REP005,Cristian Santos,New Kristenfort,Saskatchewan
+HCP000668,Jacqueline Davis,Neurology,2,Low,T017,Territory 017,REP017,Holly Wood,South Christopher,Prince Edward Island
+HCP000669,Wayne Malone,Oncology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,North Michaelberg,Saskatchewan
+HCP000670,Ashley Freeman,Oncology,2,Low,T013,Territory 013,REP013,Lisa Hensley,Tinastad,Yukon Territory
+HCP000671,Morgan Smith,Cardiology,9,High,T003,Territory 003,REP003,Angie Henderson,Howardberg,Newfoundland and Labrador
+HCP000672,Karina Kim,Cardiology,9,High,T015,Territory 015,REP015,Dylan Miller,Amyfort,New Brunswick
+HCP000673,Kimberly Morris,Oncology,7,Medium,T001,Territory 001,REP001,Allison Hill,Hillside,Manitoba
+HCP000674,Christopher Phillips,Primary Care,4,Medium,T017,Territory 017,REP017,Holly Wood,Ambermouth,Alberta
+HCP000675,Katie Gross,Cardiology,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,New Melissabury,Northwest Territories
+HCP000676,Mary Ryan,Cardiology,6,Medium,T011,Territory 011,REP011,Monica Herrera,Leefort,Yukon Territory
+HCP000677,Lisa Morris,Primary Care,8,High,T020,Territory 020,REP020,Carla Gray,Danielhaven,Quebec
+HCP000678,Russell Anderson,Endocrinology,7,Medium,T019,Territory 019,REP019,Lisa Jackson,East Danielborough,British Columbia
+HCP000679,Martin Price,Oncology,6,Medium,T016,Territory 016,REP016,Brian Ramirez,Foxshire,Newfoundland and Labrador
+HCP000680,Daniel Robbins,Oncology,10,High,T004,Territory 004,REP004,Daniel Wagner,East Dianaland,Nunavut
+HCP000681,Amy Grant,Cardiology,9,High,T004,Territory 004,REP004,Daniel Wagner,Shortton,Prince Edward Island
+HCP000682,Andrew Jones,Cardiology,6,Medium,T020,Territory 020,REP020,Carla Gray,Christianborough,Ontario
+HCP000683,Neil Schmidt,Cardiology,10,High,T005,Territory 005,REP005,Cristian Santos,East Alicia,New Brunswick
+HCP000684,Theresa Hansen,Primary Care,9,High,T002,Territory 002,REP002,Noah Rhodes,Reeseshire,Northwest Territories
+HCP000685,Michele Simmons,Pulmonology,8,High,T013,Territory 013,REP013,Lisa Hensley,East Lauraside,Nova Scotia
+HCP000686,Mary Ferguson,Primary Care,9,High,T008,Territory 008,REP008,Gina Moore,Mahoneymouth,Ontario
+HCP000687,Erika Watson PhD,Endocrinology,8,High,T005,Territory 005,REP005,Cristian Santos,Mckenziemouth,Prince Edward Island
+HCP000688,Joshua Brooks,Neurology,7,Medium,T007,Territory 007,REP007,Abigail Shaffer,Michaelmouth,Nunavut
+HCP000689,April Johnson,Oncology,1,Low,T010,Territory 010,REP010,Ryan Munoz,Caitlinhaven,Manitoba
+HCP000690,Elizabeth Evans MD,Cardiology,6,Medium,T005,Territory 005,REP005,Cristian Santos,Andrewview,Ontario
+HCP000691,Laura Duncan,Neurology,2,Low,T010,Territory 010,REP010,Ryan Munoz,North Stevenberg,Manitoba
+HCP000692,Steve Wright,Cardiology,1,Low,T007,Territory 007,REP007,Abigail Shaffer,Lisaland,Prince Edward Island
+HCP000693,Thomas Navarro,Oncology,9,High,T018,Territory 018,REP018,Derek Zuniga,Lauraburgh,Nunavut
+HCP000694,Melissa Johnston,Neurology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,New Dawnton,Saskatchewan
+HCP000695,Jane Deleon,Primary Care,7,Medium,T015,Territory 015,REP015,Dylan Miller,Michaelchester,Nova Scotia
+HCP000696,Barbara Townsend,Oncology,6,Medium,T018,Territory 018,REP018,Derek Zuniga,Lake Kimberlyfurt,Alberta
+HCP000697,Andrew Fernandez,Primary Care,4,Medium,T016,Territory 016,REP016,Brian Ramirez,West Wayne,New Brunswick
+HCP000698,Michael Osborn,Oncology,10,High,T005,Territory 005,REP005,Cristian Santos,Mullinsshire,Ontario
+HCP000699,Jeffrey Hartman,Cardiology,6,Medium,T008,Territory 008,REP008,Gina Moore,East Matthew,Nunavut
+HCP000700,Amber Ross,Cardiology,5,Medium,T015,Territory 015,REP015,Dylan Miller,South Warrenberg,Yukon Territory
+HCP000701,Justin Freeman,Neurology,6,Medium,T007,Territory 007,REP007,Abigail Shaffer,New Christina,Saskatchewan
+HCP000702,Dana Adams,Primary Care,8,High,T005,Territory 005,REP005,Cristian Santos,Morrisshire,British Columbia
+HCP000703,Jason Diaz,Pulmonology,6,Medium,T003,Territory 003,REP003,Angie Henderson,West Melvin,Quebec
+HCP000704,Eric Huerta,Pulmonology,9,High,T003,Territory 003,REP003,Angie Henderson,Hansonmouth,Alberta
+HCP000705,Cynthia Jennings,Primary Care,4,Medium,T017,Territory 017,REP017,Holly Wood,Port Jessica,British Columbia
+HCP000706,Anthony Rush,Primary Care,2,Low,T004,Territory 004,REP004,Daniel Wagner,Port Marissa,Newfoundland and Labrador
+HCP000707,Michael Rodriguez,Primary Care,2,Low,T002,Territory 002,REP002,Noah Rhodes,Ruizmouth,New Brunswick
+HCP000708,Christy Payne,Neurology,3,Low,T020,Territory 020,REP020,Carla Gray,Anaberg,Saskatchewan
+HCP000709,Alicia Aguilar,Endocrinology,6,Medium,T002,Territory 002,REP002,Noah Rhodes,West Georgeport,New Brunswick
+HCP000710,Lisa Brown,Endocrinology,9,High,T016,Territory 016,REP016,Brian Ramirez,North Paulview,Quebec
+HCP000711,Mary Lin,Cardiology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,West Michellefurt,New Brunswick
+HCP000712,Katie Mckinney,Cardiology,4,Medium,T015,Territory 015,REP015,Dylan Miller,Toddside,British Columbia
+HCP000713,Jonathan Ellis,Primary Care,3,Low,T009,Territory 009,REP009,Gabrielle Davis,North Johnhaven,Newfoundland and Labrador
+HCP000714,James Moore,Primary Care,3,Low,T016,Territory 016,REP016,Brian Ramirez,Gabriellestad,Quebec
+HCP000715,Zachary Irwin,Endocrinology,8,High,T014,Territory 014,REP014,Michele Williams,Lisaview,Nova Scotia
+HCP000716,Robin Johnson,Primary Care,8,High,T007,Territory 007,REP007,Abigail Shaffer,Jeremiahmouth,Nova Scotia
+HCP000717,Anita Reyes,Primary Care,7,Medium,T005,Territory 005,REP005,Cristian Santos,South John,Manitoba
+HCP000718,Erik Jacobs,Pulmonology,7,Medium,T007,Territory 007,REP007,Abigail Shaffer,Danielsborough,Quebec
+HCP000719,Joshua Mcbride,Primary Care,4,Medium,T020,Territory 020,REP020,Carla Gray,West Haley,Ontario
+HCP000720,Jessica Stout,Endocrinology,6,Medium,T012,Territory 012,REP012,Jamie Arnold,Lake Sarah,Manitoba
+HCP000721,Justin Fry,Primary Care,6,Medium,T004,Territory 004,REP004,Daniel Wagner,East Lonnieberg,Saskatchewan
+HCP000722,Fernando Dudley,Endocrinology,7,Medium,T013,Territory 013,REP013,Lisa Hensley,Turnerview,Manitoba
+HCP000723,Ashley Lopez,Cardiology,7,Medium,T013,Territory 013,REP013,Lisa Hensley,Catherinebury,Prince Edward Island
+HCP000724,Michael Howard,Primary Care,5,Medium,T002,Territory 002,REP002,Noah Rhodes,Andersonfort,Saskatchewan
+HCP000725,Catherine Hughes,Oncology,3,Low,T007,Territory 007,REP007,Abigail Shaffer,Taylorborough,New Brunswick
+HCP000726,Phillip Smith,Neurology,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,Stephaniebury,Saskatchewan
+HCP000727,Christina Harris,Cardiology,6,Medium,T001,Territory 001,REP001,Allison Hill,South Michelle,Nunavut
+HCP000728,Sharon Clay,Endocrinology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Sullivanton,Prince Edward Island
+HCP000729,Jamie Edwards,Cardiology,9,High,T019,Territory 019,REP019,Lisa Jackson,New Danielmouth,Alberta
+HCP000730,Danielle Medina,Oncology,6,Medium,T010,Territory 010,REP010,Ryan Munoz,New Paulton,New Brunswick
+HCP000731,James Torres,Cardiology,2,Low,T009,Territory 009,REP009,Gabrielle Davis,Stevenchester,Newfoundland and Labrador
+HCP000732,Amy Black,Cardiology,9,High,T011,Territory 011,REP011,Monica Herrera,South Maria,Nunavut
+HCP000733,Jonathan White,Cardiology,5,Medium,T020,Territory 020,REP020,Carla Gray,South Robert,Nunavut
+HCP000734,Jesse Mosley,Primary Care,3,Low,T020,Territory 020,REP020,Carla Gray,South Christopher,Northwest Territories
+HCP000735,Susan Hogan,Cardiology,2,Low,T012,Territory 012,REP012,Jamie Arnold,North Dannymouth,Quebec
+HCP000736,Joseph Cruz,Oncology,7,Medium,T001,Territory 001,REP001,Allison Hill,South Andrea,Alberta
+HCP000737,Susan Cunningham,Primary Care,1,Low,T005,Territory 005,REP005,Cristian Santos,East Misty,Manitoba
+HCP000738,Amber Parker,Primary Care,9,High,T012,Territory 012,REP012,Jamie Arnold,Robertsburgh,British Columbia
+HCP000739,Toni Smith,Endocrinology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Alexanderfort,Nunavut
+HCP000740,Abigail Andrade,Oncology,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,East Brianna,Nunavut
+HCP000741,Jeremy Burke,Cardiology,4,Medium,T005,Territory 005,REP005,Cristian Santos,East Nicoleview,Prince Edward Island
+HCP000742,Samantha Clark,Neurology,7,Medium,T019,Territory 019,REP019,Lisa Jackson,East Brian,Northwest Territories
+HCP000743,Scott Estrada,Primary Care,10,High,T017,Territory 017,REP017,Holly Wood,Markland,Alberta
+HCP000744,Xavier Martin,Primary Care,4,Medium,T005,Territory 005,REP005,Cristian Santos,Cherylshire,Yukon Territory
+HCP000745,Tracy Curry,Pulmonology,6,Medium,T016,Territory 016,REP016,Brian Ramirez,Sarahland,Yukon Territory
+HCP000746,Jacob Gray,Endocrinology,6,Medium,T020,Territory 020,REP020,Carla Gray,Port Ronaldside,British Columbia
+HCP000747,Chad Neal,Primary Care,8,High,T009,Territory 009,REP009,Gabrielle Davis,Markchester,Ontario
+HCP000748,Daniel Brown,Neurology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,South Jenniferport,Nova Scotia
+HCP000749,Emily Fox,Pulmonology,4,Medium,T019,Territory 019,REP019,Lisa Jackson,Sarashire,Nunavut
+HCP000750,Lynn Vasquez,Pulmonology,10,High,T009,Territory 009,REP009,Gabrielle Davis,New Jesse,Newfoundland and Labrador
+HCP000751,April Johnson,Primary Care,8,High,T020,Territory 020,REP020,Carla Gray,Lake Melaniechester,Nova Scotia
+HCP000752,Gregory Shaffer,Endocrinology,6,Medium,T006,Territory 006,REP006,Connie Lawrence,North Danielle,Saskatchewan
+HCP000753,Richard Parker,Cardiology,6,Medium,T012,Territory 012,REP012,Jamie Arnold,Katieville,Quebec
+HCP000754,James Carroll,Primary Care,7,Medium,T013,Territory 013,REP013,Lisa Hensley,Port Gregorymouth,Northwest Territories
+HCP000755,Karen Wells,Primary Care,4,Medium,T011,Territory 011,REP011,Monica Herrera,Lake Derekberg,Quebec
+HCP000756,Sean Huang,Cardiology,8,High,T003,Territory 003,REP003,Angie Henderson,Bowerschester,Saskatchewan
+HCP000757,Joseph Cunningham,Endocrinology,3,Low,T003,Territory 003,REP003,Angie Henderson,Angelatown,New Brunswick
+HCP000758,Evelyn Hendricks,Primary Care,1,Low,T016,Territory 016,REP016,Brian Ramirez,Carlberg,Newfoundland and Labrador
+HCP000759,Gina Brooks,Primary Care,3,Low,T006,Territory 006,REP006,Connie Lawrence,New Catherine,Manitoba
+HCP000760,Sharon Walton,Primary Care,2,Low,T014,Territory 014,REP014,Michele Williams,Jenniferview,Nova Scotia
+HCP000761,Shawn Watson,Neurology,6,Medium,T017,Territory 017,REP017,Holly Wood,Javierport,Manitoba
+HCP000762,Richard Strickland,Endocrinology,3,Low,T001,Territory 001,REP001,Allison Hill,South Williamfort,Ontario
+HCP000763,Gerald Webb,Primary Care,5,Medium,T014,Territory 014,REP014,Michele Williams,Kimberlyberg,Yukon Territory
+HCP000764,Samantha Hurley,Neurology,8,High,T009,Territory 009,REP009,Gabrielle Davis,East Jenny,Nunavut
+HCP000765,Sean Wilson,Pulmonology,1,Low,T011,Territory 011,REP011,Monica Herrera,Sarahland,Northwest Territories
+HCP000766,Angel Meyer,Primary Care,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Andrewport,Quebec
+HCP000767,Erica Lee,Oncology,3,Low,T017,Territory 017,REP017,Holly Wood,Amandamouth,Quebec
+HCP000768,Chase Hill,Pulmonology,6,Medium,T014,Territory 014,REP014,Michele Williams,New Anitaville,New Brunswick
+HCP000769,Kirsten Nelson,Cardiology,5,Medium,T012,Territory 012,REP012,Jamie Arnold,Audreyburgh,British Columbia
+HCP000770,Steven Fernandez,Primary Care,5,Medium,T007,Territory 007,REP007,Abigail Shaffer,East Anthonyton,British Columbia
+HCP000771,Brandon Myers,Oncology,1,Low,T003,Territory 003,REP003,Angie Henderson,Jensenport,Northwest Territories
+HCP000772,Michelle Lambert,Cardiology,1,Low,T008,Territory 008,REP008,Gina Moore,Port Kathyshire,Manitoba
+HCP000773,Robert Hale,Oncology,6,Medium,T005,Territory 005,REP005,Cristian Santos,South Lancemouth,Nunavut
+HCP000774,Danny Callahan,Oncology,8,High,T013,Territory 013,REP013,Lisa Hensley,Robertafurt,Manitoba
+HCP000775,Mary Mccormick,Endocrinology,2,Low,T018,Territory 018,REP018,Derek Zuniga,Shawntown,British Columbia
+HCP000776,Gregory Murray,Primary Care,4,Medium,T010,Territory 010,REP010,Ryan Munoz,West Katrina,Prince Edward Island
+HCP000777,Katie Sullivan,Cardiology,3,Low,T012,Territory 012,REP012,Jamie Arnold,West Angelaland,Yukon Territory
+HCP000778,Joel Garza,Neurology,3,Low,T010,Territory 010,REP010,Ryan Munoz,New John,Manitoba
+HCP000779,Janet Peterson,Pulmonology,9,High,T009,Territory 009,REP009,Gabrielle Davis,Muellerchester,Prince Edward Island
+HCP000780,Kimberly Young,Pulmonology,1,Low,T005,Territory 005,REP005,Cristian Santos,Lake Sarahshire,Nunavut
+HCP000781,Kyle Nguyen,Oncology,10,High,T011,Territory 011,REP011,Monica Herrera,Port Seanport,Nova Scotia
+HCP000782,Brian Cervantes,Pulmonology,10,High,T001,Territory 001,REP001,Allison Hill,Murphyton,British Columbia
+HCP000783,Charles Carpenter,Primary Care,10,High,T004,Territory 004,REP004,Daniel Wagner,Port Dwayneberg,Nunavut
+HCP000784,Jean Lane,Endocrinology,8,High,T012,Territory 012,REP012,Jamie Arnold,East Erin,Northwest Territories
+HCP000785,Robert Frazier,Endocrinology,6,Medium,T010,Territory 010,REP010,Ryan Munoz,Robbinsstad,British Columbia
+HCP000786,Lisa Dixon,Oncology,3,Low,T009,Territory 009,REP009,Gabrielle Davis,Port Kelly,Northwest Territories
+HCP000787,Tracy Smith,Neurology,2,Low,T015,Territory 015,REP015,Dylan Miller,Danielport,Alberta
+HCP000788,Michael Long,Cardiology,5,Medium,T015,Territory 015,REP015,Dylan Miller,Jenniferfurt,Nova Scotia
+HCP000789,Daniel Thompson,Oncology,4,Medium,T019,Territory 019,REP019,Lisa Jackson,East Angela,Northwest Territories
+HCP000790,Brittany Bright,Primary Care,5,Medium,T020,Territory 020,REP020,Carla Gray,East Alexander,Quebec
+HCP000791,Nathan Tucker,Pulmonology,3,Low,T015,Territory 015,REP015,Dylan Miller,Proctorberg,British Columbia
+HCP000792,Robert Dalton,Primary Care,7,Medium,T010,Territory 010,REP010,Ryan Munoz,Hansonmouth,Ontario
+HCP000793,Robert Cruz,Neurology,8,High,T014,Territory 014,REP014,Michele Williams,East Roger,Alberta
+HCP000794,Sarah Young,Endocrinology,4,Medium,T008,Territory 008,REP008,Gina Moore,Robertside,Prince Edward Island
+HCP000795,William Carroll,Endocrinology,9,High,T003,Territory 003,REP003,Angie Henderson,Danielfort,Saskatchewan
+HCP000796,Nicholas Fox,Primary Care,10,High,T006,Territory 006,REP006,Connie Lawrence,Stevenland,Ontario
+HCP000797,Ann Kennedy,Primary Care,2,Low,T014,Territory 014,REP014,Michele Williams,Lake Cynthiashire,Newfoundland and Labrador
+HCP000798,Stephanie Nichols,Cardiology,2,Low,T014,Territory 014,REP014,Michele Williams,South Shawnfort,Prince Edward Island
+HCP000799,Jennifer Yu,Primary Care,7,Medium,T003,Territory 003,REP003,Angie Henderson,Keithton,Saskatchewan
+HCP000800,Nicole Acosta,Cardiology,8,High,T006,Territory 006,REP006,Connie Lawrence,Bryanfort,Prince Edward Island
+HCP000801,Anthony Mooney,Pulmonology,8,High,T001,Territory 001,REP001,Allison Hill,West Toddberg,Ontario
+HCP000802,Richard King,Primary Care,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,Joshuaview,Alberta
+HCP000803,Lindsey Kent,Primary Care,9,High,T014,Territory 014,REP014,Michele Williams,Lake Sean,Yukon Territory
+HCP000804,Richard Young,Endocrinology,3,Low,T010,Territory 010,REP010,Ryan Munoz,Port Alison,Alberta
+HCP000805,Bradley Thomas,Primary Care,1,Low,T011,Territory 011,REP011,Monica Herrera,Port Tyler,Nova Scotia
+HCP000806,Cynthia Alexander,Cardiology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,East Becky,Northwest Territories
+HCP000807,Dennis Weiss,Primary Care,6,Medium,T006,Territory 006,REP006,Connie Lawrence,East Stevenfort,Newfoundland and Labrador
+HCP000808,Travis Nielsen,Cardiology,6,Medium,T006,Territory 006,REP006,Connie Lawrence,South Frances,Nova Scotia
+HCP000809,Charles Berg,Primary Care,7,Medium,T016,Territory 016,REP016,Brian Ramirez,West Saramouth,Nova Scotia
+HCP000810,Tonya Vega,Cardiology,4,Medium,T003,Territory 003,REP003,Angie Henderson,North Samanthastad,Nova Scotia
+HCP000811,Marissa Nelson,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Josephville,Newfoundland and Labrador
+HCP000812,Jeanne Mejia,Endocrinology,6,Medium,T017,Territory 017,REP017,Holly Wood,Lake Emily,Yukon Territory
+HCP000813,George Vaughn,Primary Care,1,Low,T013,Territory 013,REP013,Lisa Hensley,West Amy,Quebec
+HCP000814,Barry Jenkins,Primary Care,5,Medium,T011,Territory 011,REP011,Monica Herrera,Lake Seanbury,Saskatchewan
+HCP000815,Corey Johnson,Primary Care,8,High,T017,Territory 017,REP017,Holly Wood,North Sheenaborough,Prince Edward Island
+HCP000816,Michelle Wilson,Oncology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,South Diana,Quebec
+HCP000817,Tracy Kemp,Endocrinology,4,Medium,T016,Territory 016,REP016,Brian Ramirez,West Kenneth,Quebec
+HCP000818,Margaret Livingston,Pulmonology,9,High,T016,Territory 016,REP016,Brian Ramirez,Kaylamouth,Newfoundland and Labrador
+HCP000819,Benjamin Waters,Cardiology,1,Low,T008,Territory 008,REP008,Gina Moore,Priceton,Newfoundland and Labrador
+HCP000820,Deborah Alexander,Primary Care,3,Low,T009,Territory 009,REP009,Gabrielle Davis,Krauseborough,Prince Edward Island
+HCP000821,Matthew Rodriguez,Cardiology,10,High,T004,Territory 004,REP004,Daniel Wagner,Robinsonville,Nunavut
+HCP000822,Ashley Jones,Primary Care,8,High,T001,Territory 001,REP001,Allison Hill,Kimberlytown,Nunavut
+HCP000823,Martin Fitzpatrick,Cardiology,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Adamsmouth,Nova Scotia
+HCP000824,Kaylee Case,Primary Care,3,Low,T020,Territory 020,REP020,Carla Gray,Mendozafurt,Saskatchewan
+HCP000825,Rachel Fernandez,Cardiology,9,High,T020,Territory 020,REP020,Carla Gray,South Stephaniefort,British Columbia
+HCP000826,Taylor Howard,Cardiology,2,Low,T006,Territory 006,REP006,Connie Lawrence,Richardland,Northwest Territories
+HCP000827,Tonya Miller,Pulmonology,9,High,T015,Territory 015,REP015,Dylan Miller,Hodgesport,Quebec
+HCP000828,Julian Ponce,Cardiology,4,Medium,T011,Territory 011,REP011,Monica Herrera,West Heather,British Columbia
+HCP000829,Heather Miller,Primary Care,8,High,T004,Territory 004,REP004,Daniel Wagner,Mossberg,Alberta
+HCP000830,Nathan Watkins,Cardiology,8,High,T009,Territory 009,REP009,Gabrielle Davis,Priceside,Quebec
+HCP000831,Joseph Flowers,Primary Care,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Levytown,Alberta
+HCP000832,George Le,Primary Care,4,Medium,T020,Territory 020,REP020,Carla Gray,Wilsonhaven,Nunavut
+HCP000833,Sheila Herrera,Endocrinology,5,Medium,T012,Territory 012,REP012,Jamie Arnold,North Benjamin,Manitoba
+HCP000834,Alec Meadows DDS,Endocrinology,3,Low,T005,Territory 005,REP005,Cristian Santos,Lake Deborah,Alberta
+HCP000835,Anthony Parker,Primary Care,4,Medium,T011,Territory 011,REP011,Monica Herrera,South Cherylshire,British Columbia
+HCP000836,Ashley Crawford,Cardiology,7,Medium,T008,Territory 008,REP008,Gina Moore,North Linda,Nova Scotia
+HCP000837,Russell Rojas,Endocrinology,5,Medium,T003,Territory 003,REP003,Angie Henderson,Nguyenshire,Ontario
+HCP000838,Russell Mcguire,Pulmonology,3,Low,T018,Territory 018,REP018,Derek Zuniga,New Glennland,British Columbia
+HCP000839,Peter Jackson,Cardiology,4,Medium,T015,Territory 015,REP015,Dylan Miller,Angelamouth,New Brunswick
+HCP000840,Amanda Garcia,Primary Care,2,Low,T001,Territory 001,REP001,Allison Hill,Stricklandtown,Nunavut
+HCP000841,Adam Howe,Neurology,7,Medium,T007,Territory 007,REP007,Abigail Shaffer,Robertfort,Saskatchewan
+HCP000842,Charles Nelson,Endocrinology,9,High,T003,Territory 003,REP003,Angie Henderson,Jenkinsburgh,Prince Edward Island
+HCP000843,Linda Love,Pulmonology,7,Medium,T009,Territory 009,REP009,Gabrielle Davis,Lake Margaretport,Northwest Territories
+HCP000844,Justin Lee,Primary Care,4,Medium,T015,Territory 015,REP015,Dylan Miller,New Michaelside,Ontario
+HCP000845,Randy Hopkins,Primary Care,6,Medium,T017,Territory 017,REP017,Holly Wood,Brianville,Yukon Territory
+HCP000846,Ryan Pruitt,Primary Care,6,Medium,T011,Territory 011,REP011,Monica Herrera,Thompsonton,Alberta
+HCP000847,Dominique Hamilton,Primary Care,9,High,T013,Territory 013,REP013,Lisa Hensley,Christinamouth,Alberta
+HCP000848,Anthony Medina,Primary Care,2,Low,T006,Territory 006,REP006,Connie Lawrence,Port Anthony,Ontario
+HCP000849,Steven Griffith,Primary Care,4,Medium,T017,Territory 017,REP017,Holly Wood,Robertmouth,New Brunswick
+HCP000850,Erika Garcia,Cardiology,3,Low,T001,Territory 001,REP001,Allison Hill,Kanefurt,New Brunswick
+HCP000851,Kevin Brown,Primary Care,5,Medium,T020,Territory 020,REP020,Carla Gray,Thomasmouth,Manitoba
+HCP000852,Chad Cortez,Primary Care,2,Low,T007,Territory 007,REP007,Abigail Shaffer,Theresaborough,Northwest Territories
+HCP000853,Michael Brown,Pulmonology,3,Low,T006,Territory 006,REP006,Connie Lawrence,North Melissa,Nunavut
+HCP000854,Philip Robinson,Cardiology,9,High,T016,Territory 016,REP016,Brian Ramirez,Cassandraburgh,Prince Edward Island
+HCP000855,Sarah Miller,Oncology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,Atkinsborough,Prince Edward Island
+HCP000856,Joel Smith,Neurology,7,Medium,T007,Territory 007,REP007,Abigail Shaffer,Fitzgeraldbury,New Brunswick
+HCP000857,Kevin Snow,Oncology,9,High,T004,Territory 004,REP004,Daniel Wagner,New Rachel,Nova Scotia
+HCP000858,Amanda Ruiz,Primary Care,8,High,T009,Territory 009,REP009,Gabrielle Davis,South Amandafort,Yukon Territory
+HCP000859,Samantha Chavez,Pulmonology,9,High,T010,Territory 010,REP010,Ryan Munoz,North Angela,Alberta
+HCP000860,Jennifer Robinson,Primary Care,8,High,T002,Territory 002,REP002,Noah Rhodes,Kennethland,Alberta
+HCP000861,Eric Warner,Oncology,7,Medium,T003,Territory 003,REP003,Angie Henderson,South Stevenberg,Saskatchewan
+HCP000862,Richard Wood,Endocrinology,8,High,T001,Territory 001,REP001,Allison Hill,Padillatown,Quebec
+HCP000863,Steven Cook,Primary Care,8,High,T007,Territory 007,REP007,Abigail Shaffer,West Ronaldview,Saskatchewan
+HCP000864,Kimberly Norton,Primary Care,5,Medium,T002,Territory 002,REP002,Noah Rhodes,New Nicoleton,Ontario
+HCP000865,Megan Barron,Cardiology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,South Michaelton,Northwest Territories
+HCP000866,Matthew Bush,Neurology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,East Tina,New Brunswick
+HCP000867,Mariah Mclaughlin,Cardiology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Port Julie,New Brunswick
+HCP000868,Steven Gordon,Cardiology,4,Medium,T018,Territory 018,REP018,Derek Zuniga,Ramirezland,Northwest Territories
+HCP000869,John Rose,Cardiology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,South Jenniferside,Newfoundland and Labrador
+HCP000870,Jacob Nunez,Cardiology,3,Low,T006,Territory 006,REP006,Connie Lawrence,East Patriciamouth,British Columbia
+HCP000871,Steven Roberts,Neurology,6,Medium,T012,Territory 012,REP012,Jamie Arnold,North Fredville,Saskatchewan
+HCP000872,Chris Harris,Pulmonology,4,Medium,T009,Territory 009,REP009,Gabrielle Davis,West Robertside,Manitoba
+HCP000873,Jason Rojas,Neurology,8,High,T010,Territory 010,REP010,Ryan Munoz,West Jaimetown,Yukon Territory
+HCP000874,Travis Newman,Cardiology,3,Low,T020,Territory 020,REP020,Carla Gray,Lanemouth,Nunavut
+HCP000875,Melissa Wilkinson,Endocrinology,3,Low,T005,Territory 005,REP005,Cristian Santos,Ellisshire,Manitoba
+HCP000876,Elizabeth Mccormick,Pulmonology,4,Medium,T017,Territory 017,REP017,Holly Wood,South Nathan,Newfoundland and Labrador
+HCP000877,Amber Gomez,Oncology,2,Low,T008,Territory 008,REP008,Gina Moore,Huberburgh,Saskatchewan
+HCP000878,Catherine Thompson,Endocrinology,2,Low,T012,Territory 012,REP012,Jamie Arnold,East John,Alberta
+HCP000879,Laura Alexander MD,Cardiology,8,High,T001,Territory 001,REP001,Allison Hill,New Jasmine,Quebec
+HCP000880,Gregg Watson,Endocrinology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,New Kevin,Alberta
+HCP000881,Jonathan Thomas,Neurology,2,Low,T008,Territory 008,REP008,Gina Moore,Reillyberg,Alberta
+HCP000882,Kimberly Romero,Primary Care,3,Low,T019,Territory 019,REP019,Lisa Jackson,Thomasport,Yukon Territory
+HCP000883,Ms. Bridget Cunningham,Cardiology,6,Medium,T007,Territory 007,REP007,Abigail Shaffer,Morganville,Saskatchewan
+HCP000884,Andrew Gregory,Primary Care,3,Low,T015,Territory 015,REP015,Dylan Miller,West Angelbury,Nunavut
+HCP000885,Gabriel Franklin,Neurology,10,High,T016,Territory 016,REP016,Brian Ramirez,New Alicia,Yukon Territory
+HCP000886,Diana Johnson,Pulmonology,5,Medium,T010,Territory 010,REP010,Ryan Munoz,Rhodesland,Ontario
+HCP000887,John Morrison,Pulmonology,2,Low,T018,Territory 018,REP018,Derek Zuniga,Lake Michaelberg,Saskatchewan
+HCP000888,Jaclyn Watson,Primary Care,9,High,T003,Territory 003,REP003,Angie Henderson,Michaelport,Nunavut
+HCP000889,Anita Luna,Cardiology,5,Medium,T014,Territory 014,REP014,Michele Williams,Figueroachester,Yukon Territory
+HCP000890,Christopher Luna,Neurology,3,Low,T010,Territory 010,REP010,Ryan Munoz,Chandlerchester,Manitoba
+HCP000891,Linda Thomas,Primary Care,4,Medium,T010,Territory 010,REP010,Ryan Munoz,Thomashaven,Northwest Territories
+HCP000892,Tyler Avila,Endocrinology,1,Low,T015,Territory 015,REP015,Dylan Miller,North Robertview,Nova Scotia
+HCP000893,Joel Bradley,Primary Care,4,Medium,T012,Territory 012,REP012,Jamie Arnold,East Jacob,Nova Scotia
+HCP000894,John Carson,Oncology,9,High,T014,Territory 014,REP014,Michele Williams,Maryport,Nunavut
+HCP000895,Julie Johnson,Primary Care,9,High,T010,Territory 010,REP010,Ryan Munoz,East Josefort,British Columbia
+HCP000896,Stephanie Butler,Cardiology,5,Medium,T003,Territory 003,REP003,Angie Henderson,Knoxbury,Alberta
+HCP000897,Donald Gamble,Cardiology,4,Medium,T017,Territory 017,REP017,Holly Wood,New Julieshire,Nunavut
+HCP000898,Sheena Burton,Cardiology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,Mccannville,Northwest Territories
+HCP000899,Laura Bruce,Endocrinology,3,Low,T014,Territory 014,REP014,Michele Williams,New Brian,Northwest Territories
+HCP000900,Michael Howard,Primary Care,5,Medium,T006,Territory 006,REP006,Connie Lawrence,West Michaelstad,Alberta
+HCP000901,Joseph Mayer,Cardiology,6,Medium,T020,Territory 020,REP020,Carla Gray,Port Courtney,Yukon Territory
+HCP000902,Paul Stephens,Pulmonology,6,Medium,T016,Territory 016,REP016,Brian Ramirez,Margaretport,Newfoundland and Labrador
+HCP000903,Melissa Davis,Oncology,6,Medium,T003,Territory 003,REP003,Angie Henderson,Madelinetown,Manitoba
+HCP000904,Jacqueline Washington,Cardiology,2,Low,T019,Territory 019,REP019,Lisa Jackson,Samanthaburgh,British Columbia
+HCP000905,Jonathan Decker,Cardiology,7,Medium,T011,Territory 011,REP011,Monica Herrera,South Stevenland,British Columbia
+HCP000906,Tammy Mendoza,Endocrinology,2,Low,T020,Territory 020,REP020,Carla Gray,Hannahberg,Nunavut
+HCP000907,Linda Gallagher,Cardiology,2,Low,T015,Territory 015,REP015,Dylan Miller,Geraldport,Alberta
+HCP000908,Barbara Anderson,Neurology,7,Medium,T016,Territory 016,REP016,Brian Ramirez,Lake Jeremy,Manitoba
+HCP000909,William Coleman,Oncology,6,Medium,T019,Territory 019,REP019,Lisa Jackson,North Andrewfort,Yukon Territory
+HCP000910,Craig Johnson,Neurology,8,High,T013,Territory 013,REP013,Lisa Hensley,South Davidview,Alberta
+HCP000911,Michael Webster,Primary Care,1,Low,T002,Territory 002,REP002,Noah Rhodes,New Jamieborough,Manitoba
+HCP000912,Alyssa Thomas,Endocrinology,8,High,T012,Territory 012,REP012,Jamie Arnold,Stacystad,Northwest Territories
+HCP000913,Jonathan Chandler,Primary Care,5,Medium,T001,Territory 001,REP001,Allison Hill,New Ashley,British Columbia
+HCP000914,Pamela Rice,Primary Care,7,Medium,T004,Territory 004,REP004,Daniel Wagner,West George,Yukon Territory
+HCP000915,Valerie Garcia,Oncology,2,Low,T010,Territory 010,REP010,Ryan Munoz,New Melissa,Nunavut
+HCP000916,Kevin Gonzales,Primary Care,3,Low,T018,Territory 018,REP018,Derek Zuniga,East Maryfurt,Nova Scotia
+HCP000917,Darren Rodriguez,Endocrinology,10,High,T004,Territory 004,REP004,Daniel Wagner,Davidville,Ontario
+HCP000918,Philip Bush,Primary Care,4,Medium,T015,Territory 015,REP015,Dylan Miller,North Markville,Nova Scotia
+HCP000919,Kyle Collins,Primary Care,1,Low,T002,Territory 002,REP002,Noah Rhodes,Perezchester,Newfoundland and Labrador
+HCP000920,Mrs. Shannon Jacobson,Oncology,1,Low,T015,Territory 015,REP015,Dylan Miller,Crosbystad,Manitoba
+HCP000921,Michael Powers,Cardiology,9,High,T007,Territory 007,REP007,Abigail Shaffer,Kimland,British Columbia
+HCP000922,James Garza,Cardiology,5,Medium,T016,Territory 016,REP016,Brian Ramirez,Lake Saraburgh,British Columbia
+HCP000923,Curtis Gonzalez,Cardiology,4,Medium,T016,Territory 016,REP016,Brian Ramirez,Martinezchester,Saskatchewan
+HCP000924,Dr. Ralph Wheeler DDS,Neurology,6,Medium,T011,Territory 011,REP011,Monica Herrera,Kellyfurt,Nunavut
+HCP000925,Brittany Gibson,Cardiology,10,High,T017,Territory 017,REP017,Holly Wood,West Tracybury,Quebec
+HCP000926,Alyssa Rojas,Cardiology,3,Low,T002,Territory 002,REP002,Noah Rhodes,South Erikaburgh,Nova Scotia
+HCP000927,Erin Turner,Oncology,4,Medium,T006,Territory 006,REP006,Connie Lawrence,Port Charleshaven,Yukon Territory
+HCP000928,John Carter MD,Pulmonology,5,Medium,T004,Territory 004,REP004,Daniel Wagner,Amyside,Ontario
+HCP000929,Phillip Ewing,Cardiology,1,Low,T020,Territory 020,REP020,Carla Gray,South Shannonfurt,Nunavut
+HCP000930,Andrew Hawkins,Primary Care,2,Low,T002,Territory 002,REP002,Noah Rhodes,Nicoleburgh,Nunavut
+HCP000931,Erik Price,Primary Care,10,High,T007,Territory 007,REP007,Abigail Shaffer,New Emilyside,Quebec
+HCP000932,Julie Hart,Cardiology,6,Medium,T005,Territory 005,REP005,Cristian Santos,New Brian,Newfoundland and Labrador
+HCP000933,Wesley Jensen MD,Neurology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Luketown,Prince Edward Island
+HCP000934,Russell Bailey,Cardiology,3,Low,T008,Territory 008,REP008,Gina Moore,Port Patriciamouth,Nova Scotia
+HCP000935,Gregory Howard,Cardiology,7,Medium,T005,Territory 005,REP005,Cristian Santos,Brianbury,New Brunswick
+HCP000936,Erik Miller,Primary Care,6,Medium,T018,Territory 018,REP018,Derek Zuniga,Port Kevinmouth,Manitoba
+HCP000937,Gabriel Murray,Oncology,3,Low,T014,Territory 014,REP014,Michele Williams,Bradleychester,Newfoundland and Labrador
+HCP000938,John Johnson,Oncology,4,Medium,T002,Territory 002,REP002,Noah Rhodes,Nicholasfurt,Northwest Territories
+HCP000939,Rhonda Garcia,Neurology,2,Low,T020,Territory 020,REP020,Carla Gray,West Tyler,Yukon Territory
+HCP000940,Gina Mendez,Primary Care,2,Low,T018,Territory 018,REP018,Derek Zuniga,Taraborough,Nunavut
+HCP000941,Valerie Jones,Primary Care,2,Low,T011,Territory 011,REP011,Monica Herrera,West Joseph,Newfoundland and Labrador
+HCP000942,Jennifer Perez PhD,Cardiology,6,Medium,T018,Territory 018,REP018,Derek Zuniga,Lake Meganville,Prince Edward Island
+HCP000943,Austin Solis,Cardiology,8,High,T018,Territory 018,REP018,Derek Zuniga,Simmonsstad,Yukon Territory
+HCP000944,Rodney Wagner,Primary Care,10,High,T010,Territory 010,REP010,Ryan Munoz,Ryanside,Northwest Territories
+HCP000945,James Weber,Cardiology,8,High,T019,Territory 019,REP019,Lisa Jackson,Powersside,Manitoba
+HCP000946,Lori Black,Endocrinology,9,High,T002,Territory 002,REP002,Noah Rhodes,New Victor,Quebec
+HCP000947,Natalie Mcdonald,Cardiology,7,Medium,T016,Territory 016,REP016,Brian Ramirez,Michaelton,Ontario
+HCP000948,Joel Allen,Cardiology,5,Medium,T006,Territory 006,REP006,Connie Lawrence,Meganchester,Northwest Territories
+HCP000949,Susan Walters,Primary Care,5,Medium,T009,Territory 009,REP009,Gabrielle Davis,Adamsport,Quebec
+HCP000950,Michael Young,Cardiology,4,Medium,T007,Territory 007,REP007,Abigail Shaffer,North Edward,Alberta
+HCP000951,Ronald Marshall,Endocrinology,3,Low,T017,Territory 017,REP017,Holly Wood,Hendersonton,New Brunswick
+HCP000952,Chad Green,Endocrinology,3,Low,T018,Territory 018,REP018,Derek Zuniga,Donnaburgh,Quebec
+HCP000953,Tracey Tucker,Primary Care,8,High,T002,Territory 002,REP002,Noah Rhodes,North Micheleland,Northwest Territories
+HCP000954,Sharon Lester,Primary Care,1,Low,T005,Territory 005,REP005,Cristian Santos,Mosleyland,Nova Scotia
+HCP000955,Misty Taylor,Primary Care,7,Medium,T004,Territory 004,REP004,Daniel Wagner,New Jessicaville,Ontario
+HCP000956,Lauren Hampton,Primary Care,7,Medium,T020,Territory 020,REP020,Carla Gray,Tylerland,New Brunswick
+HCP000957,Patricia Edwards,Cardiology,6,Medium,T007,Territory 007,REP007,Abigail Shaffer,Shafferbury,Nova Scotia
+HCP000958,Brian Lewis,Endocrinology,1,Low,T016,Territory 016,REP016,Brian Ramirez,Scottview,Prince Edward Island
+HCP000959,Joseph Lyons,Primary Care,10,High,T020,Territory 020,REP020,Carla Gray,West Amyfort,Quebec
+HCP000960,Donald Mueller,Endocrinology,2,Low,T006,Territory 006,REP006,Connie Lawrence,West Thomas,Northwest Territories
+HCP000961,Alisha Rasmussen,Oncology,6,Medium,T005,Territory 005,REP005,Cristian Santos,Port Joditon,Saskatchewan
+HCP000962,Megan King,Neurology,9,High,T016,Territory 016,REP016,Brian Ramirez,Parkerstad,Yukon Territory
+HCP000963,Kimberly Young,Primary Care,4,Medium,T011,Territory 011,REP011,Monica Herrera,Pricefurt,Newfoundland and Labrador
+HCP000964,Timothy Sherman,Pulmonology,4,Medium,T012,Territory 012,REP012,Jamie Arnold,Jasonburgh,Nunavut
+HCP000965,Sherry Wang,Cardiology,7,Medium,T019,Territory 019,REP019,Lisa Jackson,Mccormickview,British Columbia
+HCP000966,Teresa Ruiz,Cardiology,6,Medium,T020,Territory 020,REP020,Carla Gray,Housemouth,Saskatchewan
+HCP000967,Thomas Garcia,Cardiology,2,Low,T008,Territory 008,REP008,Gina Moore,Lake Jose,British Columbia
+HCP000968,Lance Li,Pulmonology,2,Low,T005,Territory 005,REP005,Cristian Santos,Shawntown,Yukon Territory
+HCP000969,Martin Mccoy,Oncology,2,Low,T002,Territory 002,REP002,Noah Rhodes,North Richard,Quebec
+HCP000970,Kenneth Rodriguez,Pulmonology,2,Low,T004,Territory 004,REP004,Daniel Wagner,New Jennifer,Yukon Territory
+HCP000971,Pamela Bradford,Endocrinology,7,Medium,T003,Territory 003,REP003,Angie Henderson,Sparksmouth,Nunavut
+HCP000972,Nicholas Green,Oncology,6,Medium,T002,Territory 002,REP002,Noah Rhodes,Laurenborough,British Columbia
+HCP000973,Christopher Walter,Endocrinology,8,High,T018,Territory 018,REP018,Derek Zuniga,North Stacy,Ontario
+HCP000974,Lori Meadows,Endocrinology,4,Medium,T015,Territory 015,REP015,Dylan Miller,Gonzalezburgh,Alberta
+HCP000975,Jeffrey Green,Endocrinology,10,High,T002,Territory 002,REP002,Noah Rhodes,West Georgeshire,British Columbia
+HCP000976,Joseph Ayala,Oncology,5,Medium,T012,Territory 012,REP012,Jamie Arnold,Wilcoxfort,British Columbia
+HCP000977,Dale Shah,Primary Care,10,High,T010,Territory 010,REP010,Ryan Munoz,Keithfort,Nova Scotia
+HCP000978,Scott Greene,Cardiology,6,Medium,T004,Territory 004,REP004,Daniel Wagner,Jessicaborough,Nova Scotia
+HCP000979,Ricky Johnson,Cardiology,6,Medium,T002,Territory 002,REP002,Noah Rhodes,Joemouth,New Brunswick
+HCP000980,Michael Ellis,Endocrinology,6,Medium,T001,Territory 001,REP001,Allison Hill,South Deanmouth,Saskatchewan
+HCP000981,Daniel Reyes,Endocrinology,7,Medium,T013,Territory 013,REP013,Lisa Hensley,Fitzgeraldview,British Columbia
+HCP000982,Anthony Cook,Endocrinology,8,High,T015,Territory 015,REP015,Dylan Miller,South Rebekah,Prince Edward Island
+HCP000983,Tracy George,Primary Care,6,Medium,T001,Territory 001,REP001,Allison Hill,North Jonfurt,Newfoundland and Labrador
+HCP000984,Megan Anderson,Cardiology,4,Medium,T013,Territory 013,REP013,Lisa Hensley,New Harryburgh,Ontario
+HCP000985,Gerald Mcdonald Jr.,Primary Care,9,High,T012,Territory 012,REP012,Jamie Arnold,Thomasville,Northwest Territories
+HCP000986,Carl Savage,Primary Care,6,Medium,T014,Territory 014,REP014,Michele Williams,Juliechester,Newfoundland and Labrador
+HCP000987,Deborah Gallegos,Endocrinology,7,Medium,T018,Territory 018,REP018,Derek Zuniga,Zacharychester,Manitoba
+HCP000988,Zachary Gallagher,Primary Care,6,Medium,T017,Territory 017,REP017,Holly Wood,New Melissa,Quebec
+HCP000989,Jessica Lopez,Oncology,5,Medium,T017,Territory 017,REP017,Holly Wood,East Isaacfort,Newfoundland and Labrador
+HCP000990,John Wilson,Cardiology,6,Medium,T018,Territory 018,REP018,Derek Zuniga,Williamsstad,Saskatchewan
+HCP000991,Judith Rodriguez,Primary Care,2,Low,T016,Territory 016,REP016,Brian Ramirez,North Michael,New Brunswick
+HCP000992,Catherine Jackson,Pulmonology,5,Medium,T003,Territory 003,REP003,Angie Henderson,Annashire,New Brunswick
+HCP000993,Valerie Fox,Primary Care,6,Medium,T020,Territory 020,REP020,Carla Gray,South Samantha,New Brunswick
+HCP000994,Megan Clay,Neurology,4,Medium,T005,Territory 005,REP005,Cristian Santos,West Erinville,Nova Scotia
+HCP000995,Timothy Rodriguez,Neurology,5,Medium,T017,Territory 017,REP017,Holly Wood,Ericland,Nunavut
+HCP000996,Mary Gibson,Endocrinology,2,Low,T016,Territory 016,REP016,Brian Ramirez,Brooketown,Northwest Territories
+HCP000997,Mary Tapia,Primary Care,10,High,T004,Territory 004,REP004,Daniel Wagner,Staceyshire,Manitoba
+HCP000998,Anthony Schneider,Neurology,9,High,T009,Territory 009,REP009,Gabrielle Davis,Laurenland,Ontario
+HCP000999,Jane Ross,Primary Care,6,Medium,T020,Territory 020,REP020,Carla Gray,East Tammy,Nova Scotia
+HCP001000,Samuel Martin,Cardiology,8,High,T012,Territory 012,REP012,Jamie Arnold,Mitchellberg,British Columbia

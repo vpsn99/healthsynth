@@ -78,4 +78,16 @@ DEFAULT_COMMERCIAL_CONFIG = {
         "Oncology": {"P001": 0.20, "P002": 0.20, "P003": 0.15},
         "Pulmonology": {"P001": 0.30, "P002": 0.15, "P003": 0.20},
     },
+    "channel_distribution": {
+        "Rep Call": 0.45,
+        "Email": 0.25,
+        "Webinar": 0.15,
+        "Digital Ad": 0.15,
+    },
+    "channel_response_multiplier": {
+        "Rep Call": 1.00,
+        "Webinar": 0.70,
+        "Email": 0.40,
+        "Digital Ad": 0.25,
+    },
 }

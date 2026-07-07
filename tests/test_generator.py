@@ -71,7 +71,20 @@ def test_prescription_count_matches_hcps_months_and_products(tmp_path):
 
     assert len(datasets["prescriptions"]) == 25 * 24 * product_count
 
+def test_multiple_channels_are_generated(tmp_path):
+    datasets = generate(
+        hcps=100,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+    )
 
+    channels = set(
+        datasets["call_activity"]["channel"]
+    )
+
+    assert len(channels) > 1
+    
 def test_outputs_are_created(tmp_path):
     generate(
         hcps=10,

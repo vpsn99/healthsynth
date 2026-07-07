@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
 
 class CallActivityGenerator:
     def __init__(self, seed: int = 42):
@@ -36,6 +36,17 @@ class CallActivityGenerator:
             seasonal_factor = 0.75
 
         return base_rate * (0.75 + decile_lift) * seasonal_factor
+
+    def _choose_channel(self) -> str:
+        distribution = DEFAULT_COMMERCIAL_CONFIG["channel_distribution"]
+
+        channels = list(distribution.keys())
+        weights = list(distribution.values())
+
+        return self.rng.choice(
+            channels,
+            p=weights,
+        )
 
     def generate(
         self,
@@ -76,7 +87,7 @@ class CallActivityGenerator:
                             "hcp_id": hcp["hcp_id"],
                             "rep_id": hcp["rep_id"],
                             "product_id": product_id,
-                            "channel": "Rep Call",
+                            "channel": self._choose_channel(),
                             "sample_dropped": bool(self.rng.random() < 0.25),
                         }
                     )
@@ -166,19 +177,33 @@ class PrescriptionGenerator:
 
         return pd.DataFrame(rows)
 
-    def _summarize_calls(self, call_activity: pd.DataFrame) -> dict:
-        if call_activity.empty:
-            return {}
+    def _summarize_calls(
+        self,
+        call_activity: pd.DataFrame,
+    ) -> dict:
+        weights = DEFAULT_COMMERCIAL_CONFIG[
+            "channel_response_multiplier"
+        ]
 
-        calls = call_activity.copy()
-        calls["call_month"] = pd.to_datetime(calls["call_date"]).dt.strftime("%Y-%m")
+        summary = {}
 
-        grouped = calls.groupby(["hcp_id", "call_month"]).size().reset_index(name="call_count")
+        for _, row in call_activity.iterrows():
+            key = (
+                row["hcp_id"],
+                pd.to_datetime(row["call_date"]).strftime("%Y-%m"),
+            )
 
-        return {
-            (row["hcp_id"], row["call_month"]): int(row["call_count"])
-            for _, row in grouped.iterrows()
-        }
+            weight = weights.get(
+                row["channel"],
+                1.0,
+            )
+
+            summary[key] = (
+                summary.get(key, 0)
+                + weight
+            )
+
+        return summary
 
     @staticmethod
     def _call_response_effect(

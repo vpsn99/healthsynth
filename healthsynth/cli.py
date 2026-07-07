@@ -11,6 +11,28 @@ app = typer.Typer(
 
 console = Console()
 
+@app.command()
+def demo():
+    """
+    Generate a demo commercial analytics environment.
+    """
+    console.print("[bold green]Generating HealthSynth demo dataset[/bold green]")
+
+    datasets = run_generation(
+        module="commercial_analytics",
+        hcps=1000,
+        years=3,
+        scenario="new_product_launch",
+        output_dir="demo_output",
+        seed=42,
+    )
+
+    console.print("[bold green]Demo generation complete[/bold green]")
+    console.print(f"Created {len(datasets['hcp_master'])} HCP records")
+    console.print(f"Created {len(datasets['product'])} product records")
+    console.print(f"Created {len(datasets['call_activity'])} activity records")
+    console.print(f"Created {len(datasets['prescriptions'])} prescription records")
+    console.print("Output written to: demo_output")
 
 @app.command()
 def version():
