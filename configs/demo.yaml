@@ -1,0 +1,11 @@
+# HealthSynth demo configuration
+
+locale: en_CA
+
+num_territories: 20
+
+channel_distribution:
+  Rep Call: 0.45
+  Email: 0.25
+  Webinar: 0.15
+  Digital Ad: 0.15
