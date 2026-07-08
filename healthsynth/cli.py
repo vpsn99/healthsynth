@@ -41,6 +41,13 @@ def demo():
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
     console.print("Output written to: demo_output")
     console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
+    timings = datasets.get("_timings", {})
+
+    if timings:
+        console.print("")
+        console.print("[bold]Timing breakdown[/bold]")
+        for step, seconds in timings.items():
+            console.print(f"- {step}: {seconds:.2f}s")
 
 
 @app.command()
@@ -107,6 +114,13 @@ def generate(
     console.print(f"Created validation report: {output_dir}/validation_report.md")
     console.print(f"Output written to: {output_dir}")
     console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
+    timings = datasets.get("_timings", {})
+
+    if timings:
+        console.print("")
+        console.print("[bold]Timing breakdown[/bold]")
+        for step, seconds in timings.items():
+            console.print(f"- {step}: {seconds:.2f}s")
 
 
 if __name__ == "__main__":

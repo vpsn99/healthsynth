@@ -11,12 +11,28 @@ def test_generate_returns_expected_tables(tmp_path):
         seed=42,
     )
 
-    assert set(datasets.keys()) == {
+    expected_tables = {
         "hcp_master",
         "product",
         "call_activity",
         "prescriptions",
     }
+
+    assert expected_tables.issubset(set(datasets.keys()))
+
+
+def test_generate_returns_timing_metadata(tmp_path):
+    datasets = generate(
+        hcps=10,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+    )
+
+    assert "_timings" in datasets
+    assert "simulation" in datasets["_timings"]
+    assert "validation" in datasets["_timings"]
+    assert "total" in datasets["_timings"]
 
 
 def test_hcp_count_is_correct(tmp_path):
