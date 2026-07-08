@@ -4,6 +4,7 @@ from healthsynth.commercial.simulation import (
     write_duckdb_output,
 )
 from healthsynth.validation.checks import validate_datasets
+from pathlib import Path
 
 
 def generate(
@@ -24,6 +25,18 @@ def generate(
         raise ValueError(
             f"Invalid output_format '{output_format}'. Expected one of: csv, duckdb, all."
         )
+    
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    if output_format == "csv":
+        duckdb_file = output_path / "healthsynth.duckdb"
+        if duckdb_file.exists():
+            duckdb_file.unlink()
+
+    if output_format == "duckdb":
+        for csv_file in output_path.glob("*.csv"):
+            csv_file.unlink()
 
     simulation = CommercialSimulation(
         hcps=hcps,
