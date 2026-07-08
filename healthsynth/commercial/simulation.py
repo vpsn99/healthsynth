@@ -42,14 +42,17 @@ class CommercialSimulation:
             raise ValueError("Only new_product_launch is supported in v0.1")
 
     def run(self) -> CommercialSimulationResult:
+        config = DEFAULT_CONFIG
+
         hcp_master = generate_hcps(
             num_hcps=self.hcps,
             seed=self.seed,
+            config=config,
         )
 
         product = generate_products(
             seed=self.seed,
-            config=DEFAULT_CONFIG,
+            config=config,
         )
 
         call_activity = generate_call_activity(
@@ -57,6 +60,7 @@ class CommercialSimulation:
             product=product,
             years=self.years,
             seed=self.seed,
+            config=config,
         )
 
         prescriptions = generate_prescriptions(
@@ -65,6 +69,7 @@ class CommercialSimulation:
             call_activity=call_activity,
             years=self.years,
             seed=self.seed,
+            config=config,
         )
 
         return CommercialSimulationResult(

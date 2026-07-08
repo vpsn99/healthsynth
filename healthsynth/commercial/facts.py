@@ -1,12 +1,21 @@
 import numpy as np
 import pandas as pd
 
-from healthsynth.config.defaults import DEFAULT_CONFIG
+from healthsynth.config.loader import ConfigLoader
 
 
 class CallActivityGenerator:
-    def __init__(self, seed: int = 42):
+    def __init__(
+        self,
+        seed: int = 42,
+        config: dict | None = None,
+        config_path: str | None = None,
+    ):
+        if config is None:
+            config = ConfigLoader.load(config_path)
+
         self.seed = seed
+        self.config = config
         self.rng = np.random.default_rng(seed)
 
     def _monthly_call_rate(
@@ -40,7 +49,7 @@ class CallActivityGenerator:
         return base_rate * (0.75 + decile_lift) * seasonal_factor
 
     def _choose_channel(self) -> str:
-        distribution = DEFAULT_CONFIG["channel_distribution"]
+        distribution = self.config["channel_distribution"]
 
         channels = list(distribution.keys())
         weights = list(distribution.values())
@@ -99,8 +108,17 @@ class CallActivityGenerator:
 
 
 class PrescriptionGenerator:
-    def __init__(self, seed: int = 42):
+    def __init__(
+        self,
+        seed: int = 42,
+        config: dict | None = None,
+        config_path: str | None = None,
+    ):
+        if config is None:
+            config = ConfigLoader.load(config_path)
+
         self.seed = seed
+        self.config = config
         self.rng = np.random.default_rng(seed + 1000)
 
     def generate(
@@ -183,7 +201,7 @@ class PrescriptionGenerator:
         self,
         call_activity: pd.DataFrame,
     ) -> dict:
-        weights = DEFAULT_CONFIG["channel_response_multiplier"]
+        weights = self.config["channel_response_multiplier"]
 
         summary = {}
 
@@ -216,13 +234,12 @@ class PrescriptionGenerator:
         """
         return np.log1p(lagged_calls) * response_multiplier * 2.0
 
-    @staticmethod
     def _product_affinity(
+        self,
         specialty: str,
         product_id: str,
     ) -> float:
-
-        affinity_map = DEFAULT_CONFIG["specialty_product_affinity"]
+        affinity_map = self.config["specialty_product_affinity"]
 
         if specialty not in affinity_map:
             return 0.25
@@ -271,8 +288,14 @@ def generate_prescriptions(
     call_activity: pd.DataFrame,
     years: int = 3,
     seed: int = 42,
+    config: dict | None = None,
+    config_path: str | None = None,
 ) -> pd.DataFrame:
-    return PrescriptionGenerator(seed=seed).generate(
+    return PrescriptionGenerator(
+        seed=seed,
+        config=config,
+        config_path=config_path,
+    ).generate(
         hcp_master=hcp_master,
         product=product,
         call_activity=call_activity,
@@ -285,8 +308,14 @@ def generate_call_activity(
     product: pd.DataFrame,
     years: int = 3,
     seed: int = 42,
+    config: dict | None = None,
+    config_path: str | None = None,
 ) -> pd.DataFrame:
-    return CallActivityGenerator(seed=seed).generate(
+    return CallActivityGenerator(
+        seed=seed,
+        config=config,
+        config_path=config_path,
+    ).generate(
         hcp_master=hcp_master,
         product=product,
         years=years,

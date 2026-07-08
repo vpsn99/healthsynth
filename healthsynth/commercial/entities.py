@@ -88,7 +88,15 @@ class HCPGenerator(BaseGenerator):
 
 
 class ProductGenerator(BaseGenerator):
-    def __init__(self, seed: int = 42, config: dict | None = None):
+    def __init__(
+        self,
+        seed: int = 42,
+        config: dict | None = None,
+        config_path: str | None = None,
+    ):
+        if config is None:
+            config = ConfigLoader.load(config_path)
+
         super().__init__(
             seed=seed,
             config=config,
@@ -111,5 +119,13 @@ def generate_hcps(
     ).generate(num_hcps=num_hcps)
 
 
-def generate_products(seed: int = 42, config: dict | None = None) -> pd.DataFrame:
-    return ProductGenerator(seed=seed, config=config).generate()
+def generate_products(
+    seed: int = 42,
+    config: dict | None = None,
+    config_path: str | None = None,
+) -> pd.DataFrame:
+    return ProductGenerator(
+        seed=seed,
+        config=config,
+        config_path=config_path,
+    ).generate()
