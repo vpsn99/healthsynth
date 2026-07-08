@@ -43,8 +43,7 @@ def generate(
     valid_output_formats = {"csv", "duckdb", "all"}
     if resolved_output_format not in valid_output_formats:
         raise ValueError(
-            f"Invalid output_format '{resolved_output_format}'. "
-            "Expected one of: csv, duckdb, all."
+            f"Invalid output_format '{resolved_output_format}'. Expected one of: csv, duckdb, all."
         )
 
     timings = {}

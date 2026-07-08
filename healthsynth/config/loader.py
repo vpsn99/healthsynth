@@ -4,6 +4,7 @@ import yaml
 
 from healthsynth.config.defaults import DEFAULT_CONFIG
 from healthsynth.config.merge import deep_merge
+from healthsynth.config.validator import validate_config
 
 
 class ConfigLoader:
@@ -16,7 +17,9 @@ class ConfigLoader:
         If no config_path is provided, defaults are returned.
         """
         if config_path is None:
-            return deep_merge(DEFAULT_CONFIG, None)
+            config = deep_merge(DEFAULT_CONFIG, None)
+            validate_config(config)
+            return config
 
         path = Path(config_path)
 
@@ -26,4 +29,6 @@ class ConfigLoader:
         with path.open("r", encoding="utf-8") as file:
             yaml_config = yaml.safe_load(file) or {}
 
-        return deep_merge(DEFAULT_CONFIG, yaml_config)
+        config = deep_merge(DEFAULT_CONFIG, yaml_config)
+        validate_config(config)
+        return config

@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 from healthsynth.config.loader import ConfigLoader
+from healthsynth.exceptions import HealthSynthConfigurationError
 
 
 def test_config_loader_returns_defaults_without_path():
@@ -58,3 +59,64 @@ def test_demo_config_loads_successfully():
 
     assert config["locale"] == "en_CA"
     assert config["num_territories"] == 20
+
+
+def test_config_validation_rejects_invalid_channel_distribution(tmp_path):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+channel_distribution:
+  Rep Call: 0.90
+  Email: 0.90
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(HealthSynthConfigurationError):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_rejects_duplicate_product_ids(tmp_path):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+  - product_id: P001
+    product_name: Product Two
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(HealthSynthConfigurationError):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_rejects_unknown_affinity_product(tmp_path):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+specialty_product_affinity:
+  Cardiology:
+    UNKNOWN_PRODUCT: 1.0
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(HealthSynthConfigurationError):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_rejects_negative_generation_values(tmp_path):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+generation:
+  hcps: -10
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(HealthSynthConfigurationError):
+        ConfigLoader.load(str(config_file))

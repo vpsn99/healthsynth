@@ -537,6 +537,37 @@ Python becomes the simulation engine.
 
 YAML becomes the knowledge layer.
 
+## HS-015
+
+### Title
+
+Configuration Resolution Order
+
+### Status
+
+Accepted
+
+### Decision
+
+HealthSynth resolves configuration using the following precedence:
+
+1. Explicit CLI/Python arguments
+2. Generation settings from YAML
+3. Business configuration from YAML
+4. Built-in defaults
+
+### Rationale
+
+This provides sensible defaults while allowing users to override only the parameters they care about.
+
+Beginners can use defaults.
+
+Advanced users can customize behavior through YAML and CLI overrides.
+
+### Consequences
+
+Future configuration sources (market packs, scenario packs, plugins) should follow the same precedence model.
+
 ## Emerging Design Principle
 
 HealthSynth should expose a simple data generation interface while internally using simulation principles to create believable business behavior.
