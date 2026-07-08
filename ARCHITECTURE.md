@@ -213,3 +213,15 @@ HealthSynth prefers:
 Knowledge
 
 Data
+
+
+
+
+# Core Principles
+Engine and business knowledge are separated.
+Defaults provide safe fallbacks.
+YAML defines business behavior.
+CLI overrides execution settings.
+Business rules should be configurable whenever practical.
+Simulation realism is preferred over random generation.
+New capabilities should extend configuration rather than increase code branching.

@@ -35,6 +35,52 @@ def test_generate_returns_timing_metadata(tmp_path):
     assert "total" in datasets["_timings"]
 
 
+def test_generation_settings_can_come_from_yaml(tmp_path):
+    config_file = tmp_path / "config.yaml"
+    config_file.write_text(
+        """
+generation:
+  hcps: 12
+  years: 2
+  seed: 123
+  output_format: csv
+""",
+        encoding="utf-8",
+    )
+
+    datasets = generate(
+        output_dir=str(tmp_path),
+        config_path=str(config_file),
+    )
+
+    assert len(datasets["hcp_master"]) == 12
+    assert len(datasets["prescriptions"]) == 12 * 24 * len(datasets["product"])
+
+
+def test_cli_style_arguments_override_yaml_generation_settings(tmp_path):
+    config_file = tmp_path / "config.yaml"
+    config_file.write_text(
+        """
+generation:
+  hcps: 12
+  years: 2
+  seed: 123
+  output_format: csv
+""",
+        encoding="utf-8",
+    )
+
+    datasets = generate(
+        hcps=20,
+        years=1,
+        output_dir=str(tmp_path),
+        config_path=str(config_file),
+    )
+
+    assert len(datasets["hcp_master"]) == 20
+    assert len(datasets["prescriptions"]) == 20 * 12 * len(datasets["product"])
+
+
 def test_hcp_count_is_correct(tmp_path):
     datasets = generate(
         hcps=25,

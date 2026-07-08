@@ -1,5 +1,11 @@
 # HealthSynth demo configuration
 
+generation:
+  hcps: 1000
+  years: 3
+  seed: 42
+  output_format: all
+  
 locale: en_CA
 num_territories: 20
 

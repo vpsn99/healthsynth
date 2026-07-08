@@ -66,20 +66,20 @@ def main():
 @app.command()
 def generate(
     module: str = typer.Option("commercial_analytics", help="Module to generate."),
-    hcps: int = typer.Option(1000, help="Number of HCPs to generate."),
-    years: int = typer.Option(3, help="Number of years of data."),
-    scenario: str = typer.Option("new_product_launch", help="Scenario to simulate."),
     output_dir: str = typer.Option("output", help="Output directory."),
-    seed: int = typer.Option(42, help="Random seed for deterministic output."),
+    hcps: int | None = typer.Option(None, help="Number of HCPs to generate."),
+    years: int | None = typer.Option(None, help="Number of years of data."),
+    scenario: str | None = typer.Option(None, help="Scenario to simulate."),
+    seed: int | None = typer.Option(None, help="Random seed for deterministic output."),
+    output_format: str | None = typer.Option(
+        None,
+        "--output-format",
+        help="Output format: csv, duckdb, or all.",
+    ),
     config: str | None = typer.Option(
         None,
         "--config",
         help="Path to YAML configuration file.",
-    ),
-    output_format: str = typer.Option(
-        "csv",
-        "--output-format",
-        help="Output format: csv, duckdb, or all.",
     ),
 ):
     """
