@@ -205,3 +205,25 @@ def test_new_product_launch_drives_adoption(tmp_path):
     late_avg = monthly.iloc[-6:].mean()
 
     assert late_avg > early_avg
+
+
+def test_generate_accepts_config_path(tmp_path):
+    config_file = tmp_path / "custom.yaml"
+    config_file.write_text(
+        """
+num_territories: 5
+""",
+        encoding="utf-8",
+    )
+
+    datasets = generate(
+        hcps=50,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+        config_path=str(config_file),
+    )
+
+    territory_count = datasets["hcp_master"]["territory_id"].nunique()
+
+    assert territory_count <= 5

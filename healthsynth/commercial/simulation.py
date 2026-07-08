@@ -5,7 +5,7 @@ import pandas as pd
 
 from healthsynth.commercial.entities import generate_hcps, generate_products
 from healthsynth.commercial.facts import generate_call_activity, generate_prescriptions
-from healthsynth.config.defaults import DEFAULT_CONFIG
+from healthsynth.config.loader import ConfigLoader
 from healthsynth.exporters.duckdb_exporter import write_duckdb
 
 
@@ -32,17 +32,19 @@ class CommercialSimulation:
         years: int = 3,
         scenario: str = "new_product_launch",
         seed: int = 42,
+        config_path: str | None = None,
     ):
         self.hcps = hcps
         self.years = years
         self.scenario = scenario
         self.seed = seed
+        self.config_path = config_path
 
         if self.scenario != "new_product_launch":
             raise ValueError("Only new_product_launch is supported in v0.1")
 
     def run(self) -> CommercialSimulationResult:
-        config = DEFAULT_CONFIG
+        config = ConfigLoader.load(self.config_path)
 
         hcp_master = generate_hcps(
             num_hcps=self.hcps,

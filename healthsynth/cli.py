@@ -26,6 +26,7 @@ def demo():
         scenario="new_product_launch",
         output_dir="demo_output",
         seed=42,
+        config_path="configs/demo.yaml",
     )
 
     console.print("[bold green]Demo generation complete[/bold green]")
@@ -57,6 +58,11 @@ def generate(
     scenario: str = typer.Option("new_product_launch", help="Scenario to simulate."),
     output_dir: str = typer.Option("output", help="Output directory."),
     seed: int = typer.Option(42, help="Random seed for deterministic output."),
+    config: str | None = typer.Option(
+        None,
+        "--config",
+        help="Path to YAML configuration file.",
+    ),
 ):
     """
     Generate synthetic healthcare commercial analytics data.
@@ -71,6 +77,7 @@ def generate(
         scenario=scenario,
         output_dir=output_dir,
         seed=seed,
+        config_path=config,
     )
 
     console.print("[bold green]Generation complete[/bold green]")

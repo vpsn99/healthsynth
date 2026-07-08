@@ -13,6 +13,7 @@ def generate(
     scenario: str = "new_product_launch",
     output_dir: str = "output",
     seed: int = 42,
+    config_path: str | None = None,
 ):
     if module != "commercial_analytics":
         raise ValueError("Only commercial_analytics is supported in v0.1")
@@ -22,6 +23,7 @@ def generate(
         years=years,
         scenario=scenario,
         seed=seed,
+        config_path=config_path,
     )
 
     result = simulation.run()
