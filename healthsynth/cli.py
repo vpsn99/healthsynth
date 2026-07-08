@@ -1,3 +1,5 @@
+import time
+
 import typer
 from rich.console import Console
 
@@ -18,6 +20,7 @@ def demo():
     Generate a demo commercial analytics environment.
     """
     console.print("[bold green]Generating HealthSynth demo dataset[/bold green]")
+    start_time = time.perf_counter()
 
     datasets = run_generation(
         module="commercial_analytics",
@@ -28,6 +31,7 @@ def demo():
         seed=42,
         config_path="configs/demo.yaml",
     )
+    elapsed_seconds = time.perf_counter() - start_time
 
     console.print("[bold green]Demo generation complete[/bold green]")
     console.print(f"Created {len(datasets['hcp_master'])} HCP records")
@@ -35,6 +39,7 @@ def demo():
     console.print(f"Created {len(datasets['call_activity'])} activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
     console.print("Output written to: demo_output")
+    console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
 
 
 @app.command()
@@ -69,6 +74,7 @@ def generate(
     """
 
     console.print("[bold green]HealthSynth generation started[/bold green]")
+    start_time = time.perf_counter()
 
     datasets = run_generation(
         module=module,
@@ -80,6 +86,8 @@ def generate(
         config_path=config,
     )
 
+    elapsed_seconds = time.perf_counter() - start_time
+
     console.print("[bold green]Generation complete[/bold green]")
     console.print(f"Created {len(datasets['hcp_master'])} HCP records")
     console.print(f"Created {len(datasets['product'])} product records")
@@ -88,6 +96,7 @@ def generate(
     console.print(f"Created DuckDB database: {output_dir}/healthsynth.duckdb")
     console.print(f"Created validation report: {output_dir}/validation_report.md")
     console.print(f"Output written to: {output_dir}")
+    console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
 
 
 if __name__ == "__main__":
