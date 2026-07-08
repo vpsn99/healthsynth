@@ -42,6 +42,15 @@ def test_config_loader_raises_for_missing_file():
         ConfigLoader.load("missing_config.yaml")
 
 
+def test_demo_config_contains_business_knowledge():
+    config = ConfigLoader.load("configs/demo.yaml")
+
+    assert len(config["products"]) == 3
+    assert config["products"][0]["product_name"] == "CardioOne"
+    assert "specialty_product_affinity" in config
+    assert "channel_response_multiplier" in config
+
+
 def test_demo_config_loads_successfully():
     config_path = Path("configs/demo.yaml")
 
