@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
-from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
+
+from healthsynth.config.defaults import DEFAULT_CONFIG
+
 
 class CallActivityGenerator:
     def __init__(self, seed: int = 42):
@@ -38,7 +40,7 @@ class CallActivityGenerator:
         return base_rate * (0.75 + decile_lift) * seasonal_factor
 
     def _choose_channel(self) -> str:
-        distribution = DEFAULT_COMMERCIAL_CONFIG["channel_distribution"]
+        distribution = DEFAULT_CONFIG["channel_distribution"]
 
         channels = list(distribution.keys())
         weights = list(distribution.values())
@@ -181,9 +183,7 @@ class PrescriptionGenerator:
         self,
         call_activity: pd.DataFrame,
     ) -> dict:
-        weights = DEFAULT_COMMERCIAL_CONFIG[
-            "channel_response_multiplier"
-        ]
+        weights = DEFAULT_CONFIG["channel_response_multiplier"]
 
         summary = {}
 
@@ -198,10 +198,7 @@ class PrescriptionGenerator:
                 1.0,
             )
 
-            summary[key] = (
-                summary.get(key, 0)
-                + weight
-            )
+            summary[key] = summary.get(key, 0) + weight
 
         return summary
 
@@ -224,9 +221,8 @@ class PrescriptionGenerator:
         specialty: str,
         product_id: str,
     ) -> float:
-        from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
 
-        affinity_map = DEFAULT_COMMERCIAL_CONFIG["specialty_product_affinity"]
+        affinity_map = DEFAULT_CONFIG["specialty_product_affinity"]
 
         if specialty not in affinity_map:
             return 0.25

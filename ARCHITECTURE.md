@@ -137,3 +137,52 @@ HealthSynth prefers:
 - configurable behaviour
 - modular architecture
 - clean separation between simulation and export
+
+# Architecture
+
+                    USER
+                      │
+      healthsynth generate --config canada.yaml
+                      │
+                      ▼
+┌──────────────────────────────────────────────┐
+│               Interface Layer                │
+│ CLI / Python API / Notebook                 │
+└──────────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────┐
+│            Configuration Layer               │
+│ defaults.py                                 │
+│ ConfigLoader                                │
+│ YAML                                         │
+└──────────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────┐
+│             Simulation Layer                 │
+│ HCP Generator                               │
+│ Call Generator                              │
+│ Prescription Generator                      │
+│ Scenario Engine                             │
+└──────────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────┐
+│               Domain Layer                   │
+│ Products                                    │
+│ Channels                                    │
+│ Markets                                     │
+│ Rules                                       │
+│ Affinities                                  │
+└──────────────────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────┐
+│              Export Layer                    │
+│ CSV                                         │
+│ DuckDB                                      │
+│ Parquet                                     │
+│ dbt                                         │
+│ SQL                                          │
+└──────────────────────────────────────────────┘

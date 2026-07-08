@@ -11,6 +11,7 @@ app = typer.Typer(
 
 console = Console()
 
+
 @app.command()
 def demo():
     """
@@ -33,6 +34,7 @@ def demo():
     console.print(f"Created {len(datasets['call_activity'])} activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
     console.print("Output written to: demo_output")
+
 
 @app.command()
 def version():

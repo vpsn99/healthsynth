@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pandas as pd
 
-from healthsynth.config import DEFAULT_COMMERCIAL_CONFIG
+from healthsynth.config.defaults import DEFAULT_CONFIG
 from healthsynth.core import BaseGenerator
 
 
@@ -16,7 +16,7 @@ class Territory:
 
 class HCPGenerator(BaseGenerator):
     def __init__(self, seed: int = 42, config: dict | None = None):
-        merged_config = DEFAULT_COMMERCIAL_CONFIG.copy()
+        merged_config = DEFAULT_CONFIG.copy()
         if config:
             merged_config.update(config)
 
