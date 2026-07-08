@@ -186,3 +186,30 @@ HealthSynth prefers:
 │ dbt                                         │
 │ SQL                                          │
 └──────────────────────────────────────────────┘
+
+
+
+                User
+                  │
+                  ▼
+        CLI / Python API
+                  │
+                  ▼
+          Configuration Layer
+                  │
+                  ▼
+          Simulation Engine
+                  │
+                  ▼
+      Business Rule Components
+                  │
+                  ▼
+          Export Layer
+
+
+
+          Engine
+
+Knowledge
+
+Data

@@ -85,7 +85,7 @@ def test_multiple_channels_are_generated(tmp_path):
     assert len(channels) > 1
 
 
-def test_outputs_are_created(tmp_path):
+def test_csv_outputs_are_created_by_default(tmp_path):
     generate(
         hcps=10,
         years=1,
@@ -97,8 +97,39 @@ def test_outputs_are_created(tmp_path):
     assert (tmp_path / "product.csv").exists()
     assert (tmp_path / "call_activity.csv").exists()
     assert (tmp_path / "prescriptions.csv").exists()
+    assert (tmp_path / "validation_report.md").exists()
+    assert not (tmp_path / "healthsynth.duckdb").exists()
+
+
+def test_all_output_format_creates_csv_and_duckdb(tmp_path):
+    generate(
+        hcps=10,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+        output_format="all",
+    )
+
+    assert (tmp_path / "hcp_master.csv").exists()
+    assert (tmp_path / "product.csv").exists()
+    assert (tmp_path / "call_activity.csv").exists()
+    assert (tmp_path / "prescriptions.csv").exists()
     assert (tmp_path / "healthsynth.duckdb").exists()
     assert (tmp_path / "validation_report.md").exists()
+
+
+def test_duckdb_output_format_creates_only_duckdb(tmp_path):
+    generate(
+        hcps=10,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+        output_format="duckdb",
+    )
+
+    assert (tmp_path / "healthsynth.duckdb").exists()
+    assert (tmp_path / "validation_report.md").exists()
+    assert not (tmp_path / "hcp_master.csv").exists()
 
 
 def test_referential_integrity(tmp_path):

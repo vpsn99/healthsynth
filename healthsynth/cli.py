@@ -30,6 +30,7 @@ def demo():
         output_dir="demo_output",
         seed=42,
         config_path="configs/demo.yaml",
+        output_format="all",
     )
     elapsed_seconds = time.perf_counter() - start_time
 
@@ -68,6 +69,11 @@ def generate(
         "--config",
         help="Path to YAML configuration file.",
     ),
+    output_format: str = typer.Option(
+        "csv",
+        "--output-format",
+        help="Output format: csv, duckdb, or all.",
+    ),
 ):
     """
     Generate synthetic healthcare commercial analytics data.
@@ -84,6 +90,7 @@ def generate(
         output_dir=output_dir,
         seed=seed,
         config_path=config,
+        output_format=output_format,
     )
 
     elapsed_seconds = time.perf_counter() - start_time
@@ -93,7 +100,10 @@ def generate(
     console.print(f"Created {len(datasets['product'])} product records")
     console.print(f"Created {len(datasets['call_activity'])} call activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
-    console.print(f"Created DuckDB database: {output_dir}/healthsynth.duckdb")
+    if output_format in ["duckdb", "all"]:
+        console.print(f"Created DuckDB database: {output_dir}/healthsynth.duckdb")
+    if output_format in ["csv", "all"]:
+        console.print("Created CSV files")
     console.print(f"Created validation report: {output_dir}/validation_report.md")
     console.print(f"Output written to: {output_dir}")
     console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
