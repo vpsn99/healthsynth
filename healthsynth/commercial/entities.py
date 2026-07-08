@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import pandas as pd
 
-from healthsynth.config.defaults import DEFAULT_CONFIG
+from healthsynth.config.loader import ConfigLoader
 from healthsynth.core import BaseGenerator
 
 
@@ -15,14 +15,18 @@ class Territory:
 
 
 class HCPGenerator(BaseGenerator):
-    def __init__(self, seed: int = 42, config: dict | None = None):
-        merged_config = DEFAULT_CONFIG.copy()
-        if config:
-            merged_config.update(config)
+    def __init__(
+        self,
+        seed: int = 42,
+        config: dict | None = None,
+        config_path: str | None = None,
+    ):
+        if config is None:
+            config = ConfigLoader.load(config_path)
 
         super().__init__(
             seed=seed,
-            config=merged_config,
+            config=config,
         )
 
         self.territories = self._generate_territories()
@@ -94,8 +98,17 @@ class ProductGenerator(BaseGenerator):
         return pd.DataFrame(self.config["products"])
 
 
-def generate_hcps(num_hcps: int = 1000, seed: int = 42, config: dict | None = None) -> pd.DataFrame:
-    return HCPGenerator(seed=seed, config=config).generate(num_hcps=num_hcps)
+def generate_hcps(
+    num_hcps: int = 1000,
+    seed: int = 42,
+    config: dict | None = None,
+    config_path: str | None = None,
+) -> pd.DataFrame:
+    return HCPGenerator(
+        seed=seed,
+        config=config,
+        config_path=config_path,
+    ).generate(num_hcps=num_hcps)
 
 
 def generate_products(seed: int = 42, config: dict | None = None) -> pd.DataFrame:

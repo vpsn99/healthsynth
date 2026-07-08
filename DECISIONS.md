@@ -456,6 +456,87 @@ Future versions may support:
 - physician preference modeling
 - switching behavior between products
 
+## HS-013
+
+### Title
+
+Configuration is a First-Class Architectural Component
+
+### Status
+
+Accepted
+
+### Date
+
+2026-07-08
+
+### Decision
+
+HealthSynth separates configuration logic from simulation logic.
+
+Configuration is loaded through a dedicated ConfigLoader that merges application defaults with optional YAML overrides.
+
+Simulation components consume the merged configuration rather than reading defaults directly.
+
+### Reasoning
+
+This separation keeps business knowledge independent from the simulation engine.
+
+It enables:
+
+- configurable markets
+- configurable products
+- configurable channels
+- configurable scenarios
+- future module expansion
+
+without changing generator implementations.
+
+### Consequences
+
+The configuration layer becomes part of the public architecture of HealthSynth rather than an implementation detail.
+
+## HS-014
+
+### Title
+
+Business Knowledge Lives in Configuration
+
+### Status
+
+Accepted
+
+### Date
+
+2026-07-08
+
+### Decision
+
+HealthSynth will gradually move commercial business knowledge from Python code into YAML configuration.
+
+Examples include:
+
+- products
+- specialty distributions
+- channel distributions
+- seasonality
+- affinity mappings
+- market templates
+
+### Reasoning
+
+Healthcare subject matter experts should be able to improve realism without modifying Python code.
+
+The simulation engine should execute business rules rather than contain them.
+
+### Consequences
+
+Future releases will introduce configuration packs for markets and scenarios.
+
+Python becomes the simulation engine.
+
+YAML becomes the knowledge layer.
+
 ## Emerging Design Principle
 
 HealthSynth should expose a simple data generation interface while internally using simulation principles to create believable business behavior.
