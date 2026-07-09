@@ -128,11 +128,13 @@ class PrescriptionGenerator:
         hcp_master: pd.DataFrame,
         product: pd.DataFrame,
         call_activity: pd.DataFrame,
+        market_share: pd.DataFrame,
         years: int = 3,
     ) -> pd.DataFrame:
         start_date = pd.Timestamp("2023-01-01")
         products = product.to_dict("records")
         market_id = self.config["market"]["market_id"]
+        market_share_lookup = self._build_market_share_lookup(market_share)
 
         months = pd.date_range(
             start=start_date,
@@ -157,6 +159,12 @@ class PrescriptionGenerator:
                 for product_row in products:
                     product_id = product_row["product_id"]
 
+                    month_key = rx_date.strftime("%Y-%m")
+                    adjusted_market_share = market_share_lookup.get(
+                        (month_key, product_id),
+                        float(product_row.get("baseline_market_share", 1.0)),
+                    )
+
                     launch_effect = self._launch_adoption_effect(month_index)
 
                     previous_month = rx_date - pd.DateOffset(months=1)
@@ -177,7 +185,9 @@ class PrescriptionGenerator:
                     seasonality = self._seasonality_factor(rx_date.month)
 
                     nrx = (
-                        base_nrx * launch_effect * affinity + call_effect * affinity + noise
+                        (base_nrx * launch_effect * affinity * adjusted_market_share)
+                        + (call_effect * affinity * adjusted_market_share)
+                        + noise
                     ) * seasonality
 
                     nrx = max(0, int(round(nrx)))
@@ -223,6 +233,22 @@ class PrescriptionGenerator:
             summary[key] = summary.get(key, 0) + weight
 
         return summary
+
+    @staticmethod
+    def _build_market_share_lookup(
+        market_share: pd.DataFrame,
+    ) -> dict:
+        lookup = {}
+
+        for _, row in market_share.iterrows():
+            lookup[
+                (
+                    pd.to_datetime(row["month"]).strftime("%Y-%m"),
+                    row["product_id"],
+                )
+            ] = float(row["adjusted_market_share"])
+
+        return lookup
 
     @staticmethod
     def _call_response_effect(
@@ -290,6 +316,7 @@ def generate_prescriptions(
     hcp_master: pd.DataFrame,
     product: pd.DataFrame,
     call_activity: pd.DataFrame,
+    market_share: pd.DataFrame,
     years: int = 3,
     seed: int = 42,
     config: dict | None = None,
@@ -303,6 +330,7 @@ def generate_prescriptions(
         hcp_master=hcp_master,
         product=product,
         call_activity=call_activity,
+        market_share=market_share,
         years=years,
     )
 

@@ -378,3 +378,32 @@ def test_market_share_sums_to_one_by_month_and_therapeutic_area(tmp_path):
     totals = market_share.groupby(["therapeutic_area", "month"])["adjusted_market_share"].sum()
 
     assert all(abs(total - 1.0) <= 0.001 for total in totals)
+
+
+def test_market_share_influences_prescription_distribution(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/oncology_training.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    rx = datasets["prescriptions"]
+    product = datasets["product"]
+
+    rx_by_product = (
+        rx.groupby("product_id")["nrx"]
+        .sum()
+        .reset_index()
+        .merge(
+            product[["product_id", "baseline_market_share"]],
+            on="product_id",
+        )
+        .sort_values("baseline_market_share", ascending=False)
+    )
+
+    top_share_product = rx_by_product.iloc[0]["product_id"]
+    top_rx_product = rx_by_product.sort_values(
+        "nrx",
+        ascending=False,
+    ).iloc[0]["product_id"]
+
+    assert top_share_product == top_rx_product

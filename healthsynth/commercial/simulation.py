@@ -86,6 +86,7 @@ class CommercialSimulation:
             hcp_master=hcp_master,
             product=product,
             call_activity=call_activity,
+            market_share=market_share,
             years=self.years,
             seed=self.seed,
             config=config,
