@@ -17,6 +17,7 @@ def test_generate_returns_expected_tables(tmp_path):
         "call_activity",
         "prescriptions",
         "market",
+        "market_share",
     }
 
     assert expected_tables.issubset(set(datasets.keys()))
@@ -345,3 +346,35 @@ def test_market_table_is_generated(tmp_path):
     assert {"market_id", "market_name", "country", "locale", "profile_name"}.issubset(
         market.columns
     )
+
+
+def test_market_share_table_is_generated(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/oncology_training.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    market_share = datasets["market_share"]
+
+    assert len(market_share) == 3 * 36
+    assert {
+        "market_id",
+        "month",
+        "therapeutic_area",
+        "product_id",
+        "baseline_market_share",
+        "adjusted_market_share",
+    }.issubset(market_share.columns)
+
+
+def test_market_share_sums_to_one_by_month_and_therapeutic_area(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/oncology_training.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    market_share = datasets["market_share"]
+
+    totals = market_share.groupby(["therapeutic_area", "month"])["adjusted_market_share"].sum()
+
+    assert all(abs(total - 1.0) <= 0.001 for total in totals)

@@ -30,3 +30,21 @@ Features
 - Simulation architecture
 - Commercial Analytics module
 - New Product Launch scenario
+
+## [0.1.0] - 2026-07-09
+
+### Added
+
+- US Commercial market profile
+- Scenario configuration framework
+- Learning Path documentation
+- Market entity as a first-class dataset
+- Market metadata propagation across generated datasets
+- Dataset manifest generation
+- Project metadata module
+- Profile-aware dataset generation
+
+### Changed
+
+- Manifest now includes market, generation parameters, timings and schema version.
+- Product and HCP datasets now include market identifiers.

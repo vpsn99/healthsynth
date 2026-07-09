@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from healthsynth.commercial.dynamics import generate_market_share
 from healthsynth.commercial.entities import generate_hcps, generate_market, generate_products
 from healthsynth.commercial.facts import generate_call_activity, generate_prescriptions
 from healthsynth.config.loader import ConfigLoader
@@ -16,6 +17,7 @@ class CommercialSimulationResult:
     call_activity: pd.DataFrame
     prescriptions: pd.DataFrame
     market: pd.DataFrame
+    market_share: pd.DataFrame
 
     def as_dict(self) -> dict[str, pd.DataFrame]:
         return {
@@ -24,6 +26,7 @@ class CommercialSimulationResult:
             "call_activity": self.call_activity,
             "prescriptions": self.prescriptions,
             "market": self.market,
+            "market_share": self.market_share,
         }
 
 
@@ -64,6 +67,13 @@ class CommercialSimulation:
             config=config,
         )
 
+        market_share = generate_market_share(
+            product=product,
+            years=self.years,
+            seed=self.seed,
+            config=config,
+        )
+
         call_activity = generate_call_activity(
             hcp_master=hcp_master,
             product=product,
@@ -85,6 +95,7 @@ class CommercialSimulation:
             market=market,
             hcp_master=hcp_master,
             product=product,
+            market_share=market_share,
             call_activity=call_activity,
             prescriptions=prescriptions,
         )

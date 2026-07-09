@@ -35,10 +35,15 @@ def demo():
     elapsed_seconds = time.perf_counter() - start_time
 
     console.print("[bold green]Demo generation complete[/bold green]")
+    if "market" in datasets:
+        console.print(f"Created {len(datasets['market'])} market records")
     console.print(f"Created {len(datasets['hcp_master'])} HCP records")
     console.print(f"Created {len(datasets['product'])} product records")
+    if "market_share" in datasets:
+        console.print(f"Created {len(datasets['market_share'])} market share records")
     console.print(f"Created {len(datasets['call_activity'])} activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
+
     console.print("Output written to: demo_output")
     console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
     timings = datasets.get("_timings", {})
@@ -103,8 +108,12 @@ def generate(
     elapsed_seconds = time.perf_counter() - start_time
 
     console.print("[bold green]Generation complete[/bold green]")
+    if "market" in datasets:
+        console.print(f"Created {len(datasets['market'])} market records")
     console.print(f"Created {len(datasets['hcp_master'])} HCP records")
     console.print(f"Created {len(datasets['product'])} product records")
+    if "market_share" in datasets:
+        console.print(f"Created {len(datasets['market_share'])} market share records")
     console.print(f"Created {len(datasets['call_activity'])} call activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
     if output_format in ["duckdb", "all"]:

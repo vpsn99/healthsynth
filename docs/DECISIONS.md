@@ -584,6 +584,28 @@ Business distributions and mappings → replace
 
 Business distributions describe complete probability models. Merging them with defaults can silently create invalid distributions and misleading datasets.
 
+## HS-017 — Market as a First-Class Entity
+
+### Status
+
+Accepted
+
+### Decision
+
+HealthSynth models Market as a first-class business entity. All generated datasets belong to a market, and transactional datasets include market_id to simplify analytics and support future multi-market simulations.
+
+### Rationale
+
+Commercial analytics is organized around markets. Features such as market share, launch dynamics, loss of exclusivity, campaigns, and market growth naturally belong to a market. Establishing Market as the root business entity provides a stable foundation for future commercial dynamics.
+
+### Consequences
+
+Added market.csv
+Added market_id to generated datasets
+Manifest now includes market metadata
+Future commercial dynamics will be implemented at the market level
+
+
 ## Emerging Design Principle
 
 HealthSynth should expose a simple data generation interface while internally using simulation principles to create believable business behavior.
