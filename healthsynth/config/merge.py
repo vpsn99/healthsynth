@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-
 REPLACE_KEYS = {
     "specialty_distribution",
     "decile_distribution",

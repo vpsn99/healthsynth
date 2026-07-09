@@ -568,6 +568,22 @@ Advanced users can customize behavior through YAML and CLI overrides.
 
 Future configuration sources (market packs, scenario packs, plugins) should follow the same precedence model.
 
+## HS-016 — Merge Strategy
+
+### Decision
+
+HealthSynth does not deep-merge every configuration section.
+
+### Configuration types:
+
+Scalars → replace
+Nested execution settings → merge
+Business distributions and mappings → replace
+
+### Rationale
+
+Business distributions describe complete probability models. Merging them with defaults can silently create invalid distributions and misleading datasets.
+
 ## Emerging Design Principle
 
 HealthSynth should expose a simple data generation interface while internally using simulation principles to create believable business behavior.
