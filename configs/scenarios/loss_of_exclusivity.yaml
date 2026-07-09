@@ -1,0 +1,4 @@
+scenario:
+  name: loss_of_exclusivity
+  description: Innovator product loses share after generic entry.
+  status: planned

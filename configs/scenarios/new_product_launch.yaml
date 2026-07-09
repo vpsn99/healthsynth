@@ -1,0 +1,4 @@
+scenario:
+  name: new_product_launch
+  description: New product launch with rising adoption over time.
+  status: planned
