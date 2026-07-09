@@ -34,6 +34,8 @@ class HCPGenerator(BaseGenerator):
     def generate(self, num_hcps: int = 1000) -> pd.DataFrame:
         rows = []
 
+        market_id = self.config["market"]["market_id"]
+
         specialties = list(self.config["specialty_distribution"].keys())
         specialty_probs = list(self.config["specialty_distribution"].values())
 
@@ -47,6 +49,7 @@ class HCPGenerator(BaseGenerator):
 
             rows.append(
                 {
+                    "market_id": market_id,
                     "hcp_id": hcp_id,
                     "hcp_name": self.fake.name(),
                     "specialty": self.rng.choice(specialties, p=specialty_probs),
@@ -103,7 +106,18 @@ class ProductGenerator(BaseGenerator):
         )
 
     def generate(self) -> pd.DataFrame:
-        return pd.DataFrame(self.config["products"])
+        market_id = self.config["market"]["market_id"]
+
+        products = []
+
+        for product in self.config["products"]:
+            row = {
+                "market_id": market_id,
+                **product,
+            }
+            products.append(row)
+
+        return pd.DataFrame(products)
 
 
 class MarketGenerator(BaseGenerator):

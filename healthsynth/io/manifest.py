@@ -4,6 +4,11 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from healthsynth.metadata import (
+    PACKAGE_VERSION,
+    SCHEMA_VERSION,
+)
+
 
 def write_manifest(
     *,
@@ -11,21 +16,28 @@ def write_manifest(
     datasets: dict,
     config: dict,
     output_format: str,
-    version: str = "0.1.0",
 ) -> None:
     """
     Write a HealthSynth dataset manifest describing the generated output.
     """
+    timings = {key: round(value, 2) for key, value in datasets.get("_timings", {}).items()}
 
     manifest = {
-        "healthsynth_version": version,
+        "healthsynth_version": PACKAGE_VERSION,
+        "schema_version": SCHEMA_VERSION,
         "generated_at": datetime.utcnow().isoformat() + "Z",
+        "market": {
+            "market_id": config["market"]["market_id"],
+            "market_name": config["market"]["market_name"],
+            "country": config["market"]["country"],
+            "locale": config.get("locale"),
+        },
         "profile": config.get("profile_name", "custom"),
         "scenario": config.get("scenario_name", "default"),
-        "locale": config.get("locale"),
         "seed": config.get("generation", {}).get("seed"),
+        "generation": config.get("generation", {}),
         "output_format": output_format,
-        "timings": datasets.get("_timings", {}),
+        "timings": timings,
         "datasets": {name: len(df) for name, df in datasets.items() if not name.startswith("_")},
     }
 

@@ -68,6 +68,7 @@ class CallActivityGenerator:
         start_date = pd.Timestamp("2023-01-01")
         end_date = start_date + pd.DateOffset(years=years)
 
+        market_id = self.config["market"]["market_id"]
         product_id = product.iloc[0]["product_id"]
         call_rows = []
         call_id = 1
@@ -93,6 +94,7 @@ class CallActivityGenerator:
 
                     call_rows.append(
                         {
+                            "market_id": market_id,
                             "call_id": f"CALL{call_id:09d}",
                             "call_date": call_date.date().isoformat(),
                             "hcp_id": hcp["hcp_id"],
@@ -130,6 +132,7 @@ class PrescriptionGenerator:
     ) -> pd.DataFrame:
         start_date = pd.Timestamp("2023-01-01")
         products = product.to_dict("records")
+        market_id = self.config["market"]["market_id"]
 
         months = pd.date_range(
             start=start_date,
@@ -184,6 +187,7 @@ class PrescriptionGenerator:
 
                     rows.append(
                         {
+                            "market_id": market_id,
                             "rx_id": f"RX{rx_id:09d}",
                             "rx_date": rx_date.date().isoformat(),
                             "hcp_id": hcp_id,

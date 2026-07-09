@@ -205,9 +205,14 @@ def test_referential_integrity(tmp_path):
         seed=42,
     )
 
+    market_ids = set(datasets["market"]["market_id"])
     hcp_ids = set(datasets["hcp_master"]["hcp_id"])
     product_ids = set(datasets["product"]["product_id"])
 
+    assert set(datasets["hcp_master"]["market_id"]).issubset(market_ids)
+    assert set(datasets["product"]["market_id"]).issubset(market_ids)
+    assert set(datasets["call_activity"]["market_id"]).issubset(market_ids)
+    assert set(datasets["prescriptions"]["market_id"]).issubset(market_ids)
     assert set(datasets["call_activity"]["hcp_id"]).issubset(hcp_ids)
     assert set(datasets["prescriptions"]["hcp_id"]).issubset(hcp_ids)
     assert set(datasets["call_activity"]["product_id"]).issubset(product_ids)
