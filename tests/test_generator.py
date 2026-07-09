@@ -16,6 +16,7 @@ def test_generate_returns_expected_tables(tmp_path):
         "product",
         "call_activity",
         "prescriptions",
+        "market",
     }
 
     assert expected_tables.issubset(set(datasets.keys()))
@@ -159,6 +160,7 @@ def test_csv_outputs_are_created_by_default(tmp_path):
     assert (tmp_path / "product.csv").exists()
     assert (tmp_path / "call_activity.csv").exists()
     assert (tmp_path / "prescriptions.csv").exists()
+    assert (tmp_path / "market.csv").exists()
     assert (tmp_path / "validation_report.md").exists()
     assert not (tmp_path / "healthsynth.duckdb").exists()
 
@@ -176,6 +178,7 @@ def test_all_output_format_creates_csv_and_duckdb(tmp_path):
     assert (tmp_path / "product.csv").exists()
     assert (tmp_path / "call_activity.csv").exists()
     assert (tmp_path / "prescriptions.csv").exists()
+    assert (tmp_path / "market.csv").exists()
     assert (tmp_path / "healthsynth.duckdb").exists()
     assert (tmp_path / "validation_report.md").exists()
 
@@ -230,6 +233,7 @@ def test_generation_is_deterministic(tmp_path):
     pd.testing.assert_frame_equal(first["product"], second["product"])
     pd.testing.assert_frame_equal(first["call_activity"], second["call_activity"])
     pd.testing.assert_frame_equal(first["prescriptions"], second["prescriptions"])
+    pd.testing.assert_frame_equal(first["market"], second["market"])
 
 
 def test_high_segment_hcps_receive_more_calls(tmp_path):
@@ -320,3 +324,19 @@ num_territories: 5
     territory_count = datasets["hcp_master"]["territory_id"].nunique()
 
     assert territory_count <= 5
+
+
+def test_market_table_is_generated(tmp_path):
+    datasets = generate(
+        hcps=10,
+        years=1,
+        output_dir=str(tmp_path),
+        seed=42,
+    )
+
+    market = datasets["market"]
+
+    assert len(market) == 1
+    assert {"market_id", "market_name", "country", "locale", "profile_name"}.issubset(
+        market.columns
+    )

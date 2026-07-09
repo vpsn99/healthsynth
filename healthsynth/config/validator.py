@@ -19,6 +19,7 @@ def validate_config(config: dict) -> None:
     _validate_distribution(config, "channel_distribution")
     _validate_products(config)
     _validate_affinity(config)
+    _validate_market(config)
 
 
 def _validate_generation(config: dict) -> None:
@@ -156,3 +157,16 @@ def _validate_affinity(config: dict) -> None:
                     f"specialty_product_affinity.{specialty}.{product_id} "
                     "must be greater than or equal to 0."
                 )
+
+
+def _validate_market(config: dict) -> None:
+    market = config.get("market")
+
+    if not market:
+        raise HealthSynthConfigurationError("market configuration is required.")
+
+    required_fields = ["market_id", "market_name", "country"]
+
+    for field in required_fields:
+        if not market.get(field):
+            raise HealthSynthConfigurationError(f"market.{field} is required.")

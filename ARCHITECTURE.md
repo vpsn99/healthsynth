@@ -225,3 +225,25 @@ CLI overrides execution settings.
 Business rules should be configurable whenever practical.
 Simulation realism is preferred over random generation.
 New capabilities should extend configuration rather than increase code branching.
+
+
+## First Class Concepts
+
+Commercial World
+
+├── Market
+├── Products
+├── HCPs
+├── Territories
+├── Representatives
+├── Campaigns
+
+Commercial Dynamics
+
+├── Calls
+├── Prescriptions
+├── Market Share
+├── Launch
+├── LOE
+├── Competition
+├── Seasonality

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from healthsynth.commercial.entities import generate_hcps, generate_products
+from healthsynth.commercial.entities import generate_hcps, generate_market, generate_products
 from healthsynth.commercial.facts import generate_call_activity, generate_prescriptions
 from healthsynth.config.loader import ConfigLoader
 from healthsynth.exporters.duckdb_exporter import write_duckdb
@@ -15,6 +15,7 @@ class CommercialSimulationResult:
     product: pd.DataFrame
     call_activity: pd.DataFrame
     prescriptions: pd.DataFrame
+    market: pd.DataFrame
 
     def as_dict(self) -> dict[str, pd.DataFrame]:
         return {
@@ -22,6 +23,7 @@ class CommercialSimulationResult:
             "product": self.product,
             "call_activity": self.call_activity,
             "prescriptions": self.prescriptions,
+            "market": self.market,
         }
 
 
@@ -45,6 +47,11 @@ class CommercialSimulation:
 
     def run(self) -> CommercialSimulationResult:
         config = ConfigLoader.load(self.config_path)
+
+        market = generate_market(
+            seed=self.seed,
+            config=config,
+        )
 
         hcp_master = generate_hcps(
             num_hcps=self.hcps,
@@ -75,6 +82,7 @@ class CommercialSimulation:
         )
 
         return CommercialSimulationResult(
+            market=market,
             hcp_master=hcp_master,
             product=product,
             call_activity=call_activity,

@@ -11,6 +11,11 @@ generation:
 locale: en_CA
 num_territories: 20
 
+market:
+  market_id: MKT_CA
+  market_name: Canada Commercial
+  country: Canada
+  
 specialty_distribution:
   Primary Care: 0.35
   Cardiology: 0.20

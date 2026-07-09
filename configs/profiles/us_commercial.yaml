@@ -10,6 +10,11 @@ generation:
 locale: en_US
 num_territories: 35
 
+market:
+  market_id: MKT_US
+  market_name: US Commercial
+  country: USA
+  
 specialty_distribution:
   Primary Care: 0.30
   Cardiology: 0.18

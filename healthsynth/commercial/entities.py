@@ -106,6 +106,37 @@ class ProductGenerator(BaseGenerator):
         return pd.DataFrame(self.config["products"])
 
 
+class MarketGenerator(BaseGenerator):
+    def __init__(
+        self,
+        seed: int = 42,
+        config: dict | None = None,
+        config_path: str | None = None,
+    ):
+        if config is None:
+            config = ConfigLoader.load(config_path)
+
+        super().__init__(
+            seed=seed,
+            config=config,
+        )
+
+    def generate(self) -> pd.DataFrame:
+        market = self.config["market"]
+
+        return pd.DataFrame(
+            [
+                {
+                    "market_id": market["market_id"],
+                    "market_name": market["market_name"],
+                    "country": market["country"],
+                    "locale": self.config.get("locale"),
+                    "profile_name": self.config.get("profile_name", "custom"),
+                }
+            ]
+        )
+
+
 def generate_hcps(
     num_hcps: int = 1000,
     seed: int = 42,
@@ -125,6 +156,18 @@ def generate_products(
     config_path: str | None = None,
 ) -> pd.DataFrame:
     return ProductGenerator(
+        seed=seed,
+        config=config,
+        config_path=config_path,
+    ).generate()
+
+
+def generate_market(
+    seed: int = 42,
+    config: dict | None = None,
+    config_path: str | None = None,
+) -> pd.DataFrame:
+    return MarketGenerator(
         seed=seed,
         config=config,
         config_path=config_path,

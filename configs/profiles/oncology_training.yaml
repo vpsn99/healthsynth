@@ -8,6 +8,11 @@ generation:
 
 num_territories: 12
 
+market:
+  market_id: MKT_ONC_CA
+  market_name: Oncology Training
+  country: Canada
+  
 specialty_distribution:
   Oncology: 0.75
   Primary Care: 0.10

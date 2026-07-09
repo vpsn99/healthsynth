@@ -75,4 +75,9 @@ DEFAULT_CONFIG = {
         "Email": 0.40,
         "Digital Ad": 0.25,
     },
+    "market": {
+        "market_id": "MKT_CA",
+        "market_name": "Canada Commercial",
+        "country": "Canada",
+    },
 }
