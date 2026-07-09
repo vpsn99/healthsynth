@@ -1,5 +1,10 @@
 from healthsynth.exceptions import HealthSynthConfigurationError
 
+VALID_BRAND_TYPES = {
+    "Innovator",
+    "Competitor",
+}
+
 
 def validate_config(config: dict) -> None:
     """
@@ -73,10 +78,56 @@ def _validate_products(config: dict) -> None:
         if not product_name:
             raise HealthSynthConfigurationError(f"products[{index}].product_name is required.")
 
+        manufacturer = product.get("manufacturer")
+        brand_type = product.get("brand_type")
+        baseline_market_share = product.get("baseline_market_share")
+
+        if not manufacturer:
+            raise HealthSynthConfigurationError(f"products[{index}].manufacturer is required.")
+
+        if not brand_type:
+            raise HealthSynthConfigurationError(f"products[{index}].brand_type is required.")
+
+        if baseline_market_share is None:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].baseline_market_share is required."
+            )
+
+        if brand_type not in VALID_BRAND_TYPES:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].brand_type must be one of: "
+                f"{', '.join(sorted(VALID_BRAND_TYPES))}"
+            )
+
+        if baseline_market_share < 0:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].baseline_market_share must be greater than or equal to 0."
+            )
+
         if product_id in seen_product_ids:
             raise HealthSynthConfigurationError(f"Duplicate product_id found: {product_id}")
 
-        seen_product_ids.add(product_id)
+    _validate_baseline_market_share(products)
+
+    seen_product_ids.add(product_id)
+
+
+def _validate_baseline_market_share(products: list[dict]) -> None:
+    shares_by_area = {}
+
+    for product in products:
+        therapeutic_area = product.get("therapeutic_area", "Unknown")
+        shares_by_area[therapeutic_area] = shares_by_area.get(therapeutic_area, 0.0) + float(
+            product.get("baseline_market_share", 0.0)
+        )
+
+    for therapeutic_area, total_share in shares_by_area.items():
+        if abs(total_share - 1.0) > 0.01:
+            raise HealthSynthConfigurationError(
+                "baseline_market_share must sum to approximately 1.0 "
+                f"within therapeutic_area '{therapeutic_area}'. "
+                f"Current sum: {total_share:.4f}"
+            )
 
 
 def _validate_affinity(config: dict) -> None:

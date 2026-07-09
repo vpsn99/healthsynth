@@ -16,27 +16,35 @@ specialty_distribution:
 
 
 products:
-
   - product_id: P001
     product_name: OncoNova
     therapeutic_area: Oncology
+    launch_date: "2023-01-01"
+    market: Canada
+    status: Active
     manufacturer: NVA Pharma
-    brand_type: Brand
-    market_share: 0.45
+    brand_type: Innovator
+    baseline_market_share: 0.45
 
   - product_id: P002
     product_name: Tumora
     therapeutic_area: Oncology
+    launch_date: "2022-07-01"
+    market: Canada
+    status: Active
     manufacturer: Competitor A
     brand_type: Competitor
-    market_share: 0.35
+    baseline_market_share: 0.35
 
   - product_id: P003
     product_name: Immunex
     therapeutic_area: Oncology
+    launch_date: "2021-01-01"
+    market: Canada
+    status: Active
     manufacturer: Competitor B
     brand_type: Competitor
-    market_share: 0.20
+    baseline_market_share: 0.20
 
 channel_distribution:
   Rep Call: 0.65

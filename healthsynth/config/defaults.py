@@ -28,6 +28,9 @@ DEFAULT_CONFIG = {
             "launch_date": "2023-01-01",
             "market": "Canada",
             "status": "Active",
+            "manufacturer": "NVA Pharma",
+            "brand_type": "Innovator",
+            "baseline_market_share": 1.00,
         },
         {
             "product_id": "P002",
@@ -36,6 +39,9 @@ DEFAULT_CONFIG = {
             "launch_date": "2022-07-01",
             "market": "Canada",
             "status": "Active",
+            "manufacturer": "NVA Pharma",
+            "brand_type": "Innovator",
+            "baseline_market_share": 1.00,
         },
         {
             "product_id": "P003",
@@ -44,6 +50,9 @@ DEFAULT_CONFIG = {
             "launch_date": "2021-01-01",
             "market": "Canada",
             "status": "Active",
+            "manufacturer": "NVA Pharma",
+            "brand_type": "Innovator",
+            "baseline_market_share": 1.00,
         },
     ],
     "specialty_product_affinity": {
