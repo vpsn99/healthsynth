@@ -407,3 +407,32 @@ def test_market_share_influences_prescription_distribution(tmp_path):
     ).iloc[0]["product_id"]
 
     assert top_share_product == top_rx_product
+
+
+def test_promotion_effect_table_is_generated(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/oncology_training.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    promotion_effect = datasets["promotion_effect"]
+
+    assert len(promotion_effect) > 0
+    assert {
+        "market_id",
+        "month",
+        "product_id",
+        "promotion_score",
+        "promotion_index",
+    }.issubset(promotion_effect.columns)
+
+
+def test_promotion_index_is_between_zero_and_one(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/oncology_training.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    promotion_effect = datasets["promotion_effect"]
+
+    assert promotion_effect["promotion_index"].between(0, 1).all()

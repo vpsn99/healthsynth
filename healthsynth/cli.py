@@ -41,6 +41,8 @@ def demo():
     console.print(f"Created {len(datasets['product'])} product records")
     if "market_share" in datasets:
         console.print(f"Created {len(datasets['market_share'])} market share records")
+    if "promotion_effect" in datasets:
+        console.print(f"Created {len(datasets['promotion_effect'])} promotion effect records")
     console.print(f"Created {len(datasets['call_activity'])} activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
 

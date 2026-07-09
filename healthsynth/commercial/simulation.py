@@ -3,7 +3,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from healthsynth.commercial.dynamics import generate_market_share
+from healthsynth.commercial.dynamics import (
+    generate_market_share,
+    generate_promotion_effect,
+)
 from healthsynth.commercial.entities import generate_hcps, generate_market, generate_products
 from healthsynth.commercial.facts import generate_call_activity, generate_prescriptions
 from healthsynth.config.loader import ConfigLoader
@@ -17,16 +20,18 @@ class CommercialSimulationResult:
     call_activity: pd.DataFrame
     prescriptions: pd.DataFrame
     market: pd.DataFrame
+    promotion_effect: pd.DataFrame
     market_share: pd.DataFrame
 
     def as_dict(self) -> dict[str, pd.DataFrame]:
         return {
+            "market": self.market,
             "hcp_master": self.hcp_master,
             "product": self.product,
+            "promotion_effect": self.promotion_effect,
+            "market_share": self.market_share,
             "call_activity": self.call_activity,
             "prescriptions": self.prescriptions,
-            "market": self.market,
-            "market_share": self.market_share,
         }
 
 
@@ -67,16 +72,23 @@ class CommercialSimulation:
             config=config,
         )
 
-        market_share = generate_market_share(
+        call_activity = generate_call_activity(
+            hcp_master=hcp_master,
             product=product,
             years=self.years,
             seed=self.seed,
             config=config,
         )
 
-        call_activity = generate_call_activity(
-            hcp_master=hcp_master,
+        promotion_effect = generate_promotion_effect(
+            call_activity=call_activity,
+            seed=self.seed,
+            config=config,
+        )
+
+        market_share = generate_market_share(
             product=product,
+            promotion_effect=promotion_effect,
             years=self.years,
             seed=self.seed,
             config=config,
@@ -96,8 +108,9 @@ class CommercialSimulation:
             market=market,
             hcp_master=hcp_master,
             product=product,
-            market_share=market_share,
             call_activity=call_activity,
+            promotion_effect=promotion_effect,
+            market_share=market_share,
             prescriptions=prescriptions,
         )
 
