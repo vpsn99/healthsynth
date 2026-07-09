@@ -1,4 +1,5 @@
-# HealthSynth demo configuration
+# HealthSynth US commercial profile
+profile_name: us_commercial
 
 generation:
   hcps: 1500
@@ -47,7 +48,7 @@ products:
     product_name: CardioOne
     therapeutic_area: Cardiology
     launch_date: "2023-01-01"
-    market: Canada
+    market: USA
     status: Active
     manufacturer: NVA Pharma
     brand_type: Innovator
@@ -57,7 +58,7 @@ products:
     product_name: NeuroMax
     therapeutic_area: Neurology
     launch_date: "2022-07-01"
-    market: Canada
+    market: USA
     status: Active
     manufacturer: NVA Pharma
     brand_type: Innovator
@@ -67,7 +68,7 @@ products:
     product_name: EndoCare
     therapeutic_area: Endocrinology
     launch_date: "2021-01-01"
-    market: Canada
+    market: USA
     status: Active
     manufacturer: NVA Pharma
     brand_type: Innovator
@@ -97,4 +98,8 @@ specialty_product_affinity:
   Pulmonology:
     P001: 0.30
     P002: 0.15
+    P003: 0.20
+  Gastroenterology:
+    P001: 0.15
+    P002: 0.10
     P003: 0.20

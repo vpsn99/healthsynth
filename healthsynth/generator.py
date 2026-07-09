@@ -7,6 +7,7 @@ from healthsynth.commercial.simulation import (
     write_duckdb_output,
 )
 from healthsynth.config.loader import ConfigLoader
+from healthsynth.io.manifest import write_manifest
 from healthsynth.validation.checks import validate_datasets
 
 
@@ -97,5 +98,12 @@ def generate(
 
     datasets = result.as_dict()
     datasets["_timings"] = timings
+
+    write_manifest(
+        output_dir=output_dir,
+        datasets=datasets,
+        config=config,
+        output_format=resolved_output_format,
+    )
 
     return datasets

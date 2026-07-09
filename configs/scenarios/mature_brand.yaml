@@ -1,3 +1,5 @@
+scenario_name: mature_brand
+
 scenario:
   name: mature_brand
   description: Stable market with mature products and slower growth.

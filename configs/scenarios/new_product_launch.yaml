@@ -1,3 +1,5 @@
+scenario_name: new_product_launch
+
 scenario:
   name: new_product_launch
   description: New product launch with rising adoption over time.

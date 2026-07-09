@@ -1,5 +1,7 @@
 # HealthSynth demo configuration
 
+profile_name: canada
+
 generation:
   hcps: 1000
   years: 3
