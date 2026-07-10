@@ -320,3 +320,33 @@ def test_market_demand_is_positive(tmp_path):
     )
 
     assert (datasets["market_demand"]["market_nrx"] >= 0).all()
+
+
+def test_prescriptions_match_monthly_market_demand(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/test_minimal.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    rx = datasets["prescriptions"].copy()
+    demand = datasets["market_demand"].copy()
+    products = datasets["product"][["product_id", "therapeutic_area"]]
+
+    rx["month"] = pd.to_datetime(rx["rx_date"]).dt.strftime("%Y-%m")
+    demand["month"] = pd.to_datetime(demand["month"]).dt.strftime("%Y-%m")
+
+    actual = (
+        rx.merge(products, on="product_id")
+        .groupby(["market_id", "month", "therapeutic_area"])["nrx"]
+        .sum()
+        .reset_index(name="actual_nrx")
+    )
+
+    expected = demand[["market_id", "month", "therapeutic_area", "market_nrx"]]
+
+    comparison = actual.merge(
+        expected,
+        on=["market_id", "month", "therapeutic_area"],
+    )
+
+    assert (comparison["actual_nrx"] == comparison["market_nrx"]).all()

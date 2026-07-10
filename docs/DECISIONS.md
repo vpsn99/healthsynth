@@ -605,6 +605,15 @@ Added market_id to generated datasets
 Manifest now includes market metadata
 Future commercial dynamics will be implemented at the market level
 
+## HS-018 — Separate Commercial Dynamics from Fact Generation
+
+### Decision
+
+Commercial behavior (market demand, promotion, market share) is modeled independently from transactional fact generation. Fact datasets consume commercial dynamics rather than recalculating them.
+
+### Rationale
+
+This separation mirrors how commercial analytics works in practice, keeps each component focused on a single responsibility, and allows new dynamics (competition, launches, patent expiry, pricing, etc.) to be added without rewriting downstream generators.
 
 ## Emerging Design Principle
 

@@ -1,3 +1,4 @@
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -52,36 +53,50 @@ class CommercialSimulation:
         self.scenario = scenario
         self.seed = seed
         self.config_path = config_path
+        self.stage_timings: dict[str, float] = {}
 
         if self.scenario != "new_product_launch":
             raise ValueError("Only new_product_launch is supported in v0.1")
 
     def run(self) -> CommercialSimulationResult:
-        config = ConfigLoader.load(self.config_path)
+        self.stage_timings = {}
 
+        start = time.perf_counter()
+        config = ConfigLoader.load(self.config_path)
+        self.stage_timings["config_load"] = time.perf_counter() - start
+
+        start = time.perf_counter()
         market = generate_market(
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["market"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         hcp_master = generate_hcps(
             num_hcps=self.hcps,
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["hcp_master"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         product = generate_products(
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["product"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         market_demand = generate_market_demand(
             product=product,
             years=self.years,
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["market_demand"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         call_activity = generate_call_activity(
             hcp_master=hcp_master,
             product=product,
@@ -89,13 +104,17 @@ class CommercialSimulation:
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["call_activity"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         promotion_effect = generate_promotion_effect(
             call_activity=call_activity,
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["promotion_effect"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         market_share = generate_market_share(
             product=product,
             promotion_effect=promotion_effect,
@@ -103,16 +122,20 @@ class CommercialSimulation:
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["market_share"] = time.perf_counter() - start
 
+        start = time.perf_counter()
         prescriptions = generate_prescriptions(
             hcp_master=hcp_master,
             product=product,
             call_activity=call_activity,
             market_share=market_share,
+            market_demand=market_demand,
             years=self.years,
             seed=self.seed,
             config=config,
         )
+        self.stage_timings["prescriptions"] = time.perf_counter() - start
 
         return CommercialSimulationResult(
             market=market,

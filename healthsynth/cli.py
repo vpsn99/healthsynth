@@ -137,6 +137,15 @@ def generate(
         for step, seconds in timings.items():
             console.print(f"- {step}: {seconds:.2f}s")
 
+    stage_timings = datasets.get("_stage_timings", {})
+
+    if stage_timings:
+        console.print("")
+        console.print("[bold]Simulation stage breakdown[/bold]")
+
+        for stage, seconds in stage_timings.items():
+            console.print(f"- {stage}: {seconds:.2f}s")
+
 
 if __name__ == "__main__":
     app()

@@ -129,85 +129,131 @@ class PrescriptionGenerator:
         product: pd.DataFrame,
         call_activity: pd.DataFrame,
         market_share: pd.DataFrame,
+        market_demand: pd.DataFrame,
         years: int = 3,
     ) -> pd.DataFrame:
-        start_date = pd.Timestamp("2023-01-01")
-        products = product.to_dict("records")
         market_id = self.config["market"]["market_id"]
-        market_share_lookup = self._build_market_share_lookup(market_share)
+
+        demand_lookup = self._build_market_demand_lookup(market_demand)
+        share_lookup = self._build_market_share_lookup(market_share)
+
+        call_summary = self._summarize_calls(call_activity)
+
+        start_date = pd.Timestamp("2023-01-01")
+        end_date = start_date + pd.DateOffset(years=years)
 
         months = pd.date_range(
             start=start_date,
-            periods=years * 12,
+            end=end_date,
             freq="MS",
+            inclusive="left",
         )
-
-        calls_by_hcp_month = self._summarize_calls(call_activity)
 
         rows = []
         rx_id = 1
 
-        for _, hcp in hcp_master.iterrows():
-            hcp_id = hcp["hcp_id"]
-            decile = int(hcp["decile"])
-            segment = hcp["segment"]
+        hcp_ids = hcp_master["hcp_id"].to_numpy()
+        hcp_specialties = hcp_master["specialty"].to_numpy()
+        hcp_deciles = hcp_master["decile"].astype(float).to_numpy()
 
-            base_nrx = self._base_nrx_from_decile(decile)
-            response_multiplier = self._response_multiplier(segment)
+        decile_weights = 0.25 + hcp_deciles / 10.0
 
-            for month_index, rx_date in enumerate(months):
-                for product_row in products:
-                    product_id = product_row["product_id"]
-
-                    month_key = rx_date.strftime("%Y-%m")
-                    adjusted_market_share = market_share_lookup.get(
-                        (month_key, product_id),
-                        float(product_row.get("baseline_market_share", 1.0)),
-                    )
-
-                    launch_effect = self._launch_adoption_effect(month_index)
-
-                    previous_month = rx_date - pd.DateOffset(months=1)
-                    previous_month_key = previous_month.strftime("%Y-%m")
-                    lagged_calls = calls_by_hcp_month.get((hcp_id, previous_month_key), 0)
-
-                    affinity = self._product_affinity(
-                        specialty=hcp["specialty"],
+        affinity_by_product = {
+            product_id: np.array(
+                [
+                    self._product_affinity(
+                        specialty=specialty,
                         product_id=product_id,
                     )
+                    for specialty in hcp_specialties
+                ],
+                dtype=float,
+            )
+            for product_id in product["product_id"]
+        }
 
-                    call_effect = self._call_response_effect(
-                        lagged_calls=lagged_calls,
-                        response_multiplier=response_multiplier,
+        for therapeutic_area, area_products in product.groupby("therapeutic_area"):
+            area_products = area_products.reset_index(drop=True)
+
+            for month_start in months:
+                month_key = month_start.strftime("%Y-%m")
+
+                market_nrx = demand_lookup.get(
+                    (month_key, therapeutic_area),
+                    0,
+                )
+
+                product_shares = np.array(
+                    [
+                        share_lookup.get(
+                            (
+                                month_key,
+                                therapeutic_area,
+                                product_row["product_id"],
+                            ),
+                            float(product_row["baseline_market_share"]),
+                        )
+                        for _, product_row in area_products.iterrows()
+                    ],
+                    dtype=float,
+                )
+
+                product_nrx_allocations = self._allocate_counts(
+                    total=market_nrx,
+                    weights=product_shares,
+                )
+
+                for product_index, product_row in area_products.iterrows():
+                    product_id = product_row["product_id"]
+                    product_nrx = int(product_nrx_allocations[product_index])
+
+                    affinity_weights = affinity_by_product[product_id]
+
+                    weighted_calls = np.array(
+                        [
+                            call_summary.get(
+                                (month_key, hcp_id, product_id),
+                                0.0,
+                            )
+                            for hcp_id in hcp_ids
+                        ],
+                        dtype=float,
                     )
 
-                    noise = self.rng.normal(loc=0, scale=1.5)
-                    seasonality = self._seasonality_factor(rx_date.month)
+                    engagement_weights = 1.0 + 0.15 * np.log1p(weighted_calls)
 
-                    nrx = (
-                        (base_nrx * launch_effect * affinity * adjusted_market_share)
-                        + (call_effect * affinity * adjusted_market_share)
-                        + noise
-                    ) * seasonality
-
-                    nrx = max(0, int(round(nrx)))
-
-                    trx_multiplier = self.rng.uniform(2.0, 3.5)
-                    trx = max(nrx, int(round(nrx * trx_multiplier)))
-
-                    rows.append(
-                        {
-                            "market_id": market_id,
-                            "rx_id": f"RX{rx_id:09d}",
-                            "rx_date": rx_date.date().isoformat(),
-                            "hcp_id": hcp_id,
-                            "product_id": product_id,
-                            "nrx": nrx,
-                            "trx": trx,
-                        }
+                    hcp_weights = np.maximum(
+                        0.001,
+                        affinity_weights * decile_weights * engagement_weights,
                     )
 
-                    rx_id += 1
+                    hcp_nrx_allocations = self._allocate_counts(
+                        total=product_nrx,
+                        weights=np.array(hcp_weights),
+                    )
+
+                    for hcp_position, hcp_id in enumerate(hcp_ids):
+                        nrx = int(hcp_nrx_allocations[hcp_position])
+
+                        trx_multiplier = max(
+                            1.0,
+                            self.rng.normal(loc=2.2, scale=0.25),
+                        )
+                        trx = max(nrx, int(round(nrx * trx_multiplier)))
+
+                        rows.append(
+                            {
+                                "market_id": market_id,
+                                "rx_id": f"RX{rx_id:09d}",
+                                "rx_date": month_start.date().isoformat(),
+                                "hcp_id": hcp_id,
+                                "product_id": product_id,
+                                "nrx": nrx,
+                                "trx": trx,
+                            }
+                        )
+
+                        rx_id += 1
 
         return pd.DataFrame(rows)
 
@@ -249,6 +295,51 @@ class PrescriptionGenerator:
             ] = float(row["adjusted_market_share"])
 
         return lookup
+
+    @staticmethod
+    def _build_market_demand_lookup(
+        market_demand: pd.DataFrame,
+    ) -> dict:
+        return {
+            (
+                pd.to_datetime(row["month"]).strftime("%Y-%m"),
+                row["therapeutic_area"],
+            ): int(row["market_nrx"])
+            for _, row in market_demand.iterrows()
+        }
+
+    @staticmethod
+    def _build_market_share_lookup(
+        market_share: pd.DataFrame,
+    ) -> dict:
+        return {
+            (
+                pd.to_datetime(row["month"]).strftime("%Y-%m"),
+                row["therapeutic_area"],
+                row["product_id"],
+            ): float(row["adjusted_market_share"])
+            for _, row in market_share.iterrows()
+        }
+
+    def _allocate_counts(
+        self,
+        total: int,
+        weights: np.ndarray,
+    ) -> np.ndarray:
+        if total <= 0:
+            return np.zeros(len(weights), dtype=int)
+
+        weights = np.asarray(weights, dtype=float)
+        weights = np.clip(weights, 0.0, None)
+
+        weight_sum = weights.sum()
+
+        if weight_sum <= 0:
+            probabilities = np.full(len(weights), 1.0 / len(weights))
+        else:
+            probabilities = weights / weight_sum
+
+        return self.rng.multinomial(total, probabilities)
 
     @staticmethod
     def _call_response_effect(
@@ -317,6 +408,7 @@ def generate_prescriptions(
     product: pd.DataFrame,
     call_activity: pd.DataFrame,
     market_share: pd.DataFrame,
+    market_demand: pd.DataFrame,
     years: int = 3,
     seed: int = 42,
     config: dict | None = None,
@@ -331,6 +423,7 @@ def generate_prescriptions(
         product=product,
         call_activity=call_activity,
         market_share=market_share,
+        market_demand=market_demand,
         years=years,
     )
 

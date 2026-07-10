@@ -99,6 +99,10 @@ def generate(
     datasets = result.as_dict()
     datasets["_timings"] = timings
 
+    datasets["_stage_timings"] = {
+        key: round(value, 2) for key, value in simulation.stage_timings.items()
+    }
+
     write_manifest(
         output_dir=output_dir,
         datasets=datasets,
