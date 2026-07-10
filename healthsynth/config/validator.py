@@ -83,6 +83,37 @@ def _validate_products(config: dict) -> None:
         brand_type = product.get("brand_type")
         baseline_market_share = product.get("baseline_market_share")
 
+        adoption_curve = product.get("adoption_curve")
+        adoption_months = product.get("adoption_months")
+        launch_share_factor = product.get("launch_share_factor")
+
+        promotion_adoption_weight = product.get("promotion_adoption_weight")
+
+        if promotion_adoption_weight is not None and not 0 <= promotion_adoption_weight <= 1:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].promotion_adoption_weight must be between 0 and 1."
+            )
+
+        if adoption_curve is not None and adoption_curve != "linear":
+            raise HealthSynthConfigurationError(
+                f"products[{index}].adoption_curve currently supports only 'linear'."
+            )
+
+        if adoption_months is not None and adoption_months <= 0:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].adoption_months must be greater than 0."
+            )
+
+        if launch_share_factor is not None and not 0 <= launch_share_factor <= 1:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].launch_share_factor must be between 0 and 1."
+            )
+
+        if adoption_curve is not None and adoption_months is None:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].adoption_months is required when adoption_curve is configured."
+            )
+
         if not manufacturer:
             raise HealthSynthConfigurationError(f"products[{index}].manufacturer is required.")
 
@@ -108,9 +139,9 @@ def _validate_products(config: dict) -> None:
         if product_id in seen_product_ids:
             raise HealthSynthConfigurationError(f"Duplicate product_id found: {product_id}")
 
-    _validate_baseline_market_share(products)
+        seen_product_ids.add(product_id)
 
-    seen_product_ids.add(product_id)
+    _validate_baseline_market_share(products)
 
 
 def _validate_baseline_market_share(products: list[dict]) -> None:

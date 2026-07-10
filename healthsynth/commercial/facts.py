@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 from healthsynth.config.loader import ConfigLoader
+from healthsynth.simulation.calendar import build_simulation_months
 
 
 class CallActivityGenerator:
@@ -65,20 +66,41 @@ class CallActivityGenerator:
         product: pd.DataFrame,
         years: int = 3,
     ) -> pd.DataFrame:
-        start_date = pd.Timestamp("2023-01-01")
-        end_date = start_date + pd.DateOffset(years=years)
+
+        start_date = self.config.get("generation", {}).get(
+            "start_date",
+            "2023-01-01",
+        )
+
+        months = build_simulation_months(
+            start_date=start_date,
+            years=years,
+        )
 
         market_id = self.config["market"]["market_id"]
-        product_id = product.iloc[0]["product_id"]
+        product_data = product.copy()
+        product_data["launch_date"] = pd.to_datetime(product_data["launch_date"])
+
+        active_products_by_month = {
+            month_start: product_data.loc[
+                product_data["launch_date"] <= month_start,
+                "product_id",
+            ].to_numpy()
+            for month_start in months
+        }
+
         call_rows = []
         call_id = 1
 
         for _, hcp in hcp_master.iterrows():
             segment = hcp["segment"]
 
-            months = pd.date_range(start=start_date, end=end_date, freq="MS", inclusive="left")
-
             for month_start in months:
+                active_product_ids = active_products_by_month[month_start]
+
+                if len(active_product_ids) == 0:
+                    continue
+
                 monthly_call_rate = self._monthly_call_rate(
                     decile=int(hcp["decile"]),
                     segment=segment,
@@ -88,8 +110,15 @@ class CallActivityGenerator:
                 num_calls = int(self.rng.poisson(monthly_call_rate))
 
                 for _ in range(num_calls):
-                    days_in_month = month_start.days_in_month
-                    call_day = int(self.rng.integers(1, days_in_month + 1))
+                    product_id = self.rng.choice(active_product_ids)
+
+                    call_day = int(
+                        self.rng.integers(
+                            1,
+                            month_start.days_in_month + 1,
+                        )
+                    )
+
                     call_date = month_start.replace(day=call_day)
 
                     call_rows.append(
@@ -99,14 +128,29 @@ class CallActivityGenerator:
                             "call_date": call_date.date().isoformat(),
                             "hcp_id": hcp["hcp_id"],
                             "rep_id": hcp["rep_id"],
-                            "product_id": product_id,
+                            "product_id": str(product_id),
                             "channel": self._choose_channel(),
                             "sample_dropped": bool(self.rng.random() < 0.25),
                         }
                     )
+
                     call_id += 1
 
-        return pd.DataFrame(call_rows)
+        columns = [
+            "market_id",
+            "call_id",
+            "call_date",
+            "hcp_id",
+            "rep_id",
+            "product_id",
+            "channel",
+            "sample_dropped",
+        ]
+
+        return pd.DataFrame(
+            call_rows,
+            columns=columns,
+        )
 
 
 class PrescriptionGenerator:
@@ -139,14 +183,14 @@ class PrescriptionGenerator:
 
         call_summary = self._summarize_calls(call_activity)
 
-        start_date = pd.Timestamp("2023-01-01")
-        end_date = start_date + pd.DateOffset(years=years)
+        start_date = self.config.get("generation", {}).get(
+            "start_date",
+            "2023-01-01",
+        )
 
-        months = pd.date_range(
-            start=start_date,
-            end=end_date,
-            freq="MS",
-            inclusive="left",
+        months = build_simulation_months(
+            start_date=start_date,
+            years=years,
         )
 
         rows = []
