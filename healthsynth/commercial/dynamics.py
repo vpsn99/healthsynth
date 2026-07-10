@@ -4,6 +4,70 @@ import pandas as pd
 from healthsynth.config.loader import ConfigLoader
 
 
+class CommercialDemandGenerator:
+    def __init__(
+        self,
+        seed: int = 42,
+        config: dict | None = None,
+        config_path: str | None = None,
+    ):
+        if config is None:
+            config = ConfigLoader.load(config_path)
+
+        self.seed = seed
+        self.config = config
+        self.rng = np.random.default_rng(seed + 3000)
+
+    def generate(
+        self,
+        product: pd.DataFrame,
+        years: int = 3,
+    ) -> pd.DataFrame:
+        market_id = self.config["market"]["market_id"]
+        demand_config = self.config["market_demand"]
+
+        start_date = pd.Timestamp("2023-01-01")
+        end_date = start_date + pd.DateOffset(years=years)
+        months = pd.date_range(
+            start=start_date,
+            end=end_date,
+            freq="MS",
+            inclusive="left",
+        )
+
+        therapeutic_areas = sorted(product["therapeutic_area"].unique())
+        rows = []
+
+        for area in therapeutic_areas:
+            base_market_nrx = float(demand_config["base_monthly_nrx"].get(area, 500))
+
+            for month_index, month_start in enumerate(months):
+                growth_factor = (1 + float(demand_config["monthly_growth_rate"])) ** month_index
+
+                seasonality_factor = float(demand_config["seasonality"].get(month_start.month, 1.0))
+
+                noise = self.rng.normal(loc=1.0, scale=0.03)
+
+                market_nrx = max(
+                    0,
+                    int(round(base_market_nrx * growth_factor * seasonality_factor * noise)),
+                )
+
+                rows.append(
+                    {
+                        "market_id": market_id,
+                        "month": month_start.date().isoformat(),
+                        "therapeutic_area": area,
+                        "base_market_nrx": base_market_nrx,
+                        "growth_factor": growth_factor,
+                        "seasonality_factor": seasonality_factor,
+                        "market_nrx": market_nrx,
+                    }
+                )
+
+        return pd.DataFrame(rows)
+
+
 class PromotionEffectGenerator:
     def __init__(
         self,
@@ -179,3 +243,20 @@ def generate_promotion_effect(
         config=config,
         config_path=config_path,
     ).generate(call_activity=call_activity)
+
+
+def generate_market_demand(
+    product: pd.DataFrame,
+    years: int = 3,
+    seed: int = 42,
+    config: dict | None = None,
+    config_path: str | None = None,
+) -> pd.DataFrame:
+    return CommercialDemandGenerator(
+        seed=seed,
+        config=config,
+        config_path=config_path,
+    ).generate(
+        product=product,
+        years=years,
+    )

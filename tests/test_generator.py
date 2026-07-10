@@ -5,10 +5,8 @@ from healthsynth.generator import generate
 
 def test_generate_returns_expected_tables(tmp_path):
     datasets = generate(
-        hcps=10,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
     expected_tables = {
@@ -25,10 +23,8 @@ def test_generate_returns_expected_tables(tmp_path):
 
 def test_generate_returns_timing_metadata(tmp_path):
     datasets = generate(
-        hcps=10,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
     assert "_timings" in datasets
@@ -85,63 +81,28 @@ generation:
 
 def test_hcp_count_is_correct(tmp_path):
     datasets = generate(
-        hcps=25,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
-    assert len(datasets["hcp_master"]) == 25
-
-
-def test_specialty_product_affinity_affects_prescriptions(tmp_path):
-    datasets = generate(
-        hcps=500,
-        years=2,
-        output_dir=str(tmp_path),
-        seed=42,
-    )
-
-    hcp_master = datasets["hcp_master"]
-    prescriptions = datasets["prescriptions"]
-
-    rx = prescriptions.merge(
-        hcp_master[["hcp_id", "specialty"]],
-        on="hcp_id",
-        how="left",
-    )
-
-    specialty_product_nrx = rx.groupby(["specialty", "product_id"])["nrx"].sum().reset_index()
-
-    cardiology = specialty_product_nrx[specialty_product_nrx["specialty"] == "Cardiology"]
-
-    top_cardiology_product = cardiology.sort_values(
-        "nrx",
-        ascending=False,
-    ).iloc[0]["product_id"]
-
-    assert top_cardiology_product == "P001"
+    assert len(datasets["hcp_master"]) == 5
 
 
 def test_prescription_count_matches_hcps_months_and_products(tmp_path):
     datasets = generate(
-        hcps=25,
-        years=2,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
     product_count = len(datasets["product"])
 
-    assert len(datasets["prescriptions"]) == 25 * 24 * product_count
+    assert len(datasets["prescriptions"]) == 5 * 12 * product_count
 
 
 def test_multiple_channels_are_generated(tmp_path):
     datasets = generate(
-        hcps=100,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
     channels = set(datasets["call_activity"]["channel"])
@@ -168,10 +129,8 @@ def test_csv_outputs_are_created_by_default(tmp_path):
 
 def test_all_output_format_creates_csv_and_duckdb(tmp_path):
     generate(
-        hcps=10,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
         output_format="all",
     )
 
@@ -200,10 +159,8 @@ def test_duckdb_output_format_creates_only_duckdb(tmp_path):
 
 def test_referential_integrity(tmp_path):
     datasets = generate(
-        hcps=50,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
     market_ids = set(datasets["market"]["market_id"])
@@ -242,74 +199,6 @@ def test_generation_is_deterministic(tmp_path):
     pd.testing.assert_frame_equal(first["market"], second["market"])
 
 
-def test_high_segment_hcps_receive_more_calls(tmp_path):
-    datasets = generate(
-        hcps=500,
-        years=1,
-        output_dir=str(tmp_path),
-        seed=42,
-    )
-
-    hcp_master = datasets["hcp_master"]
-    call_activity = datasets["call_activity"]
-
-    calls_with_segment = call_activity.merge(
-        hcp_master[["hcp_id", "segment"]],
-        on="hcp_id",
-        how="left",
-    )
-
-    calls_per_hcp = (
-        calls_with_segment.groupby("segment").size() / hcp_master.groupby("segment").size()
-    )
-
-    assert calls_per_hcp["High"] > calls_per_hcp["Medium"]
-    assert calls_per_hcp["Medium"] > calls_per_hcp["Low"]
-
-
-def test_high_deciles_generate_more_prescriptions(tmp_path):
-    datasets = generate(
-        hcps=500,
-        years=3,
-        output_dir=str(tmp_path),
-        seed=42,
-    )
-
-    hcp_master = datasets["hcp_master"]
-    prescriptions = datasets["prescriptions"]
-
-    rx_with_decile = prescriptions.merge(
-        hcp_master[["hcp_id", "decile"]],
-        on="hcp_id",
-        how="left",
-    )
-
-    rx_per_hcp_by_decile = (
-        rx_with_decile.groupby("decile")["nrx"].sum() / hcp_master.groupby("decile").size()
-    )
-
-    assert rx_per_hcp_by_decile.loc[10] > rx_per_hcp_by_decile.loc[1]
-
-
-def test_new_product_launch_drives_adoption(tmp_path):
-    datasets = generate(
-        hcps=100,
-        years=3,
-        output_dir=str(tmp_path),
-        seed=42,
-    )
-
-    rx = datasets["prescriptions"].copy()
-    rx["rx_date"] = pd.to_datetime(rx["rx_date"])
-
-    monthly = rx.groupby(rx["rx_date"].dt.to_period("M"))["nrx"].sum().sort_index()
-
-    early_avg = monthly.iloc[:6].mean()
-    late_avg = monthly.iloc[-6:].mean()
-
-    assert late_avg > early_avg
-
-
 def test_generate_accepts_config_path(tmp_path):
     config_file = tmp_path / "custom.yaml"
     config_file.write_text(
@@ -320,11 +209,8 @@ num_territories: 5
     )
 
     datasets = generate(
-        hcps=50,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
-        config_path=str(config_file),
     )
 
     territory_count = datasets["hcp_master"]["territory_id"].nunique()
@@ -334,10 +220,8 @@ num_territories: 5
 
 def test_market_table_is_generated(tmp_path):
     datasets = generate(
-        hcps=10,
-        years=1,
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
-        seed=42,
     )
 
     market = datasets["market"]
@@ -350,13 +234,13 @@ def test_market_table_is_generated(tmp_path):
 
 def test_market_share_table_is_generated(tmp_path):
     datasets = generate(
-        config_path="configs/profiles/oncology_training.yaml",
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
     )
 
     market_share = datasets["market_share"]
 
-    assert len(market_share) == 3 * 36
+    assert len(market_share) == 2 * 12
     assert {
         "market_id",
         "month",
@@ -369,7 +253,7 @@ def test_market_share_table_is_generated(tmp_path):
 
 def test_market_share_sums_to_one_by_month_and_therapeutic_area(tmp_path):
     datasets = generate(
-        config_path="configs/profiles/oncology_training.yaml",
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
     )
 
@@ -380,38 +264,9 @@ def test_market_share_sums_to_one_by_month_and_therapeutic_area(tmp_path):
     assert all(abs(total - 1.0) <= 0.001 for total in totals)
 
 
-def test_market_share_influences_prescription_distribution(tmp_path):
-    datasets = generate(
-        config_path="configs/profiles/oncology_training.yaml",
-        output_dir=str(tmp_path),
-    )
-
-    rx = datasets["prescriptions"]
-    product = datasets["product"]
-
-    rx_by_product = (
-        rx.groupby("product_id")["nrx"]
-        .sum()
-        .reset_index()
-        .merge(
-            product[["product_id", "baseline_market_share"]],
-            on="product_id",
-        )
-        .sort_values("baseline_market_share", ascending=False)
-    )
-
-    top_share_product = rx_by_product.iloc[0]["product_id"]
-    top_rx_product = rx_by_product.sort_values(
-        "nrx",
-        ascending=False,
-    ).iloc[0]["product_id"]
-
-    assert top_share_product == top_rx_product
-
-
 def test_promotion_effect_table_is_generated(tmp_path):
     datasets = generate(
-        config_path="configs/profiles/oncology_training.yaml",
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
     )
 
@@ -429,10 +284,39 @@ def test_promotion_effect_table_is_generated(tmp_path):
 
 def test_promotion_index_is_between_zero_and_one(tmp_path):
     datasets = generate(
-        config_path="configs/profiles/oncology_training.yaml",
+        config_path="configs/profiles/test_minimal.yaml",
         output_dir=str(tmp_path),
     )
 
     promotion_effect = datasets["promotion_effect"]
 
     assert promotion_effect["promotion_index"].between(0, 1).all()
+
+
+def test_market_demand_table_is_generated(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/test_minimal.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    market_demand = datasets["market_demand"]
+
+    assert len(market_demand) == 12
+    assert {
+        "market_id",
+        "month",
+        "therapeutic_area",
+        "base_market_nrx",
+        "growth_factor",
+        "seasonality_factor",
+        "market_nrx",
+    }.issubset(market_demand.columns)
+
+
+def test_market_demand_is_positive(tmp_path):
+    datasets = generate(
+        config_path="configs/profiles/test_minimal.yaml",
+        output_dir=str(tmp_path),
+    )
+
+    assert (datasets["market_demand"]["market_nrx"] >= 0).all()

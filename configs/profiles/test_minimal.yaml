@@ -1,0 +1,62 @@
+profile_name: test_minimal
+
+generation:
+  hcps: 5
+  years: 1
+  seed: 42
+  output_format: csv
+
+locale: en_CA
+
+market:
+  market_id: MKT_TEST
+  market_name: Test Market
+  country: Testland
+
+num_territories: 2
+
+specialty_distribution:
+  Primary Care: 0.50
+  Oncology: 0.50
+
+decile_distribution:
+  1: 0.20
+  5: 0.40
+  10: 0.40
+
+products:
+  - product_id: P001
+    product_name: TestBrand
+    therapeutic_area: Oncology
+    launch_date: "2023-01-01"
+    market: Testland
+    status: Active
+    manufacturer: NVA Pharma
+    brand_type: Innovator
+    baseline_market_share: 0.60
+
+  - product_id: P002
+    product_name: TestCompetitor
+    therapeutic_area: Oncology
+    launch_date: "2022-01-01"
+    market: Testland
+    status: Active
+    manufacturer: Competitor A
+    brand_type: Competitor
+    baseline_market_share: 0.40
+
+specialty_product_affinity:
+  Oncology:
+    P001: 1.00
+    P002: 0.80
+  Primary Care:
+    P001: 0.30
+    P002: 0.20
+
+channel_distribution:
+  Rep Call: 0.70
+  Email: 0.30
+
+channel_response_multiplier:
+  Rep Call: 1.00
+  Email: 0.40

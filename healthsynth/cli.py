@@ -45,6 +45,8 @@ def demo():
         console.print(f"Created {len(datasets['promotion_effect'])} promotion effect records")
     console.print(f"Created {len(datasets['call_activity'])} activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
+    if "market_demand" in datasets:
+        console.print(f"Created {len(datasets['market_demand'])} market demand records")
 
     console.print("Output written to: demo_output")
     console.print(f"Generation time: {elapsed_seconds:.2f} seconds")
@@ -118,6 +120,8 @@ def generate(
         console.print(f"Created {len(datasets['market_share'])} market share records")
     console.print(f"Created {len(datasets['call_activity'])} call activity records")
     console.print(f"Created {len(datasets['prescriptions'])} prescription records")
+    if "market_demand" in datasets:
+        console.print(f"Created {len(datasets['market_demand'])} market demand records")
     if output_format in ["duckdb", "all"]:
         console.print(f"Created DuckDB database: {output_dir}/healthsynth.duckdb")
     if output_format in ["csv", "all"]:

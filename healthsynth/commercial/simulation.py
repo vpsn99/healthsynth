@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 from healthsynth.commercial.dynamics import (
+    generate_market_demand,
     generate_market_share,
     generate_promotion_effect,
 )
@@ -22,6 +23,7 @@ class CommercialSimulationResult:
     market: pd.DataFrame
     promotion_effect: pd.DataFrame
     market_share: pd.DataFrame
+    market_demand: pd.DataFrame
 
     def as_dict(self) -> dict[str, pd.DataFrame]:
         return {
@@ -32,6 +34,7 @@ class CommercialSimulationResult:
             "market_share": self.market_share,
             "call_activity": self.call_activity,
             "prescriptions": self.prescriptions,
+            "market_demand": self.market_demand,
         }
 
 
@@ -72,6 +75,13 @@ class CommercialSimulation:
             config=config,
         )
 
+        market_demand = generate_market_demand(
+            product=product,
+            years=self.years,
+            seed=self.seed,
+            config=config,
+        )
+
         call_activity = generate_call_activity(
             hcp_master=hcp_master,
             product=product,
@@ -108,6 +118,7 @@ class CommercialSimulation:
             market=market,
             hcp_master=hcp_master,
             product=product,
+            market_demand=market_demand,
             call_activity=call_activity,
             promotion_effect=promotion_effect,
             market_share=market_share,
