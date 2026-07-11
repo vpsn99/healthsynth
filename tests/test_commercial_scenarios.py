@@ -384,3 +384,57 @@ def test_share_source_weights_have_no_effect_before_launch(
     )
 
     assert redistributed == normalized_shares
+
+
+def test_loe_reduces_product_market_share_over_time():
+    config = {
+        "market": {
+            "market_id": "MKT_TEST",
+        }
+    }
+
+    products = pd.DataFrame(
+        [
+            {
+                "product_id": "P001",
+                "product_name": "ProtectedBrand",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2022-01-01",
+                "baseline_market_share": 0.60,
+                "loe_date": "2024-01-01",
+                "loe_erosion_months": 6,
+                "post_loe_share_factor": 0.30,
+            },
+            {
+                "product_id": "P002",
+                "product_name": "Competitor",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2022-01-01",
+                "baseline_market_share": 0.40,
+            },
+        ]
+    )
+
+    market_share = generate_market_share(
+        product=products,
+        promotion_effect=None,
+        years=2,
+        seed=42,
+        config=config,
+    )
+
+    product_share = market_share[market_share["product_id"] == "P001"].copy()
+
+    product_share["month"] = pd.to_datetime(product_share["month"])
+
+    pre_loe_share = product_share.loc[
+        product_share["month"] == pd.Timestamp("2023-12-01"),
+        "adjusted_market_share",
+    ].iloc[0]
+
+    post_loe_share = product_share.loc[
+        product_share["month"] == pd.Timestamp("2024-07-01"),
+        "adjusted_market_share",
+    ].iloc[0]
+
+    assert post_loe_share < pre_loe_share

@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+from healthsynth.commercial.events import calculate_loe_factor
 from healthsynth.config.loader import ConfigLoader
 from healthsynth.simulation.calendar import build_simulation_months
 
@@ -179,12 +180,23 @@ class MarketShareGenerator:
                         promotion_effect_value = 0.10 * promotion_index
                         noise = self.rng.normal(loc=0.0, scale=0.01)
 
+                        loe_factor = calculate_loe_factor(
+                            product_row=product_row,
+                            month_start=month_start,
+                        )
+
+                        if effective_adoption_factor == 0.0:
+                            adjusted_score = 0.0
+                        else:
+                            promotion_effect_value = 0.10 * promotion_index
+                            noise = self.rng.normal(loc=0.0, scale=0.01)
+
                         mature_score = max(
                             0.001,
                             baseline_share + promotion_effect_value + noise,
                         )
 
-                        adjusted_score = mature_score * effective_adoption_factor
+                        adjusted_score = mature_score * effective_adoption_factor * loe_factor
 
                     raw_scores.append(
                         {
@@ -197,6 +209,7 @@ class MarketShareGenerator:
                             "promotion_acceleration": promotion_acceleration,
                             "effective_adoption_factor": effective_adoption_factor,
                             "raw_score": adjusted_score,
+                            "loe_factor": loe_factor,
                         }
                     )
 
@@ -232,6 +245,7 @@ class MarketShareGenerator:
                             "promotion_acceleration": row["promotion_acceleration"],
                             "effective_adoption_factor": row["effective_adoption_factor"],
                             "adjusted_market_share": adjusted_market_share,
+                            "loe_factor": row["loe_factor"],
                         }
                     )
 

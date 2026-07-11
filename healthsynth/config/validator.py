@@ -1,3 +1,5 @@
+import pandas as pd
+
 from healthsynth.exceptions import HealthSynthConfigurationError
 
 VALID_BRAND_TYPES = {
@@ -86,10 +88,41 @@ def _validate_products(config: dict) -> None:
         adoption_curve = product.get("adoption_curve")
         adoption_months = product.get("adoption_months")
         launch_share_factor = product.get("launch_share_factor")
-
         promotion_adoption_weight = product.get("promotion_adoption_weight")
 
+        loe_date = product.get("loe_date")
+        loe_erosion_months = product.get("loe_erosion_months")
+        post_loe_share_factor = product.get("post_loe_share_factor")
+
         share_source_weights = product.get("share_source_weights")
+
+        if loe_date is not None:
+            try:
+                pd.Timestamp(loe_date)
+            except (TypeError, ValueError) as exc:
+                raise HealthSynthConfigurationError(
+                    f"products[{index}].loe_date must be a valid date."
+                ) from exc
+
+        if loe_erosion_months is not None and loe_erosion_months <= 0:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].loe_erosion_months must be greater than 0."
+            )
+
+        if post_loe_share_factor is not None and not 0 <= post_loe_share_factor <= 1:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].post_loe_share_factor must be between 0 and 1."
+            )
+
+        if loe_date is not None and loe_erosion_months is None:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].loe_erosion_months is required when loe_date is configured."
+            )
+
+        if loe_date is not None and post_loe_share_factor is None:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].post_loe_share_factor is required when loe_date is configured."
+            )
 
         if share_source_weights is not None:
             if not isinstance(share_source_weights, dict):
