@@ -177,3 +177,180 @@ products:
 
     with pytest.raises(HealthSynthConfigurationError):
         ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_accepts_valid_share_source_weights(
+    tmp_path,
+):
+    config_file = tmp_path / "valid_config.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.45
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Oncology
+    baseline_market_share: 0.35
+    launch_date: "2022-01-01"
+
+  - product_id: P003
+    product_name: Launch Product
+    manufacturer: Pharma C
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.20
+    launch_date: "2023-05-01"
+    share_source_weights:
+      P001: 0.35
+      P002: 0.65
+""",
+        encoding="utf-8",
+    )
+
+    config = ConfigLoader.load(str(config_file))
+
+    assert config["products"][2]["share_source_weights"] == {
+        "P001": 0.35,
+        "P002": 0.65,
+    }
+
+
+def test_config_validation_rejects_share_source_weights_not_summing_to_one(
+    tmp_path,
+):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.45
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Oncology
+    baseline_market_share: 0.35
+    launch_date: "2022-01-01"
+
+  - product_id: P003
+    product_name: Launch Product
+    manufacturer: Pharma C
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.20
+    launch_date: "2023-05-01"
+    share_source_weights:
+      P001: 0.20
+      P002: 0.30
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        HealthSynthConfigurationError,
+        match="share_source_weights must sum",
+    ):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_rejects_share_source_self_reference(
+    tmp_path,
+):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.45
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Oncology
+    baseline_market_share: 0.35
+    launch_date: "2022-01-01"
+
+  - product_id: P003
+    product_name: Launch Product
+    manufacturer: Pharma C
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.20
+    launch_date: "2023-05-01"
+    share_source_weights:
+      P001: 0.50
+      P003: 0.50
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        HealthSynthConfigurationError,
+        match="cannot reference the same product",
+    ):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_rejects_unknown_share_source_product(
+    tmp_path,
+):
+    config_file = tmp_path / "bad_config.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.45
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Oncology
+    baseline_market_share: 0.35
+    launch_date: "2022-01-01"
+
+  - product_id: P003
+    product_name: Launch Product
+    manufacturer: Pharma C
+    brand_type: Innovator
+    therapeutic_area: Oncology
+    baseline_market_share: 0.20
+    launch_date: "2023-05-01"
+    share_source_weights:
+      P001: 0.50
+      P999: 0.50
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        HealthSynthConfigurationError,
+        match="references unknown product",
+    ):
+        ConfigLoader.load(str(config_file))

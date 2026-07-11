@@ -1,7 +1,10 @@
 import pandas as pd
 import pytest
 
-from healthsynth.commercial.dynamics import generate_market_share
+from healthsynth.commercial.dynamics import (
+    MarketShareGenerator,
+    generate_market_share,
+)
 from healthsynth.commercial.facts import generate_call_activity
 
 
@@ -118,6 +121,41 @@ def launch_market_share():
         seed=42,
         config=config,
     )
+
+
+@pytest.fixture
+def share_redistribution_setup():
+    generator = MarketShareGenerator(
+        seed=42,
+        config={
+            "market": {
+                "market_id": "MKT_TEST",
+            }
+        },
+    )
+
+    area_products = pd.DataFrame(
+        [
+            {
+                "product_id": "P001",
+                "therapeutic_area": "Oncology",
+            },
+            {
+                "product_id": "P002",
+                "therapeutic_area": "Oncology",
+            },
+            {
+                "product_id": "P003",
+                "therapeutic_area": "Oncology",
+                "share_source_weights": {
+                    "P001": 0.35,
+                    "P002": 0.65,
+                },
+            },
+        ]
+    )
+
+    return generator, area_products
 
 
 def test_market_share_is_zero_before_product_launch(launch_market_share):
@@ -277,3 +315,72 @@ def test_launch_product_receives_calls_after_launch(
     launch_calls = calls[calls["product_id"] == "P003"]
 
     assert not launch_calls.empty
+
+
+def test_share_redistribution_takes_more_from_higher_weighted_incumbent(
+    share_redistribution_setup,
+):
+    generator, area_products = share_redistribution_setup
+
+    normalized_shares = {
+        "P001": 0.50,
+        "P002": 0.40,
+        "P003": 0.10,
+    }
+
+    redistributed = generator._apply_share_redistribution(
+        normalized_shares=normalized_shares,
+        area_products=area_products,
+        month_start=pd.Timestamp("2023-05-01"),
+    )
+
+    incumbent_market = 1.0 - normalized_shares["P003"]
+
+    p001_before_redistribution = normalized_shares["P001"] / incumbent_market
+    p002_before_redistribution = normalized_shares["P002"] / incumbent_market
+
+    p001_loss = p001_before_redistribution - redistributed["P001"]
+    p002_loss = p002_before_redistribution - redistributed["P002"]
+
+    assert p001_loss == pytest.approx(0.035)
+    assert p002_loss == pytest.approx(0.065)
+    assert p002_loss > p001_loss
+
+
+def test_share_redistribution_preserves_total_market_share(
+    share_redistribution_setup,
+):
+    generator, area_products = share_redistribution_setup
+
+    redistributed = generator._apply_share_redistribution(
+        normalized_shares={
+            "P001": 0.50,
+            "P002": 0.40,
+            "P003": 0.10,
+        },
+        area_products=area_products,
+        month_start=pd.Timestamp("2023-05-01"),
+    )
+
+    assert sum(redistributed.values()) == pytest.approx(1.0)
+    assert all(share >= 0.0 for share in redistributed.values())
+
+
+def test_share_source_weights_have_no_effect_before_launch(
+    share_redistribution_setup,
+):
+    generator, area_products = share_redistribution_setup
+
+    normalized_shares = {
+        "P001": 0.55,
+        "P002": 0.45,
+        "P003": 0.00,
+    }
+
+    redistributed = generator._apply_share_redistribution(
+        normalized_shares=normalized_shares,
+        area_products=area_products,
+        month_start=pd.Timestamp("2023-04-01"),
+    )
+
+    assert redistributed == normalized_shares

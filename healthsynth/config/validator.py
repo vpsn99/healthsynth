@@ -89,6 +89,42 @@ def _validate_products(config: dict) -> None:
 
         promotion_adoption_weight = product.get("promotion_adoption_weight")
 
+        share_source_weights = product.get("share_source_weights")
+
+        if share_source_weights is not None:
+            if not isinstance(share_source_weights, dict):
+                raise HealthSynthConfigurationError(
+                    f"products[{index}].share_source_weights must be a mapping."
+                )
+
+            if not share_source_weights:
+                raise HealthSynthConfigurationError(
+                    f"products[{index}].share_source_weights cannot be empty."
+                )
+
+            total_weight = 0.0
+
+            for source_product_id, weight in share_source_weights.items():
+                if source_product_id == product_id:
+                    raise HealthSynthConfigurationError(
+                        f"products[{index}].share_source_weights cannot reference the same product."
+                    )
+
+                if weight < 0:
+                    raise HealthSynthConfigurationError(
+                        f"products[{index}].share_source_weights."
+                        f"{source_product_id} must be greater than or equal to 0."
+                    )
+
+                total_weight += float(weight)
+
+            if abs(total_weight - 1.0) > 0.01:
+                raise HealthSynthConfigurationError(
+                    f"products[{index}].share_source_weights "
+                    "must sum to approximately 1.0. "
+                    f"Current sum: {total_weight:.4f}"
+                )
+
         if promotion_adoption_weight is not None and not 0 <= promotion_adoption_weight <= 1:
             raise HealthSynthConfigurationError(
                 f"products[{index}].promotion_adoption_weight must be between 0 and 1."
@@ -140,6 +176,43 @@ def _validate_products(config: dict) -> None:
             raise HealthSynthConfigurationError(f"Duplicate product_id found: {product_id}")
 
         seen_product_ids.add(product_id)
+
+        all_product_ids = {product["product_id"] for product in products}
+
+        product_area_lookup = {
+            product["product_id"]: product.get(
+                "therapeutic_area",
+                "Unknown",
+            )
+            for product in products
+        }
+
+        for index, product in enumerate(products):
+            product_id = product["product_id"]
+            therapeutic_area = product.get(
+                "therapeutic_area",
+                "Unknown",
+            )
+
+            share_source_weights = product.get(
+                "share_source_weights",
+                {},
+            )
+
+            for source_product_id in share_source_weights:
+                if source_product_id not in all_product_ids:
+                    raise HealthSynthConfigurationError(
+                        f"products[{index}].share_source_weights "
+                        f"references unknown product "
+                        f"'{source_product_id}'."
+                    )
+
+                if product_area_lookup[source_product_id] != therapeutic_area:
+                    raise HealthSynthConfigurationError(
+                        f"products[{index}].share_source_weights "
+                        f"references product '{source_product_id}' "
+                        "from a different therapeutic area."
+                    )
 
     _validate_baseline_market_share(products)
 

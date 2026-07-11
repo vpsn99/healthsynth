@@ -208,8 +208,18 @@ class MarketShareGenerator:
                         f"'{therapeutic_area}' in {month_start:%Y-%m}."
                     )
 
+                normalized_shares = {
+                    row["product_id"]: row["raw_score"] / total_score for row in raw_scores
+                }
+
+                normalized_shares = self._apply_share_redistribution(
+                    normalized_shares=normalized_shares,
+                    area_products=area_products,
+                    month_start=month_start,
+                )
+
                 for row in raw_scores:
-                    adjusted_market_share = row["raw_score"] / total_score
+                    adjusted_market_share = normalized_shares[row["product_id"]]
 
                     rows.append(
                         {
@@ -298,6 +308,103 @@ class MarketShareGenerator:
         )
 
         return promotion_index * promotion_adoption_weight * remaining_gap
+
+    def _apply_share_redistribution(
+        self,
+        normalized_shares: dict[str, float],
+        area_products: pd.DataFrame,
+        month_start: pd.Timestamp,
+    ) -> dict[str, float]:
+        """
+        Source a launch product's share from configured incumbents.
+
+        The launch product keeps the share calculated by the normal market-share
+        model. Incumbent shares are first reconstructed as though the launch
+        product were absent, then the launch share is deducted according to
+        share_source_weights.
+        """
+        configured_products = []
+
+        for _, product_row in area_products.iterrows():
+            source_weights = product_row.get("share_source_weights")
+
+            if isinstance(source_weights, dict) and source_weights:
+                configured_products.append(
+                    (
+                        product_row["product_id"],
+                        source_weights,
+                    )
+                )
+
+        if not configured_products:
+            return normalized_shares
+
+        if len(configured_products) > 1:
+            raise ValueError(
+                "Only one product with share_source_weights is currently "
+                "supported per therapeutic area."
+            )
+
+        launch_product_id, source_weights = configured_products[0]
+
+        launch_share = normalized_shares.get(
+            launch_product_id,
+            0.0,
+        )
+
+        # Before launch, the launch product has no share and incumbents
+        # should remain unchanged.
+        if launch_share <= 0.0:
+            return normalized_shares
+
+        incumbent_market = 1.0 - launch_share
+
+        if incumbent_market <= 0.0:
+            raise ValueError(
+                f"Launch product '{launch_product_id}' occupies the entire "
+                f"market in {month_start:%Y-%m}."
+            )
+
+        redistributed_shares = {
+            launch_product_id: launch_share,
+        }
+
+        # Remove the effect of the launch product from the initially
+        # normalized incumbent shares. This reconstructs the incumbent-only
+        # market before explicit losses are applied.
+        incumbent_base_shares = {
+            product_id: current_share / incumbent_market
+            for product_id, current_share in normalized_shares.items()
+            if product_id != launch_product_id
+        }
+
+        for product_id, incumbent_base_share in incumbent_base_shares.items():
+            source_weight = float(source_weights.get(product_id, 0.0))
+
+            share_loss = launch_share * source_weight
+            final_share = incumbent_base_share - share_loss
+
+            if final_share < -1e-12:
+                raise ValueError(
+                    f"Share redistribution would make product "
+                    f"'{product_id}' negative in {month_start:%Y-%m}. "
+                    "Reduce the launch share or its source weight."
+                )
+
+            redistributed_shares[product_id] = max(
+                0.0,
+                final_share,
+            )
+
+        total_share = sum(redistributed_shares.values())
+
+        if abs(total_share - 1.0) > 1e-9:
+            raise ValueError(
+                "Share redistribution did not preserve total market share. "
+                f"Total for {month_start:%Y-%m}: {total_share:.10f}"
+            )
+
+        return redistributed_shares
 
     @staticmethod
     def _redistribute_launch_share(
