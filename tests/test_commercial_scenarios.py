@@ -438,3 +438,82 @@ def test_loe_reduces_product_market_share_over_time():
     ].iloc[0]
 
     assert post_loe_share < pre_loe_share
+
+def test_competitor_launch_displaces_primary_incumbent_more():
+    config = {
+        "market": {
+            "market_id": "MKT_TEST",
+        },
+        "generation": {
+            "start_date": "2023-01-01",
+        },
+    }
+
+    products = pd.DataFrame(
+        [
+            {
+                "product_id": "P001",
+                "product_name": "MarketLeader",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2021-01-01",
+                "baseline_market_share": 0.55,
+            },
+            {
+                "product_id": "P002",
+                "product_name": "SecondaryBrand",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2021-01-01",
+                "baseline_market_share": 0.30,
+            },
+            {
+                "product_id": "P003",
+                "product_name": "NewCompetitor",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2024-01-01",
+                "baseline_market_share": 0.15,
+                "adoption_curve": "linear",
+                "adoption_months": 10,
+                "launch_share_factor": 0.08,
+                "promotion_adoption_weight": 0.20,
+                "share_source_weights": {
+                    "P001": 0.70,
+                    "P002": 0.30,
+                },
+            },
+        ]
+    )
+
+    market_share = generate_market_share(
+        product=products,
+        promotion_effect=None,
+        years=2,
+        seed=42,
+        config=config,
+    )
+
+    comparison = market_share[
+        pd.to_datetime(market_share["month"]).isin(
+            [
+                pd.Timestamp("2023-12-01"),
+                pd.Timestamp("2024-06-01"),
+            ]
+        )
+    ].pivot(
+        index="product_id",
+        columns="month",
+        values="adjusted_market_share",
+    )
+
+    p001_loss = (
+        comparison.loc["P001", "2023-12-01"]
+        - comparison.loc["P001", "2024-06-01"]
+    )
+
+    p002_loss = (
+        comparison.loc["P002", "2023-12-01"]
+        - comparison.loc["P002", "2024-06-01"]
+    )
+
+    assert comparison.loc["P003", "2023-12-01"] == pytest.approx(0.0)
+    assert comparison.loc["P003", "2024-06-01"] > 0.0
+    assert p001_loss > p002_loss

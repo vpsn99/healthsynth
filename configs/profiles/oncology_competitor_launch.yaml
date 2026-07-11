@@ -1,0 +1,114 @@
+profile_name: oncology_competitor_launch
+
+generation:
+  hcps: 1000
+  years: 3
+  seed: 42
+  output_format: all
+  start_date: "2023-01-01"
+
+num_territories: 12
+
+market:
+  market_id: MKT_ONC_CA
+  market_name: Canadian Oncology Competitor Launch
+  country: Canada
+
+specialty_distribution:
+  Oncology: 0.75
+  Primary Care: 0.10
+  Cardiology: 0.05
+  Pulmonology: 0.05
+  Neurology: 0.03
+  Endocrinology: 0.02
+
+products:
+  # Established market leader.
+  - product_id: P001
+    product_name: OncoNova
+    therapeutic_area: Oncology
+    launch_date: "2021-01-01"
+    market: Canada
+    status: Active
+    manufacturer: NVA Pharma
+    brand_type: Innovator
+    baseline_market_share: 0.55
+
+  # Established secondary competitor.
+  - product_id: P002
+    product_name: Tumora
+    therapeutic_area: Oncology
+    launch_date: "2021-07-01"
+    market: Canada
+    status: Active
+    manufacturer: Helix Therapeutics
+    brand_type: Competitor
+    baseline_market_share: 0.30
+
+  # New competitor entering during the simulation.
+  - product_id: P003
+    product_name: VectraMab
+    therapeutic_area: Oncology
+    launch_date: "2024-01-01"
+    market: Canada
+    status: Active
+    manufacturer: Orion Oncology
+    brand_type: Competitor
+    baseline_market_share: 0.15
+
+    adoption_curve: linear
+    adoption_months: 10
+    launch_share_factor: 0.08
+    promotion_adoption_weight: 0.20
+
+    share_source_weights:
+      P001: 0.70
+      P002: 0.30
+
+channel_distribution:
+  Rep Call: 0.65
+  Email: 0.15
+  Webinar: 0.10
+  Digital Ad: 0.10
+
+channel_response_multiplier:
+  Rep Call: 1.20
+  Webinar: 0.80
+  Email: 0.35
+  Digital Ad: 0.20
+
+market_demand:
+  base_monthly_nrx:
+    Oncology: 700
+
+  monthly_growth_rate: 0.01
+
+  seasonality:
+    1: 0.95
+    2: 0.98
+    3: 1.00
+    4: 1.02
+    5: 1.03
+    6: 1.01
+    7: 0.98
+    8: 0.97
+    9: 1.00
+    10: 1.04
+    11: 1.06
+    12: 1.03
+
+specialty_product_affinity:
+  Oncology:
+    P001: 1.00
+    P002: 0.90
+    P003: 0.95
+
+  Primary Care:
+    P001: 0.20
+    P002: 0.10
+    P003: 0.10
+
+  Cardiology:
+    P001: 0.05
+    P002: 0.05
+    P003: 0.05
