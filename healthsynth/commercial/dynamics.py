@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
 
-from healthsynth.commercial.events import calculate_loe_factor
+from healthsynth.commercial.events import (
+    calculate_loe_factor,
+    calculate_market_access_factor,
+)
 from healthsynth.config.loader import ConfigLoader
 from healthsynth.simulation.calendar import build_simulation_months
 
@@ -184,6 +187,10 @@ class MarketShareGenerator:
                             product_row=product_row,
                             month_start=month_start,
                         )
+                        market_access_factor = calculate_market_access_factor(
+                            product_row=product_row,
+                            month_start=month_start,
+                        )
 
                         if effective_adoption_factor == 0.0:
                             adjusted_score = 0.0
@@ -196,7 +203,12 @@ class MarketShareGenerator:
                             baseline_share + promotion_effect_value + noise,
                         )
 
-                        adjusted_score = mature_score * effective_adoption_factor * loe_factor
+                        adjusted_score = (
+                            mature_score
+                            * effective_adoption_factor
+                            * loe_factor
+                            * market_access_factor
+                        )
 
                     raw_scores.append(
                         {
@@ -210,6 +222,7 @@ class MarketShareGenerator:
                             "effective_adoption_factor": effective_adoption_factor,
                             "raw_score": adjusted_score,
                             "loe_factor": loe_factor,
+                            "market_access_factor": market_access_factor,
                         }
                     )
 
@@ -246,6 +259,7 @@ class MarketShareGenerator:
                             "effective_adoption_factor": row["effective_adoption_factor"],
                             "adjusted_market_share": adjusted_market_share,
                             "loe_factor": row["loe_factor"],
+                            "market_access_factor": row["market_access_factor"],
                         }
                     )
 

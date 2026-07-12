@@ -439,6 +439,7 @@ def test_loe_reduces_product_market_share_over_time():
 
     assert post_loe_share < pre_loe_share
 
+
 def test_competitor_launch_displaces_primary_incumbent_more():
     config = {
         "market": {
@@ -504,16 +505,64 @@ def test_competitor_launch_displaces_primary_incumbent_more():
         values="adjusted_market_share",
     )
 
-    p001_loss = (
-        comparison.loc["P001", "2023-12-01"]
-        - comparison.loc["P001", "2024-06-01"]
-    )
+    p001_loss = comparison.loc["P001", "2023-12-01"] - comparison.loc["P001", "2024-06-01"]
 
-    p002_loss = (
-        comparison.loc["P002", "2023-12-01"]
-        - comparison.loc["P002", "2024-06-01"]
-    )
+    p002_loss = comparison.loc["P002", "2023-12-01"] - comparison.loc["P002", "2024-06-01"]
 
     assert comparison.loc["P003", "2023-12-01"] == pytest.approx(0.0)
     assert comparison.loc["P003", "2024-06-01"] > 0.0
     assert p001_loss > p002_loss
+
+
+def test_improved_market_access_increases_product_share():
+    config = {
+        "market": {
+            "market_id": "MKT_TEST",
+        },
+        "generation": {
+            "start_date": "2023-01-01",
+        },
+    }
+
+    products = pd.DataFrame(
+        [
+            {
+                "product_id": "P001",
+                "product_name": "Product One",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2022-01-01",
+                "baseline_market_share": 0.50,
+            },
+            {
+                "product_id": "P002",
+                "product_name": "Product Two",
+                "therapeutic_area": "Oncology",
+                "launch_date": "2022-01-01",
+                "baseline_market_share": 0.50,
+                "market_access_date": "2024-01-01",
+                "market_access_factor": 1.25,
+            },
+        ]
+    )
+
+    market_share = generate_market_share(
+        product=products,
+        promotion_effect=None,
+        years=2,
+        seed=42,
+        config=config,
+    )
+
+    product_share = market_share[market_share["product_id"] == "P002"].copy()
+
+    product_share["month"] = pd.to_datetime(product_share["month"])
+
+    pre_access_mean = product_share[product_share["month"] < pd.Timestamp("2024-01-01")][
+        "adjusted_market_share"
+    ].mean()
+
+    post_access_mean = product_share[product_share["month"] >= pd.Timestamp("2024-01-01")][
+        "adjusted_market_share"
+    ].mean()
+
+    assert post_access_mean > pre_access_mean

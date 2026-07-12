@@ -95,6 +95,33 @@ def _validate_products(config: dict) -> None:
         post_loe_share_factor = product.get("post_loe_share_factor")
 
         share_source_weights = product.get("share_source_weights")
+        market_access_date = product.get("market_access_date")
+        market_access_factor = product.get("market_access_factor")
+
+        if market_access_date is not None:
+            try:
+                pd.Timestamp(market_access_date)
+            except (TypeError, ValueError) as exc:
+                raise HealthSynthConfigurationError(
+                    f"products[{index}].market_access_date must be a valid date."
+                ) from exc
+
+        if market_access_factor is not None and market_access_factor <= 0:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].market_access_factor must be greater than 0."
+            )
+
+        if market_access_date is not None and market_access_factor is None:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].market_access_factor is required "
+                "when market_access_date is configured."
+            )
+
+        if market_access_factor is not None and market_access_date is None:
+            raise HealthSynthConfigurationError(
+                f"products[{index}].market_access_date is required "
+                "when market_access_factor is configured."
+            )
 
         if loe_date is not None:
             try:

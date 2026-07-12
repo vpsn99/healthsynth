@@ -399,6 +399,7 @@ products:
     assert config["products"][0]["loe_erosion_months"] == 8
     assert config["products"][0]["post_loe_share_factor"] == 0.30
 
+
 def test_config_validation_rejects_non_positive_loe_erosion_months(
     tmp_path,
 ):
@@ -467,5 +468,132 @@ products:
     with pytest.raises(
         HealthSynthConfigurationError,
         match="post_loe_share_factor must be between 0 and 1",
+    ):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_accepts_valid_market_access_configuration(
+    tmp_path,
+):
+    config_file = tmp_path / "valid_market_access.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.50
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.30
+    launch_date: "2022-01-01"
+    market_access_date: "2024-01-01"
+    market_access_factor: 1.25
+
+  - product_id: P003
+    product_name: Product Three
+    manufacturer: Pharma C
+    brand_type: Competitor
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.20
+    launch_date: "2022-01-01"
+""",
+        encoding="utf-8",
+    )
+
+    config = ConfigLoader.load(str(config_file))
+
+    assert config["products"][1]["market_access_date"] == "2024-01-01"
+    assert config["products"][1]["market_access_factor"] == 1.25
+
+
+def test_config_validation_rejects_non_positive_market_access_factor(
+    tmp_path,
+):
+    config_file = tmp_path / "bad_market_access.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.50
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.30
+    launch_date: "2022-01-01"
+    market_access_date: "2024-01-01"
+    market_access_factor: 0
+
+  - product_id: P003
+    product_name: Product Three
+    manufacturer: Pharma C
+    brand_type: Competitor
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.20
+    launch_date: "2022-01-01"
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        HealthSynthConfigurationError,
+        match="market_access_factor must be greater than 0",
+    ):
+        ConfigLoader.load(str(config_file))
+
+
+def test_config_validation_requires_market_access_factor_with_date(
+    tmp_path,
+):
+    config_file = tmp_path / "bad_market_access.yaml"
+    config_file.write_text(
+        """
+products:
+  - product_id: P001
+    product_name: Product One
+    manufacturer: Pharma A
+    brand_type: Innovator
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.50
+    launch_date: "2022-01-01"
+
+  - product_id: P002
+    product_name: Product Two
+    manufacturer: Pharma B
+    brand_type: Competitor
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.30
+    launch_date: "2022-01-01"
+    market_access_date: "2024-01-01"
+
+  - product_id: P003
+    product_name: Product Three
+    manufacturer: Pharma C
+    brand_type: Competitor
+    therapeutic_area: Cardiology
+    baseline_market_share: 0.20
+    launch_date: "2022-01-01"
+""",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        HealthSynthConfigurationError,
+        match="market_access_factor is required",
     ):
         ConfigLoader.load(str(config_file))
