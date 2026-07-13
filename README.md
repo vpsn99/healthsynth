@@ -1,45 +1,60 @@
 # HealthSynth
 
-> An open-source commercial analytics simulation framework for life sciences.
+> Learn pharmaceutical commercial analytics by generating realistic synthetic markets.
 
-HealthSynth simulates realistic pharmaceutical commercial markets and generates synthetic datasets that reflect how commercial dynamics evolve over time.
+HealthSynth is an open-source Python framework that simulates pharmaceutical commercial markets and generates internally consistent synthetic datasets for analytics, experimentation, and learning.
 
-Rather than generating isolated tables independently, HealthSynth models the relationships between markets, products, healthcare providers (HCPs), promotional activity, market share, and prescription demand, producing internally consistent datasets suitable for learning, analytics, and experimentation.
+Unlike traditional synthetic data generators that create independent tables, HealthSynth models how commercial markets actually behave. Products compete for market share, promotional activity influences adoption, market demand changes over time, and prescriptions emerge from these upstream commercial dynamics.
+
+The result is a realistic commercial ecosystem that can be explored using Python, SQL, DuckDB, BI tools, or AI applications.
 
 ---
 
 ## Why HealthSynth?
 
-Most synthetic healthcare datasets focus on patients or clinical records.
+Many excellent tools already exist for generating synthetic patients, electronic health records, and claims data.
 
-HealthSynth focuses on **commercial analytics**.
+HealthSynth addresses a different problem.
 
-It simulates how pharmaceutical markets behave by modelling:
+Commercial analytics teams ask questions such as:
 
-- Markets
-- Healthcare providers (HCPs)
-- Products
-- Territories
-- Promotional activity
-- Market demand
-- Market share
-- Prescription allocation
+- How does a new product launch affect market share?
+- What happens when a leading brand loses exclusivity?
+- How does increased promotional activity influence adoption?
+- What is the impact of improved market access?
+- Can a product lose market share while still growing prescriptions?
 
-The generated prescription data is the result of these upstream commercial dynamics rather than being generated independently.
+Answering these questions requires datasets that evolve together—not isolated synthetic tables.
+
+HealthSynth simulates these commercial relationships so that every generated dataset remains connected to the others.
+
+---
+
+## What Makes HealthSynth Different?
+
+HealthSynth is designed as a **commercial simulation framework**, not simply a synthetic data generator.
+
+| Traditional Synthetic Data | HealthSynth |
+|----------------------------|-------------|
+| Generates independent datasets | Simulates connected commercial systems |
+| Focuses on realistic records | Focuses on realistic commercial behaviour |
+| Static relationships | Relationships evolve over time |
+| Limited business context | Commercial events drive market dynamics |
+| Primarily for testing | Designed for learning, experimentation and analytics |
 
 ---
 
 ## Commercial Simulation Flow
 
-```
+```text
 Configuration
         │
         ▼
-Commercial Simulation
+Commercial World
         │
         ├── Markets
         ├── Products
-        ├── HCPs
+        ├── Healthcare Providers
         ├── Promotional Activity
         ├── Market Demand
         ├── Market Share
@@ -49,100 +64,193 @@ Commercial Simulation
 Synthetic Commercial Analytics Datasets
 ```
 
----
-
-## Current Features
-
-HealthSynth currently generates:
-
-- ✅ Market definitions
-- ✅ Healthcare provider (HCP) master data
-- ✅ Product portfolio
-- ✅ Market demand simulation
-- ✅ Promotional call activity
-- ✅ Promotion effect modelling
-- ✅ Dynamic market share
-- ✅ Prescription allocation
-- ✅ CSV export
-- ✅ DuckDB export
-- ✅ Dataset manifest
-- ✅ Validation reports
-- ✅ Configurable YAML profiles
-- ✅ Learning notebooks
+Every downstream dataset is produced from the commercial dynamics above rather than being generated independently.
 
 ---
 
-## Example Datasets
+## Current Capabilities
 
-A typical simulation produces datasets including:
+### Commercial Entities
+
+- Markets
+- Healthcare Providers (HCPs)
+- Product portfolio
+- Sales territories
+
+### Commercial Dynamics
+
+- Promotional call activity
+- Promotion effect modelling
+- Market demand simulation
+- Dynamic market share
+- Prescription allocation
+
+### Commercial Events
+
+- New Product Launch
+- Loss of Exclusivity (LOE)
+- Competitor Launch
+- Market Access Improvement
+
+### Outputs
+
+- CSV datasets
+- DuckDB database
+- Dataset manifest
+- Validation report
+
+### Configuration
+
+- YAML-based market profiles
+- Configurable simulation parameters
+- Reproducible simulations
+
+---
+
+## Generated Datasets
+
+A typical simulation generates:
 
 - `market`
 - `hcp_master`
 - `product`
-- `market_demand`
 - `call_activity`
 - `promotion_effect`
+- `market_demand`
 - `market_share`
 - `prescriptions`
+
+All datasets are internally consistent and designed to work together.
+
+---
+
+## Quick Start
+
+### Install
+
+```bash
+pip install healthsynth
+```
+
+### Generate a market
+
+```bash
+healthsynth generate \
+    --config configs/profiles/oncology_training.yaml \
+    --hcps 1000 \
+    --output-dir output/demo
+```
+
+The simulation produces:
+
+- CSV files
+- DuckDB database
+- Dataset manifest
+- Validation report
+
+---
+
+## Learn HealthSynth
+
+HealthSynth includes a notebook series that introduces both the framework and common pharmaceutical commercial analytics concepts.
+
+1. Running HealthSynth
+2. Market Profiles
+3. Product Portfolio
+4. Exploring Data with DuckDB
+5. Market Share Analysis
+6. Market Demand and Growth
+7. New Product Launch
+8. Loss of Exclusivity
+9. Competitor Launch
+10. Market Access
+
+The notebooks are intended to teach both the framework and the commercial concepts behind the generated data.
+
+---
+
+## Who Is HealthSynth For?
+
+HealthSynth is designed for:
+
+- Data Engineers
+- Data Scientists
+- Analytics Engineers
+- BI Developers
+- SQL learners
+- AI/LLM practitioners
+- Students learning life sciences analytics
+- Trainers delivering commercial analytics workshops
 
 ---
 
 ## Design Philosophy
 
-HealthSynth is designed as a learning sandbox for life sciences commercial analytics.
+HealthSynth was built around one simple principle:
 
-The project emphasizes:
+> Commercial analytics should be learned using realistic commercial systems—not isolated synthetic tables.
 
-- realistic commercial behaviour
-- explainable simulation logic
-- reproducible synthetic data
-- clean, extensible architecture
-- educational notebooks
+Business assumptions belong in configuration.
 
-Rather than simply generating synthetic records, HealthSynth models the commercial processes that produce those records.
+Simulation logic belongs in code.
+
+Generated datasets should reflect the commercial processes that produced them.
+
+This makes it easier to understand not only *what* happened, but *why* it happened.
 
 ---
 
-## Current Status
+## Documentation
 
-HealthSynth is under active development.
+Additional documentation is available in the `docs` folder.
 
-The current release provides an end-to-end commercial simulation pipeline with configurable market profiles and internally consistent prescription generation.
+- Getting Started
+- Data Model
+- Architecture
+- Learning Notebooks
 
-Upcoming work includes:
+---
 
-- Commercial scenarios (New Product Launch, Loss of Exclusivity, Competitor Launch)
-- Additional promotional channels
-- Advanced market dynamics
-- Expanded learning notebooks
-- Performance optimization
+## Roadmap
+
+### Current Release
+
+- End-to-end commercial simulation
+- Commercial event modelling
+- DuckDB integration
+- Learning notebooks
+- Validation framework
+
+### Planned
+
+- Additional therapeutic areas
+- Omnichannel engagement scenarios
+- Territory realignment
+- AI-assisted scenario generation
+- Performance optimisation
 - Additional export formats
 
 ---
 
-## Intended Uses
+## Contributing
 
-HealthSynth is suitable for:
+HealthSynth is an open-source project and contributions are welcome.
 
-- Learning commercial analytics
-- Data engineering practice
-- BI and dashboard development
-- SQL and DuckDB experimentation
-- AI/LLM prototyping
-- Data science workflows
-- Demo environments
-- Training and workshops
-
----
-
-## Author
-
-Virendra Pratap Singh
-(https://www.linkedin.com/in/virendra-pratap-singh-iitg/)
-NVA Dataworks
+Whether you want to improve the simulation engine, documentation, notebooks, or add new commercial scenarios, contributions of all sizes are appreciated.
 
 ---
 
 ## License
 
 MIT License
+
+---
+
+## Author
+
+**Virendra Pratap Singh**
+
+NVA Dataworks
+
+LinkedIn:
+https://www.linkedin.com/in/virendra-pratap-singh-iitg/
