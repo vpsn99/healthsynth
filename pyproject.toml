@@ -41,6 +41,11 @@ dependencies = [
     "pyyaml",
 ]
 
+[project.optional-dependencies]
+ui = [
+    "streamlit>=1.40",
+]
+
 [project.urls]
 Homepage = "https://github.com/vpsn99/healthsynth"
 Repository = "https://github.com/vpsn99/healthsynth"
