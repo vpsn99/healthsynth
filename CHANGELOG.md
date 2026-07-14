@@ -48,3 +48,27 @@ Features
 
 - Manifest now includes market, generation parameters, timings and schema version.
 - Product and HCP datasets now include market identifiers.
+
+
+# Changelog
+
+## v0.1.0
+
+Initial public release.
+
+### Features
+
+- Configuration-driven simulation
+- Market demand
+- Market share
+- Prescription allocation
+- DuckDB export
+- CSV export
+- Validation framework
+- Commercial events
+    - New Product Launch
+    - LOE
+    - Competitor Launch
+    - Market Access
+- Learning notebooks
+- Documentation

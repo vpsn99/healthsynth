@@ -242,7 +242,20 @@ Whether you want to improve the simulation engine, documentation, notebooks, or 
 
 ## License
 
-MIT License
+HealthSynth is released under the MIT License.
+
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Disclaimer
+
+HealthSynth generates synthetic commercial analytics data for learning,
+demonstration, experimentation, and software development.
+
+It does not generate real patient data and should not be used for
+clinical decision making, medical research, regulatory submissions,
+or any purpose requiring medically validated datasets.
 
 ---
 

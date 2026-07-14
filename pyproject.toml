@@ -1,8 +1,36 @@
 [project]
 name = "healthsynth"
 version = "0.1.0"
-description = "Synthetic pharma commercial analytics data generator"
+description = "An open-source pharmaceutical commercial market simulator for learning and analytics."
+readme = "README.md"
 requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+authors = [
+    { name = "Virendra Pratap Singh" }
+]
+
+keywords = [
+    "synthetic-data",
+    "pharmaceutical",
+    "commercial-analytics",
+    "healthcare",
+    "simulation",
+    "life-sciences",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
 dependencies = [
     "pandas",
     "numpy",
@@ -12,6 +40,12 @@ dependencies = [
     "faker",
     "pyyaml",
 ]
+
+[project.urls]
+Homepage = "https://github.com/vpsn99/healthsynth"
+Repository = "https://github.com/vpsn99/healthsynth"
+Documentation = "https://github.com/vpsn99/healthsynth/tree/main/docs"
+Issues = "https://github.com/vpsn99/healthsynth/issues"
 
 [project.scripts]
 healthsynth = "healthsynth.cli:app"
