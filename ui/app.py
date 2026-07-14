@@ -1,82 +1,28 @@
 from __future__ import annotations
 
-import io
 import time
-import zipfile
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
-
-from healthsynth import generate
+from charts import (
+    find_scenario_event,
+    show_market_demand_chart,
+    show_market_share_chart,
+    show_prescription_chart,
+)
+from models import SimulationSession, SimulationSettings
+from scenarios import build_scenarios
+from services import (
+    build_output_zip,
+    run_simulation,
+    validate_simulation_inputs,
+)
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_ROOT = REPOSITORY_ROOT / "output" / "ui"
 
-SCENARIOS = {
-    "Default Market": None,
-    "Oncology Training": (
-        REPOSITORY_ROOT
-        / "configs"
-        / "profiles"
-        / "oncology_training.yaml"
-    ),
-    "New Product Launch": (
-        REPOSITORY_ROOT
-        / "configs"
-        / "profiles"
-        / "oncology_product_launch.yaml"
-    ),
-    "Loss of Exclusivity": (
-        REPOSITORY_ROOT
-        / "configs"
-        / "profiles"
-        / "oncology_loe.yaml"
-    ),
-    "Competitor Launch": (
-        REPOSITORY_ROOT
-        / "configs"
-        / "profiles"
-        / "oncology_competitor_launch.yaml"
-    ),
-    "Market Access": (
-        REPOSITORY_ROOT
-        / "configs"
-        / "profiles"
-        / "oncology_market_access.yaml"
-    ),
-}
-
-
-def dataframe_results(results: dict) -> dict[str, pd.DataFrame]:
-    """Return only DataFrame objects from the simulation result."""
-
-    return {
-        name: value
-        for name, value in results.items()
-        if isinstance(value, pd.DataFrame)
-    }
-
-
-def build_output_zip(output_dir: Path) -> bytes:
-    """Create an in-memory ZIP containing one simulation run."""
-
-    zip_buffer = io.BytesIO()
-
-    with zipfile.ZipFile(
-        zip_buffer,
-        mode="w",
-        compression=zipfile.ZIP_DEFLATED,
-    ) as archive:
-        for file_path in output_dir.rglob("*"):
-            if file_path.is_file():
-                archive.write(
-                    file_path,
-                    arcname=file_path.relative_to(output_dir),
-                )
-
-    zip_buffer.seek(0)
-    return zip_buffer.getvalue()
+SCENARIOS = build_scenarios(REPOSITORY_ROOT)
 
 
 def show_summary(dataframes: dict[str, pd.DataFrame]) -> None:
@@ -115,154 +61,264 @@ def show_summary(dataframes: dict[str, pd.DataFrame]) -> None:
         column.metric(label, f"{value:,}")
 
 
-def show_market_share_chart(
+def show_timeline_explorer(
     dataframes: dict[str, pd.DataFrame],
+    scenario_name: str,
 ) -> None:
-    """Display adjusted market share by product and month."""
+    """Explore the simulated market one month at a time."""
 
     market_share = dataframes.get("market_share")
-    products = dataframes.get("product")
-
-    if (
-        market_share is None
-        or market_share.empty
-        or products is None
-        or products.empty
-    ):
-        st.info("Market-share data is not available.")
-        return
-
-    required_columns = {
-        "month",
-        "product_id",
-        "adjusted_market_share",
-    }
-
-    if not required_columns.issubset(market_share.columns):
-        st.info("The market-share schema cannot be charted.")
-        return
-
-    chart_data = market_share.copy()
-    chart_data["month"] = pd.to_datetime(chart_data["month"])
-
-    if "product_name" in products.columns:
-        chart_data = chart_data.merge(
-            products[
-                [
-                    "product_id",
-                    "product_name",
-                ]
-            ],
-            on="product_id",
-            how="left",
-        )
-        series_column = "product_name"
-    else:
-        series_column = "product_id"
-
-    market_share_pivot = chart_data.pivot(
-        index="month",
-        columns=series_column,
-        values="adjusted_market_share",
-    )
-
-    st.line_chart(market_share_pivot)
-
-
-def show_market_demand_chart(
-    dataframes: dict[str, pd.DataFrame],
-) -> None:
-    """Display monthly market demand."""
-
     market_demand = dataframes.get("market_demand")
-
-    if market_demand is None or market_demand.empty:
-        st.info("Market-demand data is not available.")
-        return
-
-    if not {"month", "market_nrx"}.issubset(
-        market_demand.columns
-    ):
-        st.info("The market-demand schema cannot be charted.")
-        return
-
-    chart_data = market_demand.copy()
-    chart_data["month"] = pd.to_datetime(chart_data["month"])
-
-    monthly_demand = (
-        chart_data.groupby("month")["market_nrx"]
-        .sum()
-        .sort_index()
-    )
-
-    st.line_chart(monthly_demand)
-
-
-def show_prescription_chart(
-    dataframes: dict[str, pd.DataFrame],
-) -> None:
-    """Display monthly NRx by product."""
-
     prescriptions = dataframes.get("prescriptions")
     products = dataframes.get("product")
 
-    if prescriptions is None or prescriptions.empty:
-        st.info("Prescription data is not available.")
-        return
-
-    required_columns = {
-        "rx_date",
-        "product_id",
-        "nrx",
+    required_datasets = {
+        "market_share": market_share,
+        "market_demand": market_demand,
+        "prescriptions": prescriptions,
+        "product": products,
     }
 
-    if not required_columns.issubset(
-        prescriptions.columns
-    ):
-        st.info("The prescription schema cannot be charted.")
+    missing_datasets = [
+        name
+        for name, dataframe in required_datasets.items()
+        if dataframe is None or dataframe.empty
+    ]
+
+    if missing_datasets:
+        st.info("Timeline playback requires: " + ", ".join(missing_datasets))
         return
 
-    chart_data = prescriptions.copy()
-    chart_data["rx_date"] = pd.to_datetime(
-        chart_data["rx_date"]
+    share_data = market_share.copy()
+    demand_data = market_demand.copy()
+    prescription_data = prescriptions.copy()
+
+    share_data["month"] = pd.to_datetime(share_data["month"])
+    demand_data["month"] = pd.to_datetime(demand_data["month"])
+    prescription_data["rx_date"] = pd.to_datetime(prescription_data["rx_date"])
+
+    product_lookup = products[
+        [
+            "product_id",
+            "product_name",
+        ]
+    ].drop_duplicates()
+
+    share_data = share_data.merge(
+        product_lookup,
+        on="product_id",
+        how="left",
     )
 
-    if (
-        products is not None
-        and not products.empty
-        and "product_name" in products.columns
-    ):
-        chart_data = chart_data.merge(
-            products[
-                [
-                    "product_id",
-                    "product_name",
-                ]
-            ],
-            on="product_id",
-            how="left",
-        )
-        series_column = "product_name"
-    else:
-        series_column = "product_id"
+    prescription_data = prescription_data.merge(
+        product_lookup,
+        on="product_id",
+        how="left",
+    )
 
-    monthly_rx = (
-        chart_data.groupby(
-            [
-                "rx_date",
-                series_column,
-            ]
+    available_months = sorted(share_data["month"].dropna().unique())
+
+    if not available_months:
+        st.info("No simulation months are available.")
+        return
+
+    timeline_key = "timeline_month_index"
+    playing_key = "timeline_playing"
+
+    if timeline_key not in st.session_state:
+        st.session_state[timeline_key] = 0
+
+    if playing_key not in st.session_state:
+        st.session_state[playing_key] = False
+
+    maximum_index = len(available_months) - 1
+
+    st.session_state[timeline_key] = min(
+        st.session_state[timeline_key],
+        maximum_index,
+    )
+
+    previous_column, play_column, next_column = st.columns([1, 1, 1])
+
+    with previous_column:
+        if st.button(
+            "◀ Previous",
+            width="stretch",
+            disabled=st.session_state[timeline_key] == 0,
+        ):
+            st.session_state[timeline_key] -= 1
+            st.session_state[playing_key] = False
+            st.rerun()
+
+    with play_column:
+        play_label = "⏸ Pause" if st.session_state[playing_key] else "▶ Play"
+
+        if st.button(
+            play_label,
+            width="stretch",
+        ):
+            st.session_state[playing_key] = not st.session_state[playing_key]
+            st.rerun()
+
+    with next_column:
+        if st.button(
+            "Next ▶",
+            width="stretch",
+            disabled=(st.session_state[timeline_key] == maximum_index),
+        ):
+            st.session_state[timeline_key] += 1
+            st.session_state[playing_key] = False
+            st.rerun()
+
+    selected_index = st.slider(
+        "Simulation month",
+        min_value=0,
+        max_value=maximum_index,
+        value=st.session_state[timeline_key],
+        format="Month %d",
+    )
+
+    if selected_index != st.session_state[timeline_key]:
+        st.session_state[timeline_key] = selected_index
+        st.session_state[playing_key] = False
+
+    current_month = pd.Timestamp(available_months[st.session_state[timeline_key]])
+
+    st.markdown(f"## {current_month:%B %Y}")
+
+    event_date, event_label = find_scenario_event(
+        products=products,
+        scenario_name=scenario_name,
+    )
+
+    if event_date is not None and current_month.to_period("M") == event_date.to_period("M"):
+        st.warning(f"Commercial event: **{event_label}**")
+
+    current_share = share_data[share_data["month"] == current_month].copy()
+
+    current_demand_rows = demand_data[demand_data["month"] == current_month]
+
+    current_prescriptions = prescription_data[prescription_data["rx_date"] == current_month]
+
+    total_market_nrx = int(current_demand_rows["market_nrx"].sum())
+
+    monthly_product_nrx = (
+        current_prescriptions.groupby(
+            "product_name",
+            as_index=False,
         )["nrx"]
         .sum()
-        .reset_index()
-        .pivot(
-            index="rx_date",
-            columns=series_column,
-            values="nrx",
+        .sort_values(
+            "nrx",
+            ascending=False,
         )
     )
 
-    st.line_chart(monthly_rx)
+    current_share = current_share.sort_values(
+        "adjusted_market_share",
+        ascending=False,
+    )
+
+    market_leader = (
+        current_share.iloc[0]["product_name"] if not current_share.empty else "Not available"
+    )
+
+    leader_share = (
+        float(current_share.iloc[0]["adjusted_market_share"]) if not current_share.empty else 0.0
+    )
+
+    top_nrx_product = (
+        monthly_product_nrx.iloc[0]["product_name"]
+        if not monthly_product_nrx.empty
+        else "Not available"
+    )
+
+    summary_columns = st.columns(4)
+
+    summary_columns[0].metric(
+        "Current month",
+        current_month.strftime("%b %Y"),
+    )
+
+    summary_columns[1].metric(
+        "Market demand",
+        f"{total_market_nrx:,} NRx",
+    )
+
+    summary_columns[2].metric(
+        "Market leader",
+        market_leader,
+        f"{leader_share:.1%} share",
+    )
+
+    summary_columns[3].metric(
+        "Top NRx product",
+        top_nrx_product,
+    )
+
+    left_chart, right_chart = st.columns(2)
+
+    with left_chart:
+        st.markdown("#### Market Share")
+
+        share_chart_data = current_share.set_index("product_name")["adjusted_market_share"]
+
+        st.bar_chart(
+            share_chart_data,
+            horizontal=True,
+        )
+
+    with right_chart:
+        st.markdown("#### New Prescriptions")
+
+        nrx_chart_data = monthly_product_nrx.set_index("product_name")["nrx"]
+
+        st.bar_chart(
+            nrx_chart_data,
+            horizontal=True,
+        )
+
+    st.markdown("#### Monthly Product Position")
+
+    monthly_position = current_share[
+        [
+            "product_name",
+            "adjusted_market_share",
+        ]
+    ].merge(
+        monthly_product_nrx,
+        on="product_name",
+        how="left",
+    )
+
+    monthly_position["nrx"] = monthly_position["nrx"].fillna(0).astype(int)
+
+    monthly_position["adjusted_market_share"] = monthly_position["adjusted_market_share"].map(
+        lambda value: f"{value:.2%}"
+    )
+
+    monthly_position = monthly_position.rename(
+        columns={
+            "product_name": "Product",
+            "adjusted_market_share": "Market Share",
+            "nrx": "NRx",
+        }
+    )
+
+    st.dataframe(
+        monthly_position,
+        hide_index=True,
+        width="stretch",
+    )
+
+    if st.session_state[playing_key]:
+        if st.session_state[timeline_key] < maximum_index:
+            time.sleep(0.8)
+            st.session_state[timeline_key] += 1
+            st.rerun()
+        else:
+            st.session_state[playing_key] = False
+            st.success("Timeline playback completed.")
 
 
 def show_dataset_preview(
@@ -281,14 +337,11 @@ def show_dataset_preview(
 
     selected_dataset = dataframes[dataset_name]
 
-    st.caption(
-        f"{len(selected_dataset):,} rows × "
-        f"{len(selected_dataset.columns):,} columns"
-    )
+    st.caption(f"{len(selected_dataset):,} rows × {len(selected_dataset.columns):,} columns")
 
     st.dataframe(
         selected_dataset.head(250),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -305,9 +358,7 @@ def show_validation_report(output_dir: Path) -> None:
         st.info("No validation report was generated.")
         return
 
-    validation_text = validation_path.read_text(
-        encoding="utf-8"
-    )
+    validation_text = validation_path.read_text(encoding="utf-8")
 
     st.markdown(validation_text)
 
@@ -322,8 +373,7 @@ st.title("🧬 HealthSynth")
 st.subheader("Build and explore a pharmaceutical commercial market")
 
 st.caption(
-    "Choose a commercial scenario, run the simulation, "
-    "and explore the market dynamics that emerge."
+    "Choose a commercial scenario, run the simulation, and explore the market dynamics that emerge."
 )
 
 with st.sidebar:
@@ -335,47 +385,61 @@ with st.sidebar:
         index=1,
     )
 
-    scenario_path = SCENARIOS[scenario_name]
+    scenario = SCENARIOS[scenario_name]
+    scenario_path = scenario["path"]
+
+    st.markdown(f"**{scenario['title']}**")
+    st.caption(scenario["description"])
+
+    with st.expander("Commercial question"):
+        st.write(scenario["question"])
 
     if scenario_path is not None:
         if scenario_path.exists():
-            st.caption(scenario_path.name)
+            st.caption(f"Profile: `{scenario_path.name}`")
         else:
-            st.error(
-                f"Profile not found: {scenario_path.name}"
-            )
+            st.error(f"The profile file could not be found: `{scenario_path.name}`")
 
     st.divider()
 
     hcps = st.number_input(
         "Healthcare providers",
         min_value=10,
-        max_value=10_000,
+        max_value=5_000,
         value=100,
         step=10,
         help=(
-            "Number of healthcare providers in the "
-            "simulated market."
+            "Controls the size of the simulated HCP population. "
+            "Start with 100 for a quick demonstration."
         ),
     )
 
     years = st.number_input(
         "Simulation years",
         min_value=1,
-        max_value=10,
+        max_value=5,
         value=3,
         step=1,
+        help=("Commercial scenario profiles are designed primarily for a three-year simulation."),
     )
+
+    estimated_prescription_rows = int(hcps) * 3 * int(years) * 12
+
+    st.caption(f"Estimated prescription rows: **{estimated_prescription_rows:,}**")
+
+    if estimated_prescription_rows > 300_000:
+        st.warning(
+            "This is a relatively large simulation and may take "
+            "several minutes. Consider reducing the HCP count for "
+            "an interactive demonstration."
+        )
 
     seed = st.number_input(
         "Random seed",
         min_value=0,
         value=42,
         step=1,
-        help=(
-            "Use the same seed to reproduce the same "
-            "simulation."
-        ),
+        help=("Use the same seed to reproduce the same simulation."),
     )
 
     output_format = st.selectbox(
@@ -388,53 +452,62 @@ with st.sidebar:
         index=2,
     )
 
-    st.divider()
-
-    run_simulation = st.button(
-        "Run Simulation",
-        type="primary",
-        use_container_width=True,
-        disabled=(
-            scenario_path is not None
-            and not scenario_path.exists()
-        ),
+    simulation_settings = SimulationSettings(
+        scenario_name=scenario_name,
+        scenario_path=scenario_path,
+        hcps=int(hcps),
+        years=int(years),
+        seed=int(seed),
+        output_format=output_format,
     )
 
-if run_simulation:
-    run_id = time.strftime("%Y%m%d_%H%M%S")
-    output_dir = OUTPUT_ROOT / run_id
+    st.divider()
 
-    generation_arguments = {
-        "hcps": int(hcps),
-        "years": int(years),
-        "seed": int(seed),
-        "output_dir": str(output_dir),
-        "output_format": output_format,
-    }
+    run_simulation_requested = st.button(
+        "🧬 Run Simulation",
+        type="primary",
+        width="stretch",
+        disabled=(scenario_path is not None and not scenario_path.exists()),
+    )
 
-    if scenario_path is not None:
-        generation_arguments["config_path"] = str(
-            scenario_path
-        )
+    if run_simulation_requested:
+        input_errors = validate_simulation_inputs(simulation_settings)
 
-    try:
-        with st.spinner(
-            f"Simulating: {scenario_name}..."
-        ):
-            results = generate(**generation_arguments)
+        if input_errors:
+            for error in input_errors:
+                st.error(error)
 
-        st.session_state["simulation_results"] = results
-        st.session_state["simulation_output_dir"] = output_dir
-        st.session_state["simulation_scenario"] = scenario_name
+            st.stop()
 
-    except Exception as exc:
-        st.error("The simulation could not be completed.")
-        st.exception(exc)
+        try:
+            with st.spinner(f"Simulating: {scenario_name}..."):
+                simulation_session = run_simulation(
+                    settings=simulation_settings,
+                    output_root=OUTPUT_ROOT,
+                )
 
-if "simulation_results" not in st.session_state:
+            st.session_state["simulation_session"] = simulation_session
+
+            st.session_state["timeline_month_index"] = 0
+            st.session_state["timeline_playing"] = False
+
+        except FileNotFoundError as exc:
+            st.error("The selected configuration file could not be found.")
+            st.code(str(exc))
+
+        except ValueError as exc:
+            st.error("The simulation configuration is not valid.")
+            st.code(str(exc))
+
+        except Exception as exc:
+            st.error("HealthSynth encountered an unexpected error while running the simulation.")
+
+            with st.expander("Technical details"):
+                st.exception(exc)
+
+if "simulation_session" not in st.session_state:
     st.info(
-        "Choose a scenario and simulation settings in the "
-        "sidebar, then select **Run Simulation**."
+        "Choose a scenario and simulation settings in the sidebar, then select **Run Simulation**."
     )
 
     st.markdown(
@@ -451,22 +524,27 @@ if "simulation_results" not in st.session_state:
 
     st.stop()
 
-results = st.session_state["simulation_results"]
-output_dir = st.session_state["simulation_output_dir"]
-scenario_name = st.session_state["simulation_scenario"]
+simulation_session: SimulationSession = st.session_state["simulation_session"]
 
-dataframes = dataframe_results(results)
+scenario_name = simulation_session.scenario_name
+output_dir = simulation_session.output_dir
+dataframes = simulation_session.dataframes
 
-st.success(
-    f"Simulation completed: **{scenario_name}**"
-)
+st.success(f"Simulation completed: **{scenario_name}**")
 
 show_summary(dataframes)
 
-overview_tab, charts_tab, data_tab, validation_tab = st.tabs(
+(
+    overview_tab,
+    charts_tab,
+    timeline_tab,
+    data_tab,
+    validation_tab,
+) = st.tabs(
     [
         "Overview",
         "Market Dynamics",
+        "Timeline",
         "Datasets",
         "Validation & Download",
     ]
@@ -486,7 +564,7 @@ with overview_tab:
         if market is not None and not market.empty:
             st.dataframe(
                 market,
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
         else:
@@ -511,23 +589,63 @@ with overview_tab:
 
             st.dataframe(
                 products[product_columns],
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
         else:
             st.info("No product data is available.")
 
-with charts_tab:
-    st.subheader("Market Dynamics")
+    with charts_tab:
+        st.subheader("Market Dynamics")
 
-    st.markdown("#### Adjusted Market Share")
-    show_market_share_chart(dataframes)
+        st.markdown("#### Adjusted Market Share")
+        show_market_share_chart(
+            dataframes=dataframes,
+            scenario_name=scenario_name,
+        )
 
-    st.markdown("#### Monthly Market Demand")
-    show_market_demand_chart(dataframes)
+        if scenario_name == "New Product Launch":
+            st.caption(
+                "Observe how the newly launched product gradually gains "
+                "share from established competitors."
+            )
+        elif scenario_name == "Loss of Exclusivity":
+            st.caption(
+                "Observe how the affected brand loses competitive "
+                "strength after loss of exclusivity."
+            )
+        elif scenario_name == "Competitor Launch":
+            st.caption(
+                "Observe how the new competitor enters the market and "
+                "redistributes share away from incumbents."
+            )
+        elif scenario_name == "Market Access":
+            st.caption(
+                "Observe how improved access changes the product's "
+                "competitive position after the event date."
+            )
+        else:
+            st.caption(
+                "Market share changes over time as products compete within the simulated market."
+            )
 
-    st.markdown("#### Monthly New Prescriptions")
-    show_prescription_chart(dataframes)
+        st.markdown("#### Monthly Market Demand")
+        show_market_demand_chart(dataframes)
+
+        st.markdown("#### Monthly New Prescriptions")
+        show_prescription_chart(dataframes)
+
+    with timeline_tab:
+        st.subheader("Market Timeline")
+
+        st.caption(
+            "Move through the simulation month by month, or select Play to watch the market evolve."
+        )
+
+        show_timeline_explorer(
+            dataframes=dataframes,
+            scenario_name=scenario_name,
+        )
 
 with data_tab:
     st.subheader("Generated Datasets")
@@ -546,14 +664,9 @@ with validation_tab:
     st.download_button(
         label="Download Simulation as ZIP",
         data=zip_bytes,
-        file_name=(
-            f"healthsynth_{scenario_name.lower().replace(' ', '_')}"
-            f"_{output_dir.name}.zip"
-        ),
+        file_name=(f"healthsynth_{scenario_name.lower().replace(' ', '_')}_{output_dir.name}.zip"),
         mime="application/zip",
-        use_container_width=True,
+        width="stretch",
     )
 
-    st.caption(
-        f"Output directory: `{output_dir}`"
-    )
+    st.caption(f"Output directory: `{output_dir}`")
