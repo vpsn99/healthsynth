@@ -84,7 +84,27 @@ def show_timeline_explorer(
         maximum_index,
     )
 
-    previous_column, play_column, next_column = st.columns([1, 1, 1])
+    event_date, event_label = find_scenario_event(
+        products=products,
+        scenario_name=scenario_name,
+    )
+
+    event_index = None
+
+    if event_date is not None:
+        event_month = event_date.to_period("M")
+
+        for index, month in enumerate(available_months):
+            if pd.Timestamp(month).to_period("M") == event_month:
+                event_index = index
+                break
+
+    (
+        previous_column,
+        play_column,
+        next_column,
+        event_column,
+    ) = st.columns([1, 1, 1, 1])
 
     with previous_column:
         if st.button(
@@ -116,6 +136,18 @@ def show_timeline_explorer(
             st.session_state[playing_key] = False
             st.rerun()
 
+    with event_column:
+        event_button_label = f"Jump to {event_label}" if event_label is not None else "No event"
+
+        if st.button(
+            event_button_label,
+            width="stretch",
+            disabled=event_index is None,
+        ):
+            st.session_state[timeline_key] = event_index
+            st.session_state[playing_key] = False
+            st.rerun()
+
     selected_index = st.slider(
         "Simulation month",
         min_value=0,
@@ -132,10 +164,13 @@ def show_timeline_explorer(
 
     st.markdown(f"## {current_month:%B %Y}")
 
-    event_date, event_label = find_scenario_event(
-        products=products,
-        scenario_name=scenario_name,
-    )
+    if event_date is not None:
+        event_month = event_date.to_period("M")
+
+        for index, month in enumerate(available_months):
+            if pd.Timestamp(month).to_period("M") == event_month:
+                event_index = index
+                break
 
     if event_date is not None and current_month.to_period("M") == event_date.to_period("M"):
         st.warning(f"Commercial event: **{event_label}**")
