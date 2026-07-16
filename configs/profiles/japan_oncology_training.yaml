@@ -1,0 +1,11 @@
+market:
+  market_id: MKT_JP
+  market_name: Japan Commercial
+  country: Japan
+
+locality:
+  faker_locale: ja_JP
+  country_code: JP
+  country_name: Japan
+  currency_code: JPY
+  timezone: Asia/Tokyo

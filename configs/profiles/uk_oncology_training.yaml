@@ -1,0 +1,11 @@
+market:
+  market_id: MKT_GB
+  market_name: United Kingdom Commercial
+  country: United Kingdom
+
+locality:
+  faker_locale: en_GB
+  country_code: GB
+  country_name: United Kingdom
+  currency_code: GBP
+  timezone: Europe/London

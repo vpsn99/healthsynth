@@ -78,8 +78,31 @@ def show_dataset_preview(
 
     st.caption(f"{len(selected_dataset):,} rows × {len(selected_dataset.columns):,} columns")
 
+    display_dataset = selected_dataset
+
+    if dataset_name == "hcp_master":
+        preferred_hcp_columns = [
+            "hcp_id",
+            "hcp_name",
+            "specialty",
+            "segment",
+            "decile",
+            "city",
+            "administrative_area",
+            "postal_code",
+            "country_code",
+            "faker_locale",
+        ]
+
+        visible_hcp_columns = [
+            column for column in preferred_hcp_columns if column in selected_dataset.columns
+        ]
+
+        if visible_hcp_columns:
+            display_dataset = selected_dataset[visible_hcp_columns]
+
     st.dataframe(
-        selected_dataset.head(250),
+        display_dataset.head(250),
         width="stretch",
         hide_index=True,
     )
@@ -126,6 +149,11 @@ with st.sidebar:
     )
 
     scenario = SCENARIOS[scenario_name]
+    scenario_locality = scenario.get(
+        "locality",
+        {},
+    )
+
     scenario_path = scenario["path"]
 
     st.markdown(f"**{scenario['title']}**")
@@ -139,6 +167,21 @@ with st.sidebar:
             st.caption(f"Profile: `{scenario_path.name}`")
         else:
             st.error(f"The profile file could not be found: `{scenario_path.name}`")
+
+    if scenario_locality:
+        st.caption(
+            "Locality: "
+            f"{scenario_locality.get('label', 'Configured profile')} "
+            f"({scenario_locality.get('faker_locale', 'default')})"
+        )
+
+        with st.expander("About locality"):
+            st.caption(
+                "Locality changes synthetic names, addresses, "
+                "administrative areas, postal codes, phone formats, "
+                "and related metadata. It does not automatically model "
+                "country-specific pharmaceutical market behaviour."
+            )
 
     st.divider()
 
@@ -209,6 +252,10 @@ with st.sidebar:
         width="stretch",
         disabled=(scenario_path is not None and not scenario_path.exists()),
     )
+
+    st.divider()
+
+    st.sidebar.caption("HealthSynth Studio v0.1.0")
 
     if run_simulation_requested:
         input_errors = validate_simulation_inputs(simulation_settings)
@@ -335,57 +382,56 @@ with overview_tab:
         else:
             st.info("No product data is available.")
 
-    with charts_tab:
-        st.subheader("Market Dynamics")
+with charts_tab:
+    st.subheader("Market Dynamics")
 
-        st.markdown("#### Adjusted Market Share")
-        show_market_share_chart(
-            dataframes=dataframes,
-            scenario_name=scenario_name,
-        )
+    st.markdown("#### Adjusted Market Share")
+    show_market_share_chart(
+        dataframes=dataframes,
+        scenario_name=scenario_name,
+    )
 
-        if scenario_name == "New Product Launch":
-            st.caption(
-                "Observe how the newly launched product gradually gains "
-                "share from established competitors."
-            )
-        elif scenario_name == "Loss of Exclusivity":
-            st.caption(
-                "Observe how the affected brand loses competitive "
-                "strength after loss of exclusivity."
-            )
-        elif scenario_name == "Competitor Launch":
-            st.caption(
-                "Observe how the new competitor enters the market and "
-                "redistributes share away from incumbents."
-            )
-        elif scenario_name == "Market Access":
-            st.caption(
-                "Observe how improved access changes the product's "
-                "competitive position after the event date."
-            )
-        else:
-            st.caption(
-                "Market share changes over time as products compete within the simulated market."
-            )
-
-        st.markdown("#### Monthly Market Demand")
-        show_market_demand_chart(dataframes)
-
-        st.markdown("#### Monthly New Prescriptions")
-        show_prescription_chart(dataframes)
-
-    with timeline_tab:
-        st.subheader("Market Timeline")
-
+    if scenario_name == "New Product Launch":
         st.caption(
-            "Move through the simulation month by month, or select Play to watch the market evolve."
+            "Observe how the newly launched product gradually gains "
+            "share from established competitors."
+        )
+    elif scenario_name == "Loss of Exclusivity":
+        st.caption(
+            "Observe how the affected brand loses competitive strength after loss of exclusivity."
+        )
+    elif scenario_name == "Competitor Launch":
+        st.caption(
+            "Observe how the new competitor enters the market and "
+            "redistributes share away from incumbents."
+        )
+    elif scenario_name == "Market Access":
+        st.caption(
+            "Observe how improved access changes the product's "
+            "competitive position after the event date."
+        )
+    else:
+        st.caption(
+            "Market share changes over time as products compete within the simulated market."
         )
 
-        show_timeline_explorer(
-            dataframes=dataframes,
-            scenario_name=scenario_name,
-        )
+    st.markdown("#### Monthly Market Demand")
+    show_market_demand_chart(dataframes)
+
+    st.markdown("#### Monthly New Prescriptions")
+    show_prescription_chart(dataframes)
+
+with timeline_tab:
+    st.subheader("Market Timeline")
+
+    st.caption(
+        "Move through the simulation month by month, or select Play to watch the market evolve."
+    )
+
+    show_timeline_explorer(
+        dataframes=dataframes,
+        scenario_name=scenario_name,
+    )
 
 with data_tab:
     st.subheader("Generated Datasets")
