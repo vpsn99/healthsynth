@@ -1,4 +1,7 @@
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
 import pandas as pd
+from faker.config import AVAILABLE_LOCALES
 
 from healthsynth.exceptions import HealthSynthConfigurationError
 
@@ -15,13 +18,30 @@ def validate_config(config: dict) -> None:
     This intentionally validates only rules that can break generation
     or produce misleading datasets.
     """
+
     _validate_generation(config)
-    _validate_distribution(config, "specialty_distribution")
-    _validate_distribution(config, "decile_distribution")
-    _validate_distribution(config, "channel_distribution")
+    _validate_distribution(
+        config,
+        "specialty_distribution",
+    )
+    _validate_distribution(
+        config,
+        "decile_distribution",
+    )
+    _validate_distribution(
+        config,
+        "channel_distribution",
+    )
     _validate_products(config)
     _validate_affinity(config)
     _validate_market(config)
+
+    locality_errors = validate_locality_config(config.get("locality", {}))
+
+    if locality_errors:
+        raise HealthSynthConfigurationError(
+            "Invalid locality configuration: " + "; ".join(locality_errors)
+        )
 
 
 def _validate_generation(config: dict) -> None:
@@ -334,3 +354,58 @@ def _validate_market(config: dict) -> None:
     for field in required_fields:
         if not market.get(field):
             raise HealthSynthConfigurationError(f"market.{field} is required.")
+
+
+def validate_locality_config(
+    locality: dict,
+) -> list[str]:
+    """Validate generic locality configuration."""
+
+    errors: list[str] = []
+
+    if not isinstance(locality, dict):
+        return [
+            "locality must be a mapping.",
+        ]
+
+    faker_locale = locality.get("faker_locale")
+    country_code = locality.get("country_code")
+    country_name = locality.get("country_name")
+    currency_code = locality.get("currency_code")
+    timezone = locality.get("timezone")
+
+    if not faker_locale:
+        errors.append("locality.faker_locale is required.")
+    elif not isinstance(faker_locale, str):
+        errors.append("locality.faker_locale must be a string.")
+    elif faker_locale not in AVAILABLE_LOCALES:
+        errors.append(f"Unsupported Faker locale: {faker_locale}")
+
+    if not country_code:
+        errors.append("locality.country_code is required.")
+    elif not isinstance(country_code, str) or len(country_code) != 2 or not country_code.isalpha():
+        errors.append("locality.country_code must be a two-letter alphabetic code.")
+
+    if not country_name:
+        errors.append("locality.country_name is required.")
+    elif not isinstance(country_name, str):
+        errors.append("locality.country_name must be a string.")
+
+    if not currency_code:
+        errors.append("locality.currency_code is required.")
+    elif (
+        not isinstance(currency_code, str) or len(currency_code) != 3 or not currency_code.isalpha()
+    ):
+        errors.append("locality.currency_code must be a three-letter alphabetic code.")
+
+    if not timezone:
+        errors.append("locality.timezone is required.")
+    elif not isinstance(timezone, str):
+        errors.append("locality.timezone must be a string.")
+    else:
+        try:
+            ZoneInfo(timezone)
+        except ZoneInfoNotFoundError:
+            errors.append(f"Unknown timezone: {timezone}")
+
+    return errors

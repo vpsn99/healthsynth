@@ -1,6 +1,7 @@
 from healthsynth.generator import generate
+from healthsynth.metadata import PACKAGE_VERSION
 
-__version__ = "0.1.0"
+__version__ = PACKAGE_VERSION
 
 __all__ = [
     "__version__",

@@ -5,6 +5,7 @@ import time
 import pandas as pd
 import streamlit as st
 from charts import find_scenario_event
+from narrative import build_market_narrative
 
 
 def show_timeline_explorer(
@@ -33,6 +34,15 @@ def show_timeline_explorer(
 
     if missing_datasets:
         st.info("Timeline playback requires: " + ", ".join(missing_datasets))
+        return
+
+    required_product_columns = {
+        "product_id",
+        "product_name",
+    }
+
+    if not required_product_columns.issubset(products.columns):
+        st.info("Timeline playback requires product IDs and names.")
         return
 
     share_data = market_share.copy()
@@ -79,9 +89,12 @@ def show_timeline_explorer(
 
     maximum_index = len(available_months) - 1
 
-    st.session_state[timeline_key] = min(
-        st.session_state[timeline_key],
-        maximum_index,
+    st.session_state[timeline_key] = max(
+        0,
+        min(
+            st.session_state[timeline_key],
+            maximum_index,
+        ),
     )
 
     event_date, event_label = find_scenario_event(
@@ -159,21 +172,20 @@ def show_timeline_explorer(
     if selected_index != st.session_state[timeline_key]:
         st.session_state[timeline_key] = selected_index
         st.session_state[playing_key] = False
+        st.rerun()
 
-    current_month = pd.Timestamp(available_months[st.session_state[timeline_key]])
+    current_index = st.session_state[timeline_key]
+
+    current_month = pd.Timestamp(available_months[current_index])
 
     st.markdown(f"## {current_month:%B %Y}")
 
-    if event_date is not None:
-        event_month = event_date.to_period("M")
-
-        for index, month in enumerate(available_months):
-            if pd.Timestamp(month).to_period("M") == event_month:
-                event_index = index
-                break
-
     if event_date is not None and current_month.to_period("M") == event_date.to_period("M"):
-        st.warning(f"Commercial event: **{event_label}**")
+        st.warning(
+            f"📍 **{event_label}** occurs this month. "
+            "Observe how the market evolves over the "
+            "following months."
+        )
 
     current_share = share_data[share_data["month"] == current_month].copy()
 
@@ -182,6 +194,18 @@ def show_timeline_explorer(
     current_prescriptions = prescription_data[prescription_data["rx_date"] == current_month]
 
     total_market_nrx = int(current_demand_rows["market_nrx"].sum())
+
+    previous_share = None
+    previous_market_nrx = None
+
+    if current_index > 0:
+        previous_month = pd.Timestamp(available_months[current_index - 1])
+
+        previous_share = share_data[share_data["month"] == previous_month].copy()
+
+        previous_market_nrx = int(
+            demand_data[demand_data["month"] == previous_month]["market_nrx"].sum()
+        )
 
     monthly_product_nrx = (
         current_prescriptions.groupby(
@@ -194,6 +218,23 @@ def show_timeline_explorer(
             ascending=False,
         )
     )
+
+    narrative = build_market_narrative(
+        scenario_name=scenario_name,
+        current_month=current_month,
+        event_date=event_date,
+        current_share=current_share,
+        previous_share=previous_share,
+        current_demand=total_market_nrx,
+        previous_demand=previous_market_nrx,
+    )
+
+    st.markdown(f"**{narrative.phase}** — {narrative.summary}")
+
+    if narrative.details:
+        with st.expander("Why this matters"):
+            for item in narrative.details:
+                st.markdown(f"- {item}")
 
     current_share = current_share.sort_values(
         "adjusted_market_share",
@@ -244,20 +285,26 @@ def show_timeline_explorer(
 
         share_chart_data = current_share.set_index("product_name")["adjusted_market_share"]
 
-        st.bar_chart(
-            share_chart_data,
-            horizontal=True,
-        )
+        if share_chart_data.empty:
+            st.info("No market-share data is available for this month.")
+        else:
+            st.bar_chart(
+                share_chart_data,
+                horizontal=True,
+            )
 
     with right_chart:
         st.markdown("#### New Prescriptions")
 
         nrx_chart_data = monthly_product_nrx.set_index("product_name")["nrx"]
 
-        st.bar_chart(
-            nrx_chart_data,
-            horizontal=True,
-        )
+        if nrx_chart_data.empty:
+            st.info("No prescription data is available for this month.")
+        else:
+            st.bar_chart(
+                nrx_chart_data,
+                horizontal=True,
+            )
 
     st.markdown("#### Monthly Product Position")
 
@@ -293,7 +340,7 @@ def show_timeline_explorer(
     )
 
     if st.session_state[playing_key]:
-        if st.session_state[timeline_key] < maximum_index:
+        if current_index < maximum_index:
             time.sleep(0.8)
             st.session_state[timeline_key] += 1
             st.rerun()

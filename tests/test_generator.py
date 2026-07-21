@@ -1,5 +1,10 @@
-import pandas as pd
+from copy import deepcopy
 
+import pandas as pd
+import pytest
+
+from healthsynth.commercial.entities import HCPGenerator
+from healthsynth.config.defaults import DEFAULT_CONFIG
 from healthsynth.generator import generate
 
 
@@ -350,3 +355,111 @@ def test_prescriptions_match_monthly_market_demand(tmp_path):
     )
 
     assert (comparison["actual_nrx"] == comparison["market_nrx"]).all()
+
+
+def test_hcp_generation_uses_configured_locale():
+    config = deepcopy(DEFAULT_CONFIG)
+
+    config["locality"] = {
+        "faker_locale": "en_GB",
+        "country_code": "GB",
+        "country_name": "United Kingdom",
+        "currency_code": "GBP",
+        "timezone": "Europe/London",
+    }
+
+    generator = HCPGenerator(
+        seed=42,
+        config=config,
+    )
+
+    hcps = generator.generate(num_hcps=5)
+
+    assert set(hcps["faker_locale"]) == {"en_GB"}
+    assert set(hcps["country_code"]) == {"GB"}
+    assert set(hcps["country_name"]) == {"United Kingdom"}
+
+
+def test_localized_hcp_generation_is_reproducible():
+    config = deepcopy(DEFAULT_CONFIG)
+
+    config["locality"]["faker_locale"] = "ja_JP"
+    config["locality"]["country_code"] = "JP"
+    config["locality"]["country_name"] = "Japan"
+    config["locality"]["currency_code"] = "JPY"
+    config["locality"]["timezone"] = "Asia/Tokyo"
+
+    first = HCPGenerator(
+        seed=42,
+        config=config,
+    ).generate(num_hcps=5)
+
+    second = HCPGenerator(
+        seed=42,
+        config=config,
+    ).generate(num_hcps=5)
+
+    pd.testing.assert_frame_equal(
+        first,
+        second,
+    )
+
+
+@pytest.mark.parametrize(
+    (
+        "faker_locale",
+        "country_code",
+        "country_name",
+        "currency_code",
+        "timezone",
+    ),
+    [
+        (
+            "en_GB",
+            "GB",
+            "United Kingdom",
+            "GBP",
+            "Europe/London",
+        ),
+        (
+            "ja_JP",
+            "JP",
+            "Japan",
+            "JPY",
+            "Asia/Tokyo",
+        ),
+        (
+            "es_MX",
+            "MX",
+            "Mexico",
+            "MXN",
+            "America/Mexico_City",
+        ),
+    ],
+)
+def test_hcp_generation_supports_multiple_localities(
+    faker_locale,
+    country_code,
+    country_name,
+    currency_code,
+    timezone,
+):
+    config = deepcopy(DEFAULT_CONFIG)
+
+    config["locality"] = {
+        "faker_locale": faker_locale,
+        "country_code": country_code,
+        "country_name": country_name,
+        "currency_code": currency_code,
+        "timezone": timezone,
+    }
+
+    hcps = HCPGenerator(
+        seed=42,
+        config=config,
+    ).generate(num_hcps=3)
+
+    assert set(hcps["faker_locale"]) == {faker_locale}
+    assert set(hcps["country_code"]) == {country_code}
+    assert set(hcps["country_name"]) == {country_name}
+    assert hcps["hcp_name"].notna().all()

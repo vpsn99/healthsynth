@@ -51,7 +51,10 @@ class HCPGenerator(BaseGenerator):
                 {
                     "market_id": market_id,
                     "hcp_id": hcp_id,
-                    "hcp_name": self.fake.name(),
+                    "hcp_name": self.localized_value(
+                        "name",
+                        fallback=f"Synthetic HCP {i:06d}",
+                    ),
                     "specialty": self.rng.choice(specialties, p=specialty_probs),
                     "decile": decile,
                     "segment": self._segment_from_decile(decile),
@@ -59,8 +62,27 @@ class HCPGenerator(BaseGenerator):
                     "territory_name": territory.territory_name,
                     "rep_id": territory.rep_id,
                     "rep_name": territory.rep_name,
-                    "city": self.fake.city(),
-                    "province": self.fake.province(),
+                    "address": self.localized_value(
+                        "street_address",
+                    ),
+                    "city": self.localized_value(
+                        "city",
+                    ),
+                    "administrative_area": self.localized_value(
+                        "administrative_unit",
+                        "state",
+                        "province",
+                    ),
+                    "postal_code": self.localized_value(
+                        "postcode",
+                        "postalcode",
+                    ),
+                    "phone_number": self.localized_value(
+                        "phone_number",
+                    ),
+                    "country_code": self.country_code,
+                    "country_name": self.country_name,
+                    "faker_locale": self.locale,
                 }
             )
 
@@ -75,7 +97,10 @@ class HCPGenerator(BaseGenerator):
                     territory_id=f"T{i:03d}",
                     territory_name=f"Territory {i:03d}",
                     rep_id=f"REP{i:03d}",
-                    rep_name=self.fake.name(),
+                    rep_name=self.localized_value(
+                        "name",
+                        fallback=f"Synthetic Rep {i:03d}",
+                    ),
                 )
             )
 

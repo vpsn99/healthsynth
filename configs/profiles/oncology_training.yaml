@@ -8,6 +8,13 @@ generation:
 
 num_territories: 12
 
+locality:
+  faker_locale: en_CA
+  country_code: CA
+  country_name: Canada
+  currency_code: CAD
+  timezone: America/Toronto
+  
 market:
   market_id: MKT_ONC_CA
   market_name: Oncology Training

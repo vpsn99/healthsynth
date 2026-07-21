@@ -106,4 +106,11 @@ DEFAULT_CONFIG = {
             12: 0.94,
         },
     },
+    "locality": {
+        "faker_locale": "en_CA",
+        "country_code": "CA",
+        "country_name": "Canada",
+        "currency_code": "CAD",
+        "timezone": "America/Toronto",
+    },
 }

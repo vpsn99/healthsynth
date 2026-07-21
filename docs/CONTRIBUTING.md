@@ -3,6 +3,7 @@
 Thank you for your interest in contributing.
 
 HealthSynth aims to become a high-quality open-source healthcare commercial analytics simulation platform.
+HealthSynth is an evolving open-source project. Contributions that improve learning, realism, extensibility, or developer experience are particularly appreciated.
 
 Quality matters more than speed.
 
@@ -14,7 +15,7 @@ Please read:
 
 - VISION.md
 - ARCHITECTURE.md
-- ROADMAP.md
+- DATA_MODEL.md
 
 Understanding the project's philosophy is more important than understanding the code.
 
@@ -50,6 +51,40 @@ Avoid:
 
 ---
 
+# Project Structure
+
+HealthSynth
+│
+├── Core
+│   Commercial simulation engine
+│
+├── Studio
+│   Interactive Streamlit application
+│
+├── Notebooks
+│   Learning and demonstrations
+│
+└── Configuration
+    YAML-based business knowledge
+
+---
+
+# Ways to contribute
+
+HealthSynth welcomes contributions in many forms:
+
+• Commercial simulation logic
+• HealthSynth Studio
+• Documentation
+• Jupyter notebooks
+• Unit tests
+• New commercial scenarios
+• Performance improvements
+• Bug fixes
+• Examples and tutorials
+
+---
+
 # Scenarios
 
 Every scenario should represent a believable business event.
@@ -66,6 +101,30 @@ Poor examples:
 
 Business behaviour should emerge naturally from the simulation.
 
+## Adding New Scenarios
+
+Prefer implementing business behaviour through configuration rather than hardcoding logic.
+
+Commercial events should influence the simulation naturally instead of directly modifying output datasets.
+
+New scenarios should include:
+
+• YAML profile
+• Tests
+• Documentation
+• Notebook (if appropriate)
+
+## Documentation
+Documentation improvements are always welcome.
+
+Examples include:
+
+- README improvements
+- Architecture documentation
+- Tutorials
+- Notebook explanations
+- API documentation
+  
 ---
 
 # Pull Requests

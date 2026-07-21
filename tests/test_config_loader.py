@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 from healthsynth.config.loader import ConfigLoader
+from healthsynth.config.validator import validate_locality_config
 from healthsynth.exceptions import HealthSynthConfigurationError
 
 
@@ -597,3 +598,57 @@ products:
         match="market_access_factor is required",
     ):
         ConfigLoader.load(str(config_file))
+
+
+def test_valid_locality_configuration():
+    locality = {
+        "faker_locale": "en_GB",
+        "country_code": "GB",
+        "country_name": "United Kingdom",
+        "currency_code": "GBP",
+        "timezone": "Europe/London",
+    }
+
+    assert validate_locality_config(locality) == []
+
+
+def test_invalid_faker_locale():
+    locality = {
+        "faker_locale": "xx_YY",
+        "country_code": "GB",
+        "country_name": "United Kingdom",
+        "currency_code": "GBP",
+        "timezone": "Europe/London",
+    }
+
+    errors = validate_locality_config(locality)
+
+    assert any("Unsupported Faker locale" in error for error in errors)
+
+
+def test_invalid_country_code():
+    locality = {
+        "faker_locale": "en_GB",
+        "country_code": "GBR",
+        "country_name": "United Kingdom",
+        "currency_code": "GBP",
+        "timezone": "Europe/London",
+    }
+
+    errors = validate_locality_config(locality)
+
+    assert any("country_code" in error for error in errors)
+
+
+def test_invalid_timezone():
+    locality = {
+        "faker_locale": "ja_JP",
+        "country_code": "JP",
+        "country_name": "Japan",
+        "currency_code": "JPY",
+        "timezone": "Mars/Tokyo",
+    }
+
+    errors = validate_locality_config(locality)
+
+    assert any("Unknown timezone" in error for error in errors)

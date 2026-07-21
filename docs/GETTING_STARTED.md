@@ -71,7 +71,7 @@ HealthSynth currently runs on Windows, macOS, and Linux.
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-github-username>/healthsynth.git
+git clone https://github.com/vpsn99/healthsynth.git
 
 cd healthsynth
 ```
@@ -99,6 +99,7 @@ Install HealthSynth in editable mode:
 ```bash
 pip install -e .
 ```
+Streamlit is installed as part of the development dependencies and powers HealthSynth Studio.
 
 Verify the installation:
 
@@ -140,6 +141,21 @@ Output written to:
 output/tutorial
 ```
 
+## Explore the Simulation in HealthSynth Studio
+
+```bash
+    streamlit run ui/app.py
+```
+HealthSynth Studio provides an interactive way to explore generated commercial markets.
+
+Using Studio you can:
+
+generate commercial scenarios
+compare datasets
+replay commercial events on an interactive timeline
+view key metrics and charts
+inspect generated HCP and product data
+download the generated datasets
 
 ## Understanding the Output
 
@@ -158,6 +174,7 @@ You'll find a collection of CSV files describing different parts of the simulate
 | market_share.csv | Product market share |
 | prescriptions.csv | Generated NRx/TRx data |
 | validation_report.md | Dataset validation summary |
+| healthsynth_manifest.json | Generation metadata including HealthSynth version, schema version and locality configuration |
 
 These datasets are linked together.
 
@@ -193,7 +210,7 @@ We recommend completing the notebooks in order.
 | 10 | Market Access |
 
 Each notebook combines business concepts with practical analysis of the generated datasets.
-
+The notebooks build on one another, beginning with generation and progressing through commercial analytics concepts such as market demand, product launches, market access, and loss of exclusivity.
 
 ## Exploring Other Scenarios
 
@@ -215,6 +232,18 @@ Introduces a new competitor into an existing market and redistributes market sha
 
 Simulates reimbursement or formulary improvements that increase a product's commercial opportunity.
 
+### Localized Market Profiles
+
+HealthSynth supports locality-aware synthetic identities.
+
+```yaml
+locality:
+  faker_locale: ja_JP
+  country_code: JP
+```
+Changing locality affects generated names, addresses, administrative areas, postal codes and phone numbers while leaving the commercial simulation unchanged.
+
+
 Each scenario is fully configurable using YAML profiles.
 
 
@@ -233,7 +262,12 @@ From here you can:
 - develop forecasting or machine learning models
 - work through the included notebooks
 
-To learn more about how HealthSynth works internally, continue with the Architecture Guide.
+To learn more about how HealthSynth works internally-
+- Explore additional Studio scenarios.
+- Work through the notebooks.
+- Modify YAML profiles.
+- Read the Architecture Guide.
+- Create your own commercial scenarios.
 
 
 ## Need Help?
@@ -247,6 +281,13 @@ If you encounter any issues:
 
 If you discover a bug or have an idea for a new feature, please open an issue on GitHub.
 
+## Reproducibility
+
+HealthSynth is deterministic.
+
+Running the same profile with the same seed produces identical datasets.
+
+That is one of HealthSynth's design principles and a major advantage for learning, testing and demonstrations. It deserves a mention in a getting started guide.
 
 ---
 

@@ -1,5 +1,10 @@
 # HealthSynth Data Model
 
+**HealthSynth Version:** 0.2.0
+
+**Schema Version:** 2.0
+
+
 HealthSynth generates a set of related datasets representing a simulated pharmaceutical commercial market.
 
 The datasets are not produced independently.
@@ -55,6 +60,8 @@ The output directory may also contain:
 - a dataset manifest
 - a validation report
 
+Schema 2.0 introduces locality-aware synthetic identities and generalizes administrative geography to support multiple countries.
+
 ---
 
 # Relationship Overview
@@ -92,7 +99,41 @@ The primary shared identifiers are:
 - monthly date fields
 
 ---
+# Locality Model
 
+
+```text
+Simulation configuration
+
+↓
+
+Commercial assumptions
+
+↓
+
+Locality configuration
+
+↓
+
+Synthetic identities
+
+↓
+
+Generated datasets
+```
+
+| Property      | Meaning                                             |
+| ------------- | --------------------------------------------------- |
+| faker_locale  | Faker locale used for synthetic identity generation |
+| country_code  | ISO-like country identifier                         |
+| country_name  | Human-readable country name                         |
+| currency_code | Currency metadata                                   |
+| timezone      | Market timezone                                     |
+
+
+Locality influences identity generation and metadata only. It does not automatically modify commercial assumptions such as demand, market share, promotion, seasonality, or competitive behaviour.
+
+---
 # Common Analytical Grains
 
 HealthSynth uses several different dataset grains.
@@ -823,6 +864,32 @@ prescriptions["rx_date"] = pd.to_datetime(
 
 ---
 
+# Configuration Model
+
+```text
+market
+    ↓
+market.csv
+
+products
+    ↓
+product.csv
+
+locality
+    ↓
+hcp_master.csv
+
+events
+    ↓
+market_share.csv
+
+promotion
+    ↓
+promotion_effect.csv
+```
+
+
+---
 # Core Business Rules
 
 HealthSynth maintains several important consistency rules.
@@ -962,4 +1029,54 @@ For the first hands-on simulation, see:
 
 ```text
 docs/GETTING_STARTED.md
+```
+
+---
+
+# Schema Evolution
+
+
+| Schema | Changes                                                             |
+| ------ | ------------------------------------------------------------------- |
+| 1.0    | Initial commercial analytics model                                  |
+| 2.0    | Locality-aware identities, administrative_area, expanded HCP schema |
+
+---
+
+# Data Generation Pipeline
+
+```text
+Configuration
+
+↓
+
+Market
+
+↓
+
+HCPs
+
+↓
+
+Products
+
+↓
+
+Commercial Events
+
+↓
+
+Promotion
+
+↓
+
+Market Demand
+
+↓
+
+Market Share
+
+↓
+
+Prescriptions
 ```
