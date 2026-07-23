@@ -18,7 +18,7 @@ HealthSynth was designed with five core principles.
 
 ## 1. Configuration Driven
 
-Commercial assumptions should be defined in YAML rather than hard-coded.
+Commercial assumptions are defined in simulation profiles rather than hard-coded into the engine.
 
 Examples include:
 

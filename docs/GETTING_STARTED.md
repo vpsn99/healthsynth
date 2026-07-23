@@ -50,10 +50,9 @@ By the end of this guide you'll know how to:
 
 - generate your first HealthSynth market
 - understand the generated datasets
-- explore the commercial scenarios
+- explore the commercial scenarios in studio
 - use the included notebooks
 - begin building your own simulations
-
 
 ## Prerequisites
 

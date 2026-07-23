@@ -2,11 +2,21 @@
 
 > Learn pharmaceutical commercial analytics by generating realistic synthetic markets.
 
-HealthSynth is an open-source Python framework that simulates pharmaceutical commercial markets and generates internally consistent synthetic datasets for analytics, experimentation, and learning.
+HealthSynth is an open-source Python library for simulating pharmaceutical commercial markets and generating internally consistent synthetic datasets.
 
 Unlike traditional synthetic data generators that create independent tables, HealthSynth models how commercial markets actually behave. Products compete for market share, promotional activity influences adoption, market demand changes over time, and prescriptions emerge from these upstream commercial dynamics.
 
 The result is a realistic commercial ecosystem that can be explored using Python, SQL, DuckDB, BI tools, or AI applications.
+
+---
+## Highlights
+
+- Configuration-driven pharmaceutical market simulation
+- Internally consistent commercial datasets
+- Product Launch, LOE, Competitor Launch and Market Access scenarios
+- DuckDB export
+- Interactive HealthSynth Studio
+- Fully reproducible simulations
 
 ---
 
@@ -128,9 +138,32 @@ All datasets are internally consistent and designed to work together.
 
 ### Install
 
+#### From Source
+```bash
+git clone ...
+cd healthsynth
+pip install -e .
+```
+
+#### From PyPI (coming soon)
 ```bash
 pip install healthsynth
 ```
+
+## Explore in HealthSynth Studio
+
+Launch the interactive Studio:
+
+streamlit run ui/app.py
+
+HealthSynth Studio lets you:
+
+- generate simulations
+- explore datasets
+- visualize timelines
+- inspect products and HCPs
+- download outputs
+  
 
 ### Generate a market
 
@@ -230,6 +263,9 @@ Additional documentation is available in the `docs` folder.
 - Performance optimisation
 - Additional export formats
 
+
+Future releases will continue expanding commercial scenarios, simulation realism, analytics capabilities, and developer experience.
+
 ---
 
 ## Contributing
@@ -261,8 +297,7 @@ or any purpose requiring medically validated datasets.
 
 ## Author
 
-**Virendra Pratap Singh**
-
+Maintained by Virendra Pratap Singh
 NVA Dataworks
 
 LinkedIn:

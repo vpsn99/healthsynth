@@ -125,7 +125,7 @@ Reproducibility is a core design goal.
 
 # Long-Term Vision
 
-HealthSynth aims to become the open-source standard for synthetic healthcare commercial analytics.
+HealthSynth aims to become an open-source platform for learning healthcare commercial analytics.
 
 Not by generating more tables.
 

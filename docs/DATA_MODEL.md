@@ -35,7 +35,7 @@ The purpose of this document is to explain:
 - how datasets relate to one another
 - which analytical questions each dataset can support
 
-The exact schema may evolve as HealthSynth adds new capabilities, but the relationships described here form the core commercial data model.
+This document describes the schema implemented in HealthSynth v0.2.0.
 
 ---
 
